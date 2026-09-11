@@ -2,7 +2,7 @@
 
 White-Label-Framework auf Basis von Atlas. Ein neutraler Designstandard mit austauschbaren Brand-Vorgaben für Interfaces und Management-Präsentationen.
 
-**Stand:** 0.1.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Die Referenz ist auf https://design.rapold.io erreichbar.
+**Stand:** 0.2.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Die Referenz ist auf https://design.rapold.io erreichbar.
 
 ## Verbindliche Referenz
 
@@ -31,7 +31,7 @@ npm run dev
 |---|---|
 | `packages/core/src` | Alle 19 Atlas-UI-Module und BrandProvider |
 | `packages/brands/src` | Validierter Brand-Vertrag, neutrale Basis, Goldbach-Adapter, Präsentationsadapter |
-| `apps/docs` | Next.js-Referenz mit 19 Seiten, statisch exportierbar |
+| `apps/docs` | Next.js-Referenz mit 35 Seiten, statisch exportierbar |
 | `brands/goldbach` | Gelieferte Vorgaben und dokumentierte Verfeinerungen |
 | `docs/atlas-reference.md` | Verbindliche Atlas-Referenz für System und Website |
 | `docs/brand-contract.md` | Integration und Erweiterung |
@@ -70,3 +70,5 @@ Die Domain-Auswahl steht in der Metadaten-Konfiguration und im Agenten-Einstieg.
 - Inhaltslogik: docs/presentation-logic.md und scripts/validate-deck.mjs.
 
 Bekannte Lücken und Abnahmestatus: docs/atlas-coverage.md.
+
+Der Muster-Renderer erzeugt zwölf editierbare PPTX-Dateien (zwei Brands × sechs Decks). Er verarbeitet derzeit illustrative Rezeptdaten, keine beliebigen Projektinhalte. Für reale Projektdecks liefert `/praesentation/deck-input.schema.json` das Eingabeschema und `/praesentation/deck-validation.mjs` einen eigenständig importierbaren Inhaltsvalidator.

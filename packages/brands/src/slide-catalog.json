@@ -15,7 +15,7 @@
       },
       {
         "zone": "Oben rechts",
-        "inhalt": "Das weisse Brand-Logo — nie die dunkle Fassung auf Foto."
+        "inhalt": "Das originale, kontrastfähige Brand-Logo. Ohne freigegebene inverse Fassung eine ruhige helle Logofläche verwenden."
       }
     ],
     "fehler": "Foliennummer oder Quellzeile aufs Cover setzen — beides gehört hier nicht hin."
@@ -41,19 +41,19 @@
     "id": "kapitel-trenner",
     "gruppe": "Struktur",
     "titel": "Kapitel-Trenner",
-    "zweck": "Der Taktgeber: Vollfläche Blau, ein Sektionstitel, ein Motiv. Genau zwei Variablen — alles andere ist fix. Vor jeder Sektion einer.",
+    "zweck": "Der Taktgeber: Vollfläche primary, ein Sektionstitel, ein Motiv. Genau zwei Variablen — alles andere ist fix. Vor jeder Sektion einer.",
     "zonen": [
       {
         "zone": "Vollfläche",
-        "inhalt": "Kanonisches Blau bis y 17.52 — der weisse 1.53-cm-Fussstreifen bleibt."
+        "inhalt": "Kanonisches primary bis y 17.52 — der 1.53-cm-Fussstreifen in surface bleibt."
       },
       {
         "zone": "Titel",
-        "inhalt": "Der Sektionstitel 30 pt Bold weiss ab (0.93, 3.62) — identisch mit dem Agenda-Eintrag."
+        "inhalt": "Der Sektionstitel 30 pt Bold on-color ab (0.93, 3.62) — identisch mit dem Agenda-Eintrag."
       },
       {
         "zone": "Rechts",
-        "inhalt": "Deko-Piktogramm weiss @ 14 % Alpha, 9.65 cm, fix bei (23.29, 6.48) — ein Motiv pro Sektion."
+        "inhalt": "Deko-Piktogramm on-color @ 14 % Alpha, 9.65 cm, fix bei (23.29, 6.48) — ein Motiv pro Sektion."
       }
     ],
     "fehler": "Eine Seitenzahl auf den Trenner setzen (er zählt mit, zeigt aber keine) — oder ein drittes Element erfinden."
@@ -66,11 +66,11 @@
     "zonen": [
       {
         "zone": "Vollfläche",
-        "inhalt": "Foto 33.87 × 17.52, weisser Fussstreifen bleibt."
+        "inhalt": "Foto 33.87 × 17.52, Fussstreifen in surface bleibt."
       },
       {
         "zone": "Mitte",
-        "inhalt": "«Besten Dank» 30 pt Bold weiss — sonst nichts."
+        "inhalt": "«Besten Dank» 30 pt Bold on-color — sonst nichts."
       }
     ],
     "fehler": "Den Dank mit letzten Botschaften aufladen — dafür ist die Management-Summary davor da."
@@ -108,7 +108,7 @@
       },
       {
         "zone": "Unten",
-        "inhalt": "1–2 Vollbreite-Bänder 32.00: blau = «steht fest», grau mit Ocker-Bullets = «Noch zu klären»."
+        "inhalt": "1–2 Vollbreite-Bänder 32.00: primary = «steht fest», chart-previous mit warning-Bullets = «Noch zu klären»."
       }
     ],
     "fehler": "Zwei oder drei Karten betonen — dann betont keine mehr."
@@ -125,14 +125,14 @@
       },
       {
         "zone": "Rechts",
-        "inhalt": "Karte 15.75 breit, surface-neutral: die Folgerung — Ziel, Konsequenzen (Ocker-Bullets), Fähigkeiten (Grün-Bullets)."
+        "inhalt": "Karte 15.75 breit, surface-neutral: die Folgerung — Ziel, Konsequenzen (warning-Bullets), Fähigkeiten (success-Bullets)."
       },
       {
         "zone": "Varianten",
         "inhalt": "100-%-Segmentbalken im Band · NEU-Datums-Pill statt Lead · 2×2 mit halbhohen Karten unten."
       }
     ],
-    "dataviz": "Segmentbalken: Prozent 10.5 pt Bold weiss IM Segment, Farbfolge primary → petrol → ocker → grau.",
+    "dataviz": "Segmentbalken: Prozent 10.5 pt Bold on-color IM Segment, Farbfolge primary → chart-2 → warning → chart-previous.",
     "fehler": "Beide Karten gleich einfärben — die Farblogik (belegt vs. gedeutet) ist die halbe Aussage."
   },
   {
@@ -199,11 +199,11 @@
     "zonen": [
       {
         "zone": "Oben",
-        "inhalt": "5 KPI-Kacheln 5.95 × 3.45 (surface-info): Wert 25/28 pt Bold primary → Label 10.5 pt → Delta 10 pt Bold rot/grün."
+        "inhalt": "5 KPI-Kacheln 5.95 × 3.45 (surface-info): Wert 25/28 pt Bold primary → Label 10.5 pt → Delta 10 pt Bold danger/success bei belegter Bedeutung."
       },
       {
         "zone": "Unten links (60)",
-        "inhalt": "Das eine native Säulen-Chart des Decks: Zwei-Perioden-Vergleich, Vorjahr grau chart-previous hinter Blau."
+        "inhalt": "Das eine native Säulen-Chart des Decks: Zwei-Perioden-Vergleich, Vorjahr chart-previous chart-previous hinter primary."
       },
       {
         "zone": "Unten rechts (40)",
@@ -211,13 +211,13 @@
       }
     ],
     "dataviz": "Einziger erlaubter Einsatz des nativen Charts. Chart-Labels als Literaltext setzen (CH-Zahlenformat, §7).",
-    "fehler": "KPI-Deltas rot für jede negative Zahl — Rot gilt nur ggü. Vorjahr; sonst ist negativ grau-Bold."
+    "fehler": "KPI-Deltas danger für jede negative Zahl — danger gilt nur ggü. Vorjahr; sonst ist negativ text-secondary Bold."
   },
   {
     "id": "kpi-timeline",
     "gruppe": "Evidenz",
     "titel": "KPI + Timeline",
-    "zweck": "Grosse Zahlen über einem Zeitstrahl: wo stehen wir, was kommt wann. Genau EINE Kachel darf invertieren (Fill Blau, Text weiss) — die eine Zahl, um die es geht.",
+    "zweck": "Grosse Zahlen über einem Zeitstrahl: wo stehen wir, was kommt wann. Genau EINE Kachel darf invertieren (Fill primary, Text on-color) — die eine Zahl, um die es geht.",
     "zonen": [
       {
         "zone": "Oben",
@@ -225,11 +225,11 @@
       },
       {
         "zone": "Unten",
-        "inhalt": "Timeline: Leiste #D3DBE0 29.97 × 0.09, Knoten ø 0.48 (grau = vergangen, blau = geplant), ø 0.66 Rot = heute/Frist. Datum 11.5 pt Bold über, Label 9.5 pt unter der Linie."
+        "inhalt": "Timeline: Leiste border 29.97 × 0.09, Knoten ø 0.48 (chart-previous = vergangen, primary = geplant), ø 0.66 danger = heute/Frist. Datum 11.5 pt Bold über, Label 9.5 pt unter der Linie."
       }
     ],
-    "dataviz": "Farbe kodiert Zeitfortschritt: grau → blau → rot (heute). Max. 1 rotes Element pro Folie.",
-    "fehler": "Zwei invertierte Kacheln oder zwei rote Knoten — dann schreit alles, und nichts ist wichtig."
+    "dataviz": "Farbe kodiert Zeitfortschritt: chart-previous → primary → danger (heute). Max. 1 Element in signal pro Folie.",
+    "fehler": "Zwei invertierte Kacheln oder zwei Knoten in signal — dann schreit alles, und nichts ist wichtig."
   },
   {
     "id": "textbox-tabelle",
@@ -243,19 +243,19 @@
       },
       {
         "zone": "Zeilen",
-        "inhalt": "Pitch 1.145–1.345. Vorjahr Regular grau · aktuell Bold dunkel · Veränderung Bold: negativ NEUTRAL-GRAU, positiv grün, erklärungsbedürftig ocker."
+        "inhalt": "Pitch 1.145–1.345. Vorjahr Regular chart-previous · aktuell Bold dunkel · Veränderung Bold: negativ text-secondary, positiv success, erklärungsbedürftig warning."
       },
       {
         "zone": "Betonung",
-        "inhalt": "Highlight-Zeile = surface-info-Rechteck hinter der Zeile; Alarm-Zeile = #FBE9EB mit Wert danger."
+        "inhalt": "Highlight-Zeile = surface-info-Rechteck hinter der Zeile; Alarm-Zeile = surface-danger mit Wert danger."
       },
       {
         "zone": "Abschluss",
-        "inhalt": "Takeaway-Banner surface-info oder Karten-Paar grau/blau — die Deutung, räumlich getrennt."
+        "inhalt": "Takeaway-Banner surface-info oder Karten-Paar surface-neutral/surface-info — die Deutung, räumlich getrennt."
       }
     ],
     "dataviz": "Zahlen rechtsbündig im CH-Format (Apostroph-Tausender, Dezimalkomma, echtes Minus U+2212).",
-    "fehler": "Negative Veränderungen rot einfärben — Rot ist für echte Alarme reserviert, nicht für Arithmetik."
+    "fehler": "Negative Veränderungen danger einfärben — danger ist für echte Alarme reserviert, nicht für Arithmetik."
   },
   {
     "id": "split-tabelle",
@@ -290,7 +290,7 @@
         "inhalt": "Linien-Render links, Gegenproben-Panel rechts: unabhängige Belege, Restunsicherheit explizit."
       }
     ],
-    "dataviz": "Die Schreckzahl ist das eine erlaubte rote Element der Folie.",
+    "dataviz": "Die Schreckzahl ist das eine erlaubte Element in signal der Folie.",
     "fehler": "Den dritten Schritt weglassen — Meldung und Ursache ohne geprüfte Zahl sind nur Gerücht plus Ausrede."
   },
   {
@@ -309,10 +309,10 @@
       },
       {
         "zone": "Farben",
-        "inhalt": "Semantisch: Blau = aktuell, Grau = Vergleich/«ohne Angabe», Ocker = Aufmerksamkeit — nie dekorativ bunt."
+        "inhalt": "Semantisch: primary = aktuell, chart-previous = Vergleich/«ohne Angabe», warning = Aufmerksamkeit — nie dekorativ bunt."
       }
     ],
-    "dataviz": "Farbfolge: primary → chart-previous → chart-2 → warning → Grau → Rot (max. 1) → Grün (nie als Fläche).",
+    "dataviz": "Farbfolge: primary → chart-previous → chart-2 → warning → chart-previous → danger (max. 1) → success (nie als Fläche).",
     "fehler": "Eine Achse dazubauen «für die Orientierung» — der Wert am Balken macht sie überflüssig, beides ist doppelt."
   },
   {
@@ -345,7 +345,7 @@
       },
       {
         "zone": "Badges",
-        "inhalt": "danger «ENTSCHEID» (heute zu fällen) · warning «AUFTRAG» (jemand übernimmt) — 8 pt Bold weiss VERSALIEN, Pill h 0.6."
+        "inhalt": "danger «ENTSCHEID» (heute zu fällen) · warning «AUFTRAG» (jemand übernimmt) — 8 pt Bold on-color VERSALIEN, Label h 0.6; Form folgt der Brand."
       }
     ],
     "fehler": "Entscheide formulieren, die keine sind («zur Kenntnis nehmen») — dann gehört der Punkt in die Summary, nicht ins Register."

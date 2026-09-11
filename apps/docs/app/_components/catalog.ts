@@ -1,9 +1,12 @@
 export const groups = [
- {title:'Einstieg',items:[['overview','Übersicht'],['brand','Marken & Identität']]},
- {title:'Grundlagen',items:[['tokens','Design-Tokens'],['typography','Typografie'],['layout','Raster & Abstände'],['icons','Iconografie'],['motion','Motion']]},
- {title:'Interface',items:[['components','Komponenten'],['navigation','Navigation'],['tables','Tabellen'],['feedback','Feedback & Zustände']]},
- {title:'Kommunikation',items:[['praesentation','Präsentation'],['dataviz','Datenvisualisierung'],['content','Inhalt & Sprache']]},
- {title:'Entwicklung',items:[['techstack','Techstack'],['engineering','Engineering'],['accessibility','Barrierefreiheit'],['agenten','Agenten-Vertrag'],['coverage','Atlas-Abgleich']]},
+ {title:'Einstieg',items:[['overview','Übersicht'],['coverage','Atlas-Abgleich']]},
+ {title:'Marke',items:[['brand','Marken & Identität'],['tokens','Design-Tokens'],['typography','Typografie'],['layout','Raster & Abstände'],['icons','Iconografie'],['content','Inhalt & Sprache'],['organigramm','Organigramm']]},
+ {title:'Agenten',items:[['techstack','Techstack'],['praesentation','Präsentation'],['praesentationslogik','Dramaturgie & Logik'],['prompt-compiler','Prompt-Compiler'],['prompt-vorlagen','Prompt-Vorlagen'],['agenten','Agenten-Vertrag']]},
+ {title:'Komponenten',items:[['navigation','Navigation'],['components','Komponenten'],['toasts','Toasts'],['empty-states','Leerzustände'],['skeletons','Ladezustände'],['lightbox','Lightbox'],['mermaid','Mermaid']]},
+ {title:'Daten',items:[['tables','Tabellen'],['forms','Formulare'],['dashboard','Dashboard'],['charts','Charts'],['dataviz','Datenvisualisierung']]},
+ {title:'Abläufe',items:[['login-pattern','Login-Muster'],['auth-flow','Auth-Flow'],['mail-templates','Mail-Templates']]},
+ {title:'Motion',items:[['motion','Motion'],['marketing-hero','Projekt-Hero']]},
+ {title:'Betrieb',items:[['health-status','Systemzustand'],['engineering','Engineering'],['accessibility','Barrierefreiheit']]},
 ];
 export const pages=groups.flatMap(g=>g.items.map(([id,title])=>({id,title,group:g.title})));
 export const href=(id:string)=>id==='overview'?'/':`/${id}`;

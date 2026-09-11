@@ -1,4 +1,4 @@
-import { mkdir, writeFile, copyFile } from 'node:fs/promises';
+import { mkdir, writeFile, copyFile, readFile } from 'node:fs/promises';
 import { brands } from '../packages/brands/src/index.mjs';
 import { presentationTheme } from '../packages/brands/src/presentation.mjs';
 const root = new URL('../apps/docs/public/',import.meta.url);
@@ -31,6 +31,10 @@ for(const brand of brands)for(const mode of Object.keys(brand.modes)) {
 await mkdir(new URL('praesentation/',root),{recursive:true});
 await copyFile(new URL('../docs/repo-to-management.md',import.meta.url),new URL('praesentation/llms.txt',root));
 await copyFile(new URL('../docs/presentation-logic.md',import.meta.url),new URL('contracts/presentation-logic.md',root));
-await copyFile(new URL('../packages/brands/src/deck-validation.mjs',import.meta.url),new URL('praesentation/deck-validation.mjs',root));
+const validator=await readFile(new URL('../packages/brands/src/deck-validation.mjs',import.meta.url),'utf8');
+const {slides}=await import('../packages/brands/src/presentation.mjs');
+await writeFile(new URL('praesentation/deck-validation.mjs',root),validator.replace("import {slides as catalog} from './presentation.mjs';",'const catalog='+JSON.stringify(slides)+';'));
 await import('./build-icons.mjs');
 await import('./build-decks.mjs');
+await copyFile(new URL('../packages/brands/src/deck-input.schema.json',import.meta.url),new URL('praesentation/deck-input.schema.json',root));
+await writeFile(new URL('build-info.json',root),JSON.stringify({version:'0.2.0',builtAt:new Date().toISOString(),commit:process.env.VERCEL_GIT_COMMIT_SHA??process.env.GITHUB_SHA??'local-build',atlasReference:'1c75c95417cc371040e1e24a0986213314b53c13',uiModules:19,slideTypes:18,deckPresets:5},null,2)+'\n');

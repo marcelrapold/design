@@ -19,11 +19,11 @@ Farben, Schriften, Logos, Icons, Bildwelt, Tonalität und ausdrücklich definier
 1. Die entsprechende Seite auf `atlas.zvv.dev` und ihren ausführbaren Quellcode prüfen. Bei geschütztem oder nicht zugänglichem Showcase den vorhandenen Repository-Zugriff verwenden und die fehlende visuelle Prüfung offen nennen.
 2. Den betrachteten Commit beziehungsweise Seitenstand festhalten. Keine veraltete lokale Kopie als aktuellen Atlas-Stand ausgeben.
 3. Das relevante Muster als neutrale Struktur übernehmen und durch semantische Brand-Rollen parametrisieren. Keine neue Seitenarchitektur allein aus persönlicher Designpräferenz erfinden.
-4. Jede bewusste Abweichung mit Quelle, Grund und Status dokumentieren. Die im ersten Schnitt gewünschte Reduktion des Umfangs ist erlaubt und wird nicht als vollständige Atlas-Parität ausgegeben.
+4. Jede bewusste Abweichung mit Quelle, Grund und Status dokumentieren. Der Folgeauftrag verlangt mindestens den wiederverwendbaren Atlas-Umfang. Eine frühere Minimalreduktion ist keine Begründung mehr für fehlende Module.
 5. Bei beauftragter visueller Abnahme Atlas und die White-Label-Seite anhand der gleichen Nutzungssituation vergleichen. Ein erfolgreicher Build beweist keine visuelle Übereinstimmung.
 
 ## Ausgangsstand dieses Repositorys
 
-Die Extraktion basiert auf Atlas-Commit `1c75c95417cc371040e1e24a0986213314b53c13`. Fünf Komponenten wurden übernommen und entkoppelt. Der vorhandene Showcase ist ein minimaler erster Schnitt. Vollständige Seitenparität mit Atlas und eine visuelle Gegenprüfung sind noch nicht abgeschlossen.
+Die Extraktion basiert auf Atlas-Commit `1c75c95417cc371040e1e24a0986213314b53c13`. Alle 19 exportierten UI-Module sind übernommen und entkoppelt. Die Referenz umfasst 35 Seiten, vollständige Token-Exporte, neutrale Icons und ausführbare Präsentationsmuster. Vollständige Seitenparität mit Atlas und eine visuelle Gegenprüfung sind noch nicht abgeschlossen.
 
 Diese Referenzentscheidung gilt für alle weiteren Arbeiten in `marcelrapold/design`, unabhängig davon, welcher Agent oder Renderer sie ausführt.

@@ -63,7 +63,7 @@
       },
       {
         "typ": "zwei-grosskarten",
-        "hinweis": "Ist (belegt, blau) gegen Soll (gedeutet, grau)"
+        "hinweis": "Ist (belegt, primary) gegen Soll (gedeutet, chart-previous)"
       },
       {
         "typ": "textbox-tabelle",
@@ -103,7 +103,7 @@
       },
       {
         "typ": "kpi-timeline",
-        "hinweis": "Meilensteine, «heute» in Rot"
+        "hinweis": "Meilensteine, «heute» in danger"
       },
       {
         "typ": "entscheid-register",
@@ -179,7 +179,7 @@
       },
       {
         "typ": "kpi-timeline",
-        "hinweis": "Fristen; die kritische in Rot"
+        "hinweis": "Fristen; die kritische in danger"
       },
       {
         "typ": "entscheid-register",

@@ -18,3 +18,4 @@ apps/docs/public/icons/
 apps/docs/public/praesentation/
 apps/docs/public/brands/*/tokens.*
 apps/docs/public/brands/*/decks/
+apps/docs/public/build-info.json

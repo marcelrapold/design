@@ -1,47 +1,31 @@
-# Handover 0.1.0
+# Handover 0.2.0
 
-## Erledigt
+## Ziel und Referenz
 
-- Atlas-Quellstruktur und ausgewählte ausführbare Komponenten geprüft. Quelle und Commit stehen in `docs/extraction.md`.
-- Fünf UI-Primitiven extrahiert. Feste ZVV-Farben und Textfarben in Buttons/Badges ersetzt. Keine ZVV-Assets, Hausschriften, PINs, Infrastruktur oder Historie übernommen.
-- Firmenneutraler Core, validierte Brand-Konfiguration, neutrale helle/dunkle Basis und kleiner Showcase.
-- Goldbach aus dem gelieferten ZIP integriert. Inter lokal eingebunden. Original-SVG übernommen. Dokumentierte Hover-Korrektur: 4.25:1 zu 9.13:1. Fehlende Icons und Folienmaster ausdrücklich festgehalten.
-- Agenten-Einstieg und Vertrag «Repository zu Management-Präsentation» inklusive Quellenmanifest, Ausgabeformaten und QA-Anforderungen.
-- Web-/Präsentationsrollen aus derselben Brand-Datei. Generierte statische JSON-/Markdown-Endpunkte.
-- Quellstand für das vom Benutzer angelegte Repository `marcelrapold/design` vorbereitet, kein Upstream-Fork.
-- `atlas.zvv.dev` als verbindliche Referenz für Designsystem UND Website in AGENTS.md, README, Brand-Vertrag und Agenten-Einstieg verankert.
+Vollständiges wiederverwendbares White-Label-Framework auf Atlas-Niveau. Die ursprüngliche Minimalreduktion ist aufgehoben. Atlas-Referenz: 1c75c95417cc371040e1e24a0986213314b53c13. Repository: https://github.com/marcelrapold/design. Autorisierte Produktionsadresse: https://design.rapold.io.
 
-## Verifikation
+## Implementiert
 
-`npm run check` vollständig bestanden:
+- 19 Atlas-UI-Module, BrandProvider mit Portal-Kontext, vollständige Foundation- und semantische Rollen sowie JSON/CSS/DTCG-Exporte.
+- 35 Referenzseiten mit Atlas-Navigationskonzept, Brand-Wechsel, Suche, Rail und Mobilnavigation.
+- 1'834 neutrale Lucide-Icons mit React-Verwendung, Suche, SVG-Download und Herkunftslizenz.
+- 18 Folienrezepte, fünf Presets, 13 Schriftrollen und vermessene Layouts. 14 komplexe Inhaltsrezepte aus Atlas nach JavaScript übertragen.
+- 12 editierbare Muster-PPTX beim Build. Native Charts, explizite CH-Zahlenlabels, getrennte Tabellenzellen, Original-Goldbach-SVG. Beispieldaten sind als solche bezeichnet.
+- Vollständige Inhaltslogik aus Atlas-Abschnitten 1–7, JSON-Eingabeschema und eigenständiger Validator. Quellen vor Kennzahlen, konkrete Evidenzreferenzen, Vergleiche, Schlussfolgerungen und verantwortete Sektionsabschlüsse werden geprüft.
+- TanStack-Tabelle, Recharts, Mermaid mit SVG-Export, Toasts, Zustandsmuster, Lightbox, Formularvalidierung, Login-/Auth-/Mail-Muster, Prompt-Compiler und einfache Organigramm-/Motion-Beispiele.
 
-- 6 Tests: Farbkontraste aller unterstützten Modi, Schema-/Injektionsprüfung, Erweiterbarkeit/Fallback, UI-/Präsentationskonsistenz, Core-Isolation, dokumentierter Goldbach-Konflikt.
-- TypeScript ohne Fehler.
-- Next.js-Produktionsbuild und statischer Export erfolgreich.
-- Ausgelieferte Core-CSS-Klassen und maschinenlesbare Endpunkte vorhanden.
+## Prüfung
 
-Keine visuelle Browser-Abnahme des neuen Showcase. Die Quellseite war unter `atlas.zvv.dev` bis zum PIN-Gate erreichbar, ihre geschützten Ansichten wurden nicht im Browser geprüft. Automatisierte Checks sind keine CI-Freigabe. Vollständige visuelle Atlas-Parität steht noch aus.
+`npm run check` ist die verbindliche Release-Prüfung: Vertragstests, TypeScript, statischer Produktionsbuild, ausgelieferte CSS-Klassen, Referenzrouten, eigenständiger Validator und Struktur aller zwölf PPTX-Dateien. Native Diagramme müssen editierbare Daten und Dezimalkomma-Beschriftungen enthalten.
 
-## Noch nicht erledigt
+Repräsentative Goldbach-PPTX-Folien wurden mit einem unabhängigen PPTX-Import und PNG-Rendering geprüft. Das ist keine native PowerPoint- oder Browser-Abnahme. Keine vollständige visuelle Gegenprüfung mit dem geschützten Atlas-Showcase.
 
-1. Rechte am extrahierten Code für einen Open-Source-Release festhalten. Original-LICENSE erhalten, Pakete bleiben privat/UNLICENSED. Goldbach-Vorgaben und Assets gesondert behandeln.
-2. Ziel-Domain `design.rapold.io` einrichten. `framework.rapold.io` ist als optionaler Alias dokumentiert. Keine DNS-Änderung und kein Deployment ausgeführt.
-3. Showcase visuell und mit Tastatur prüfen, bevor er veröffentlicht wird.
-4. Goldbach-Folienmaster und `bilder/icons.json` ergänzen, Verfeinerungen mit dem Brand-Verantwortlichen abgleichen. Sygnum erst nach gelieferten Vorgaben ergänzen.
+## Deployment
 
-## Nächster funktionaler Ausbau
+Upload und Produktionsdeployment sind beauftragt. Der zuletzt geprüfte Vercel-Zugang listete kein Projekt für die Domain; die CLI war nicht angemeldet und frühere Verbindungsversuche wurden durch die Umgebung blockiert. Keine weiteren Login-Schleifen oder erfundenen Erfolgsmeldungen. Ein Push bestätigt nur den Repository-Stand. Produktionsnachweis ist ein erfolgreicher Abruf von `/build-info.json` mit dem passenden Commit.
 
-Der Benutzer möchte den Auftrag «Check Repo xy, erstelle eine Management-Präsentation mit design.rapold.io im Goldbach-CI». Der Agenten-Vertrag ist implementiert, ein PPTX-/PDF-Renderer und eine echte Repository-zu-Deck-Ausführung noch nicht. Dafür keinen Chat-/Dashboard-Overhead bauen: zuerst den Auftrag mit einem konkreten autorisierten Repository und Renderer durchführen, Quellenmanifest und exportierte Dateien prüfen, dann den wiederverwendbaren Adapter extrahieren.
+## Verbleibende Arbeit
 
-## Archiv verwenden
+Die verbindliche Lückenliste steht in docs/atlas-coverage.md. Priorität: Produktionsprojekt zugänglich machen und neuen Build ausliefern; Website und Interaktionen gegen Atlas prüfen; reale Projektinhalte durch den Deck-Vertrag bis zur exportierten Präsentation führen. Der vorhandene Muster-Renderer ist noch kein allgemeiner Datenadapter für beliebige Projekte. Corporate-Master, PDF, ECharts, grafischer Organigramm-Editor und vertiefte Engineering-/Integrationsstandards fehlen.
 
-Das ZIP enthält `framework/` mit den Quellen und `framework.bundle` mit der lokalen Git-Historie. Für einen vollständigen Checkout:
-
-```sh
-git clone framework.bundle framework-checkout
-cd framework-checkout
-npm ci
-npm run check
-```
-
-Alternativ direkt mit dem Quellordner arbeiten. Der aktuelle Quellstand liegt im Zielrepository `marcelrapold/design`; `docs/release.md` beschreibt Betrieb und Lizenzstatus. Keine Zugangsdaten sind im Bundle enthalten.
+Goldbach bleibt ein CI-Entwurf aus den gelieferten Vorgaben. Sygnum erst nach gelieferten Quellen ergänzen. Original-LICENSE bleibt erhalten; öffentliche Quellablage und freie Neulizenzierung sind verschiedene Entscheidungen. Keine ZVV-Assets oder internen Dienste übernehmen.
