@@ -17,34 +17,31 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Keep low-priority element defaults in the base layer
+      - name: Correct reset cascade
         run: |
           mkdir -p /tmp/sygnum-final
           python <<'PY'
           from pathlib import Path
-          p=Path('apps/docs/app/globals.css')
-          s=p.read_text()
+          p=Path('apps/docs/app/globals.css');s=p.read_text()
           for rule in ('a{color:inherit}','button,select{font:inherit}','button,select,input,textarea{color:inherit}'):
-              assert s.count(rule)==1, rule
-              s=s.replace(rule,'@layer base{'+rule+'}')
+              target='}'+rule
+              assert s.count(target)==1,target
+              s=s.replace(target,'}@layer base{'+rule+'}')
           p.write_text(s)
           PY
       - run: npm ci
-      - name: Tests, types and complete production build
+      - name: Tests, types and build
         run: npm run check 2>&1 | tee /tmp/sygnum-final/check.log
-      - name: Install browser
+      - name: Browser installation
         run: |
           npm install -g agent-browser
           agent-browser install --with-deps
-      - name: Verify actual rendered button contrast, theme isolation and responsive layout
+      - name: Browser verification
         run: |
           nohup npx --yes serve@14 apps/docs/out -l 4173 >/tmp/sygnum-final/server.log 2>&1 &
           for n in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/brand >/dev/null && break || sleep 1; done
           curl -fsS http://127.0.0.1:4173/brand >/dev/null
-          cat >/tmp/sygnum-final/init.js <<'JS'
-          window.__qaErrors=[];window.addEventListener('error',e=>window.__qaErrors.push(e.message));window.addEventListener('unhandledrejection',e=>window.__qaErrors.push(String(e.reason)));
-          const original=console.error;console.error=(...a)=>{window.__qaErrors.push(a.map(String).join(' '));original.apply(console,a)};
-          JS
+          echo 'window.__qaErrors=[];window.addEventListener("error",e=>window.__qaErrors.push(e.message));window.addEventListener("unhandledrejection",e=>window.__qaErrors.push(String(e.reason)));' >/tmp/sygnum-final/init.js
           agent-browser open 'http://127.0.0.1:4173/praesentation?brand=sygnum' --init-script /tmp/sygnum-final/init.js
           agent-browser set viewport 1440 1000
           agent-browser wait '[data-brand=sygnum]'
@@ -55,7 +52,7 @@ jobs:
           for brand in sygnum goldbach neutral; do
             agent-browser select '#brand-choice' "$brand"
             agent-browser wait "[data-brand=$brand]"
-            agent-browser eval --stdin </tmp/sygnum-final/contrast.js | tee -a /tmp/sygnum-final/contrast-results.txt
+            agent-browser eval "$(cat /tmp/sygnum-final/contrast.js)" | tee -a /tmp/sygnum-final/contrast-results.txt
           done
           agent-browser select '#brand-choice' sygnum
           agent-browser screenshot /tmp/sygnum-final/sygnum-presentations.png
@@ -63,19 +60,19 @@ jobs:
           agent-browser wait '.sygnum-hero'
           agent-browser wait --load networkidle
           agent-browser screenshot /tmp/sygnum-final/sygnum-desktop.png --full
-          agent-browser eval '(()=>{if(window.__qaErrors.length)throw Error(window.__qaErrors.join(";"));if([...document.images].some(i=>!i.complete||i.naturalWidth===0))throw Error("broken asset");return "assets and errors PASS"})()'
+          agent-browser eval '(()=>{if(window.__qaErrors.length)throw Error(window.__qaErrors.join(";"));if([...document.images].some(i=>!i.complete||i.naturalWidth===0))throw Error("broken asset");return "assets PASS"})()'
           agent-browser set viewport 390 844
           agent-browser screenshot /tmp/sygnum-final/sygnum-mobile.png --full
           agent-browser eval '(()=>{if(document.documentElement.scrollWidth>innerWidth+1)throw Error("mobile overflow");return "mobile PASS"})()'
           agent-browser select '#brand-choice' neutral
-          agent-browser eval '(()=>{if(document.querySelector(".sygnum-hero"))throw Error("Sygnum leaked into default");return "isolation PASS"})()'
+          agent-browser eval '(()=>{if(document.querySelector(".sygnum-hero"))throw Error("brand leakage");return "isolation PASS"})()'
           agent-browser set viewport 1440 1000
           agent-browser open 'http://127.0.0.1:4173/mermaid?brand=sygnum'
           agent-browser wait --load networkidle
           agent-browser screenshot /tmp/sygnum-final/sygnum-mermaid.png
           agent-browser eval '(()=>{if(!document.querySelector("[data-brand=sygnum]"))throw Error("wrong brand");if(document.body.innerText.includes("Syntax error")||window.__qaErrors.length)throw Error("diagram errors");return "Mermaid PASS"})()'
           agent-browser close
-      - name: Package and commit verified source
+      - name: Package and save verified source
         run: |
           python <<'PY'
           from pathlib import Path
@@ -89,7 +86,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'fix(ui): keep button foreground and link contrast intact in every brand'
+          git commit -m 'fix(ui): preserve rendered action contrast in every brand'
           git push origin HEAD:feat/sygnum-brand
           git rev-parse HEAD >/tmp/sygnum-final/verified-commit.txt
       - uses: actions/upload-artifact@v4
