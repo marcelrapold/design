@@ -61,12 +61,12 @@
     }
   },
   "typography": {
-    "family": "Arial, Helvetica, sans-serif",
+    "family": "Inter, Arial, sans-serif",
     "bodyWeight": 400,
     "headingWeight": 700
   },
   "shape": {
-    "radius": "8px",
+    "radius": "12px",
     "shadow": "none",
     "buttonMinHeight": "44px"
   },

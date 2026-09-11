@@ -42,3 +42,6 @@ Die Platzhalter in diesem Schema sind Beispiele und keine Projektdaten. Ein Agen
 ## Goldbach-Zusatz
 
 Inter 300/700. Logo ausschliesslich als bereitgestelltes SVG mit Schutzraum einer H-Höhe; keine getippte Ersatzwortmarke. Keine roten dekorativen Rahmen, Pill-Buttons, Schatten oder frei gewählten Icon-Sets. Die Icons-Datei fehlt im gelieferten Paket, deshalb derzeit Icons weglassen. Bildregeln stehen in `brands/goldbach/sources/IMAGERY.md`. Bildflächen nur anlegen, wenn tatsächlich geeignetes Bildmaterial verfügbar ist. Ein dunkler Modus ist nicht aus der Quelle belegt.
+
+## Verbindliche Dramaturgie
+Vor dem Aufbau zusätzlich https://design.rapold.io/contracts/presentation-logic.md lesen. Die 18 Rezepte, fünf Presets und 13 Typorollen aus dem aktuellen Brand-Präsentationsvertrag verwenden. Inhaltsmodell vor dem Rendering mit scripts/validate-deck.mjs prüfen. Alle Folien danach visuell abnehmen.

@@ -1,3 +1,5 @@
+import { foundationVariables, semanticTokens, resolveFoundation } from './foundation.mjs';
+export { foundation, resolveFoundation, semanticTokens, tokenDocument, dtcgTokens } from './foundation.mjs';
 import neutralData from './neutral.json' with { type: 'json' };
 import goldbachData from './goldbach.json' with { type: 'json' };
 
@@ -9,7 +11,7 @@ function keys(value, expected, name) {
   if (Object.keys(value).some(key => !expected.includes(key)) || expected.some(key => !(key in value))) throw new Error(`${name}: invalid keys`);
 }
 export function defineBrand(input) {
-  keys(input, ['schemaVersion','id','name','version','status','modes','typography','shape','sources'], 'brand');
+  keys(input, [...(input.tokens ? ['tokens'] : []), 'schemaVersion','id','name','version','status','modes','typography','shape','sources'], 'brand');
   if (input.schemaVersion !== 1 || !/^[a-z][a-z0-9-]*$/.test(input.id)) throw new Error('Invalid brand identity');
   if (typeof input.name !== 'string' || !input.name.trim() || !/^\d+\.\d+\.\d+$/.test(input.version)) throw new Error('Invalid brand metadata');
   if (!['baseline','draft','approved'].includes(input.status)) throw new Error('Invalid brand status');
@@ -24,6 +26,7 @@ export function defineBrand(input) {
   keys(input.shape, ['radius','shadow','buttonMinHeight'], 'shape');
   if (!length.test(input.shape.radius) || !length.test(input.shape.buttonMinHeight) || !['none','0 1px 3px #00000014'].includes(input.shape.shadow)) throw new Error('Invalid geometry');
   if (!Array.isArray(input.sources) || input.sources.some(s => typeof s !== 'string')) throw new Error('Invalid sources');
+  resolveFoundation(input);
   const result = structuredClone(input);
   function freeze(value) { Object.values(value).forEach(v => { if (v && typeof v === 'object') freeze(v); }); return Object.freeze(value); }
   return freeze(result);
@@ -35,8 +38,9 @@ export const brands = Object.freeze([neutral, goldbach]);
 export function toCssVariables(brand, requestedMode = 'light') {
   const mode = requestedMode === 'dark' && brand.modes.dark ? 'dark' : 'light';
   return Object.fromEntries([
-    ...Object.entries(brand.modes[mode]).map(([key,value]) => [`--${key}`,value]),
-    ['--brand-font',brand.typography.family], ['--brand-body-weight',brand.typography.bodyWeight],
+    ...Object.entries(foundationVariables(brand)),
+    ...Object.entries(semanticTokens(brand,mode)).map(([key,value]) => [`--${key}`,value]),
+    ['--radius',brand.shape.radius], ['--font-mono','ui-monospace, SFMono-Regular, Menlo, monospace'], ['--brand-font',brand.typography.family], ['--brand-body-weight',brand.typography.bodyWeight],
     ['--brand-heading-weight',brand.typography.headingWeight], ['--brand-radius',brand.shape.radius],
     ['--brand-shadow',brand.shape.shadow], ['--brand-button-height',brand.shape.buttonMinHeight],
   ]);

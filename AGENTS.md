@@ -1,6 +1,6 @@
 # Arbeitsvertrag
 
-Dieses Repository ist eine bewusst verkleinerte White-Label-Ableitung. Firmenvorgaben gehören in Brand-Pakete, nicht in den Core. Die Quelle und der Benutzerauftrag bestimmen die Umsetzung.
+Dieses Repository wird zu einer vollständigen White-Label-Ableitung des wiederverwendbaren Atlas-Frameworks ausgebaut. Die ursprüngliche Reduktion ist durch den Folgeauftrag aufgehoben. Firmenvorgaben gehören in Brand-Pakete, nicht in den Core. Die Quelle und der Benutzerauftrag bestimmen die Umsetzung.
 
 **Verbindliche Referenz für System UND Website: https://atlas.zvv.dev.** Vor Änderungen an Seitenaufbau, Navigation, Showcase, Komponentenverhalten oder Präsentationsmustern `docs/atlas-reference.md` lesen und das passende Atlas-Muster prüfen. Firmenvorgaben überschreiben die Markenidentität. Bewusste strukturelle Abweichungen dokumentieren.
 
@@ -12,3 +12,6 @@ Dieses Repository ist eine bewusst verkleinerte White-Label-Ableitung. Firmenvor
 - Für Management-Präsentationen `docs/repo-to-management.md` und das aktive Brand-Paket lesen.
 - Original-LICENSE erhalten, bis eine dokumentierte Freigabe den Umfang einer Neulizenzierung bestimmt. Firmenassets separat behandeln.
 - Keine Secrets, PINs, ZVV-Infrastruktur oder nicht freigegebenen Firmenquellen in öffentliche Releases.
+
+- Vollständigkeit anhand docs/atlas-coverage.md prüfen, nicht anhand der Anzahl angelegter Dateien behaupten.
+- Präsentationsinhalte folgen docs/presentation-logic.md. Validator ist notwendig, aber keine visuelle oder redaktionelle Abnahme.

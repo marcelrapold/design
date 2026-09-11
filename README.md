@@ -1,12 +1,12 @@
 # Design Framework
 
-White-Label-Auszug aus Atlas. Ein neutraler Designstandard mit austauschbaren Brand-Vorgaben für Interfaces und Management-Präsentationen.
+White-Label-Framework auf Basis von Atlas. Ein neutraler Designstandard mit austauschbaren Brand-Vorgaben für Interfaces und Management-Präsentationen.
 
-**Stand:** 0.1.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Die Domains sind noch nicht verbunden.
+**Stand:** 0.1.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Die Referenz ist auf https://design.rapold.io erreichbar.
 
 ## Verbindliche Referenz
 
-[atlas.zvv.dev](https://atlas.zvv.dev) ist die ultimative Referenz für das Designsystem und den Aufbau der Website. Struktur und Verhalten folgen Atlas; die jeweilige Brand liefert ihre CI. Der aktuelle Showcase ist ein minimaler erster Schnitt, keine bereits abgenommene vollständige Atlas-Parität. Details: [Atlas-Referenz](docs/atlas-reference.md).
+[atlas.zvv.dev](https://atlas.zvv.dev) ist die ultimative Referenz für das Designsystem und den Aufbau der Website. Struktur und Verhalten folgen Atlas; die jeweilige Brand liefert ihre CI. Die Referenz umfasst Tokens, Icons, Komponenten, Navigation und Präsentationsmuster. Vollständige Atlas-Parität ist noch nicht abgenommen; siehe docs/atlas-coverage.md. Details: [Atlas-Referenz](docs/atlas-reference.md).
 
 ## Zielauftrag
 
@@ -29,9 +29,9 @@ npm run dev
 
 | Pfad | Zweck |
 |---|---|
-| `packages/core/src` | Button, Card, Input, Label, Badge und BrandProvider |
+| `packages/core/src` | Alle 19 Atlas-UI-Module und BrandProvider |
 | `packages/brands/src` | Validierter Brand-Vertrag, neutrale Basis, Goldbach-Adapter, Präsentationsadapter |
-| `apps/docs` | Kleine Next.js-Referenz-App, statisch exportierbar |
+| `apps/docs` | Next.js-Referenz mit 19 Seiten, statisch exportierbar |
 | `brands/goldbach` | Gelieferte Vorgaben und dokumentierte Verfeinerungen |
 | `docs/atlas-reference.md` | Verbindliche Atlas-Referenz für System und Website |
 | `docs/brand-contract.md` | Integration und Erweiterung |
@@ -59,3 +59,14 @@ Hauptadresse: `design.rapold.io` (jüngster Beispielauftrag).
 Optionaler Alias: `framework.rapold.io` (ursprüngliche Zieladresse).
 
 Die Domain-Auswahl steht in der Metadaten-Konfiguration und im Agenten-Einstieg. Es wurden keine DNS-Änderungen vorgenommen.
+
+## Erweiterter Stand
+
+- 19 UI-Module und markenfähige Portale.
+- Vollständiger neutraler Lucide-Katalog mit SVG- und React-Verwendung.
+- Grundlagen, semantische Rollen, CSS-, JSON- und DTCG-Exporte.
+- 18 Folienrezepte, fünf Presets, vermessene Raster und 13 Typorollen.
+- Editierbare Muster-Decks pro Brand. Die Vorschauen stammen aus demselben Geometriemodell, sind aber noch keine gerenderten PPTX-Screenshots wie bei Atlas.
+- Inhaltslogik: docs/presentation-logic.md und scripts/validate-deck.mjs.
+
+Bekannte Lücken und Abnahmestatus: docs/atlas-coverage.md.

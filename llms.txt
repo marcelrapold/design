@@ -1,8 +1,8 @@
 # Design Framework
 
 Ein White-Label-Designstandard für Web-Interfaces und Management-Präsentationen.
-Geplante Hauptadresse: https://design.rapold.io
-Geplanter Alias: https://framework.rapold.io
+Hauptadresse: https://design.rapold.io
+Optionaler Alias: https://framework.rapold.io
 Repository: https://github.com/marcelrapold/design
 Status: Entwicklungsschnitt, Website noch nicht deployed. Die Domain-URLs sind Zieladressen.
 Verbindliche Referenz für Designsystem und Website: https://atlas.zvv.dev.
@@ -28,3 +28,19 @@ packages/brands/src/*.json und brands/goldbach/sources/*.md.
 
 Der Standard liefert Regeln und Daten. Repository-Analyse, PPTX-Erzeugung und PDF-Export
 führt der konsumierende Agent mit seinen verfügbaren Werkzeugen aus.
+
+## Präsentationslogik (verbindlich)
+https://design.rapold.io/contracts/presentation-logic.md
+
+## Vollständige Token-Exporte
+/brands/{brand}/tokens.light.json
+/brands/{brand}/tokens.light.css
+/brands/{brand}/tokens.light.dtcg.json
+
+## Neutrale Icons
+/icons/index.json
+/icons/{PascalCaseName}.svg
+
+## Deck-Prüfung
+Im Repository: node scripts/validate-deck.mjs deck.json
+Muster-Decks sind illustrative Beispiele, keine analysierten Projektdeck-Ergebnisse.

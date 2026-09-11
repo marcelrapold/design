@@ -1,0 +1,194 @@
+[
+  {
+    "id": "gremien-review",
+    "titel": "Gremien-Review",
+    "zweck": "wiederkehrendes Steuerungsgremium, Zahlen mit Beweisführung, Entscheide am Schluss.",
+    "dramaturgie": "Erst Quelle, dann Zahl, dann Prüfung, dann Entscheid — die Reihenfolge ist die Glaubwürdigkeit. Die Summary am Ende trägt alles für die, die zu spät kamen.",
+    "folgen": [
+      {
+        "typ": "cover-foto",
+        "hinweis": "Gremium + Datum"
+      },
+      {
+        "typ": "agenda",
+        "hinweis": "= die Sektionstitel"
+      },
+      {
+        "typ": "kapitel-trenner",
+        "hinweis": "Sektion «Aktuelle Zahlen»"
+      },
+      {
+        "typ": "karten-steckbrief",
+        "hinweis": "«Woher die Zahlen kommen» — Quellen VOR der ersten Kennzahl"
+      },
+      {
+        "typ": "kpi-board",
+        "hinweis": "Kernzahlen mit Vorjahres-Anker"
+      },
+      {
+        "typ": "textbox-tabelle",
+        "hinweis": "Detail nach Bereichen, Highlight auf der Aussage"
+      },
+      {
+        "typ": "drei-schritt-beweis",
+        "hinweis": "Die auffällige Zahl: Meldung → Ursache → geprüft"
+      },
+      {
+        "typ": "entscheid-register",
+        "hinweis": "E1–En: was das Gremium heute fällt"
+      },
+      {
+        "typ": "management-summary",
+        "hinweis": "Change-Log + «woran heute entschieden wird»"
+      },
+      {
+        "typ": "foto-schluss",
+        "hinweis": "«Besten Dank», danach Back-up mit quellen-grid"
+      }
+    ]
+  },
+  {
+    "id": "entscheidungsvorlage",
+    "titel": "Entscheidungsvorlage kompakt",
+    "zweck": "Eine Frage, zwei Sichten, ein Entscheid — in sechs Folien. Für Einzelthemen ohne Zahlen-Apparat.",
+    "dramaturgie": "Keine Trenner nötig: eine Sektion, ein Bogen. Die Grosskarten tragen Ist gegen Ziel, das Register macht daraus Beschlüsse.",
+    "folgen": [
+      {
+        "typ": "cover-foto",
+        "hinweis": "Thema als Botschafts-Titel"
+      },
+      {
+        "typ": "karten-steckbrief",
+        "hinweis": "Ausgangslage: 3 Fakten, einer betont"
+      },
+      {
+        "typ": "zwei-grosskarten",
+        "hinweis": "Ist (belegt, blau) gegen Soll (gedeutet, grau)"
+      },
+      {
+        "typ": "textbox-tabelle",
+        "hinweis": "Optionen mit Kosten/Folgen — falls Zahlen im Spiel"
+      },
+      {
+        "typ": "entscheid-register",
+        "hinweis": "ENTSCHEID- und AUFTRAG-Badges"
+      },
+      {
+        "typ": "foto-schluss",
+        "hinweis": "Dank"
+      }
+    ]
+  },
+  {
+    "id": "projekt-kickoff",
+    "titel": "Projekt-Kickoff",
+    "zweck": "Scope, Phasen, Meilensteine, Zuständigkeiten — das Deck, nach dem alle dasselbe Projekt meinen.",
+    "dramaturgie": "Vom Warum zum Wann: erst das Ziel als Gegenüberstellung, dann der Weg als Phasen mit Gate, dann die Termine als Timeline. Aufträge statt Entscheide am Schluss.",
+    "folgen": [
+      {
+        "typ": "cover-foto",
+        "hinweis": "Projektname + Kickoff-Datum"
+      },
+      {
+        "typ": "agenda",
+        "hinweis": "Kurz — 4 Punkte reichen"
+      },
+      {
+        "typ": "zwei-grosskarten",
+        "hinweis": "Ausgangslage gegen Projektziel"
+      },
+      {
+        "typ": "phasen-karten-gate",
+        "hinweis": "Q1–Q4 mit Gate-Bedingungen"
+      },
+      {
+        "typ": "kpi-timeline",
+        "hinweis": "Meilensteine, «heute» in Rot"
+      },
+      {
+        "typ": "entscheid-register",
+        "hinweis": "Überwiegend AUFTRAG-Badges: wer übernimmt was"
+      },
+      {
+        "typ": "foto-schluss",
+        "hinweis": "Dank"
+      }
+    ]
+  },
+  {
+    "id": "zahlenbericht",
+    "titel": "Quartals-/Jahreszahlen",
+    "zweck": "Der Zahlen-Schwerpunkt: KPI-Board, Detailtabellen, Rankings und die eine grosse Grafik.",
+    "dramaturgie": "Kacheln vor Detail, Werte statt Achsen, jede Folie endet in einer Deutung. Die Vollbild-Grafik ist der Höhepunkt, nicht der Einstieg.",
+    "folgen": [
+      {
+        "typ": "cover-foto",
+        "hinweis": "Periode im Titel («Januar–August 2026»)"
+      },
+      {
+        "typ": "karten-steckbrief",
+        "hinweis": "Quellen + Abrufdatum — Reproduzierbarkeit zuerst"
+      },
+      {
+        "typ": "kpi-board",
+        "hinweis": "Die 5 Kernzahlen mit Delta"
+      },
+      {
+        "typ": "split-tabelle",
+        "hinweis": "Bereichs-Detail links, Einordnung rechts"
+      },
+      {
+        "typ": "shape-balkendiagramm",
+        "hinweis": "Ranking der Kategorien, Werte am Balken"
+      },
+      {
+        "typ": "vollbild-grafik",
+        "hinweis": "Mehrjahres-Verlauf, extern gerendert"
+      },
+      {
+        "typ": "management-summary",
+        "hinweis": "Was sich verändert hat"
+      },
+      {
+        "typ": "foto-schluss",
+        "hinweis": "Dank, Back-up: quellen-grid"
+      }
+    ]
+  },
+  {
+    "id": "roadmap-ausblick",
+    "titel": "Roadmap & Ausblick",
+    "zweck": "Wo stehen wir, was kommt: der Blick nach vorn mit Phasen, Terminen und den Entscheiden, die der Ausblick verlangt.",
+    "dramaturgie": "Die grosse Roadmap zuerst (gerendert, nicht gebastelt — die Legacy-Gantt ist das Anti-Pattern dazu), dann der Ausschnitt als Phasen, dann die Fristen.",
+    "folgen": [
+      {
+        "typ": "cover-foto",
+        "hinweis": "Zeithorizont im Titel"
+      },
+      {
+        "typ": "kapitel-trenner",
+        "hinweis": "«Umsetzungsstand Roadmap»"
+      },
+      {
+        "typ": "vollbild-grafik",
+        "hinweis": "Die Roadmap aus dem Renderer — nie von Hand"
+      },
+      {
+        "typ": "phasen-karten-gate",
+        "hinweis": "Der nächste Abschnitt im Detail"
+      },
+      {
+        "typ": "kpi-timeline",
+        "hinweis": "Fristen; die kritische in Rot"
+      },
+      {
+        "typ": "entscheid-register",
+        "hinweis": "Was der Ausblick heute an Entscheiden braucht"
+      },
+      {
+        "typ": "foto-schluss",
+        "hinweis": "Dank"
+      }
+    ]
+  }
+]

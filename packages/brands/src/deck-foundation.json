@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "zvvch/zvv-atlas",
+    "commit": "1c75c95417cc371040e1e24a0986213314b53c13",
+    "path": "assets/praesentation/deck-tokens.json"
+  },
+  "canvas": {
+    "breiteCm": 33.867,
+    "hoeheCm": 19.05,
+    "breiteEmu": 12192000,
+    "hoeheEmu": 6858000,
+    "format": "16:9"
+  },
+  "zones": {
+    "randLR": 0.93,
+    "nutzbreite": 32.0,
+    "titel": {
+      "x": 0.93,
+      "y": 0.525,
+      "w": 25.3,
+      "h": 2.5
+    },
+    "logo": {
+      "x": 29.905,
+      "y": 0.414,
+      "w": 3.405,
+      "h": 1.68
+    },
+    "lead": {
+      "x": 0.93,
+      "y": 2.997,
+      "w": 31.5,
+      "h1zeilig": 0.76,
+      "h2zeilig": 1.27
+    },
+    "inhalt": {
+      "yStart": 4.27,
+      "yStartMax": 4.37,
+      "yEnde": 17.4
+    },
+    "fusslinie": {
+      "y": 17.524,
+      "breite": "voll",
+      "staerkePt": 2.25,
+      "farbe": "kanonisches Primary (Original hart semantic role — normalisieren)"
+    },
+    "foliennummer": {
+      "x": 0.93,
+      "y": 17.824,
+      "w": 1.49,
+      "h": 0.85
+    },
+    "quellzeile": {
+      "x": 2.667,
+      "y": 17.831,
+      "w": 30.23,
+      "h": 0.635
+    },
+    "trennerFlaeche": {
+      "x": 0,
+      "y": 0,
+      "w": 33.87,
+      "h": 17.524
+    }
+  },
+  "columns": {
+    "zweiGleich": {
+      "spaltenW": 15.748,
+      "gap": 0.517,
+      "xPositionen": [
+        0.93,
+        17.2
+      ]
+    },
+    "sechzigVierzig": {
+      "spaltenW": [
+        18.796,
+        12.497
+      ],
+      "gap": 0.721,
+      "xPositionen": [
+        0.93,
+        20.45
+      ]
+    },
+    "drei": {
+      "spaltenW": 10.16,
+      "gap": 0.762,
+      "xPositionen": [
+        0.93,
+        11.85,
+        22.77
+      ],
+      "engeVariante": {
+        "spaltenW": 10.41,
+        "gap": 0.39
+      }
+    },
+    "vier": {
+      "spaltenW": 7.468,
+      "gap": 0.711,
+      "xPositionen": [
+        0.93,
+        9.11,
+        17.29,
+        25.47
+      ]
+    },
+    "fuenf": {
+      "spaltenW": 5.954,
+      "gap": 0.559,
+      "xPositionen": [
+        0.93,
+        7.44,
+        13.96,
+        20.47,
+        26.98
+      ]
+    }
+  },
+  "shapes": {
+    "karte": {
+      "geometrie": "rect — ECKIG, kein Rahmen, kein Schatten",
+      "paddingL": 0.66,
+      "paddingT": 0.51
+    },
+    "pill": {
+      "geometrie": "roundRect adj=50000",
+      "h": 0.6,
+      "wBereich": [
+        1.7,
+        3.9
+      ],
+      "text": "8 pt Bold weiss VERSALIEN zentriert"
+    },
+    "nummernChip": {
+      "geometrie": "ellipse",
+      "durchmesser": 0.56,
+      "fill": "deck-primary",
+      "text": "weisse Ziffer 8.5 pt Bold"
+    },
+    "bulletQuadrat": {
+      "w": 0.19,
+      "h": 0.19,
+      "farbe": "Akzentfarbe je Semantik",
+      "textAbstand": 0.48
+    },
+    "hairline": {
+      "h": 0.03,
+      "farbe": "semantic role"
+    },
+    "balken": {
+      "h": 0.44,
+      "pitch": 0.8
+    },
+    "timeline": {
+      "leisteH": 0.09,
+      "knotenNormal": 0.48,
+      "knotenBetont": 0.66
+    },
+    "kpiKachel": {
+      "fuenfer": {
+        "w": 5.954,
+        "h": 3.45
+      },
+      "vierer": {
+        "w": 7.61,
+        "h": 3.61
+      }
+    },
+    "icons": {
+      "set": "lucide",
+      "strokeWidth": 1.5,
+      "groesseKarte": 0.71,
+      "groesseZeile": 0.61,
+      "groesseTrennerDeko": 9.65
+    },
+    "textbox": {
+      "insets": 0,
+      "wrap": "square",
+      "anchor": "t",
+      "autofit": "spAutoFit"
+    },
+    "tabellenPitch": [
+      1.07,
+      1.145,
+      1.17,
+      1.32,
+      1.345
+    ],
+    "pngSlot": {
+      "breite": 32.0,
+      "x": 0.93,
+      "y": 3.76,
+      "aufloesung": "mind. 2x (~400 dpi)"
+    }
+  },
+  "typeScale": {
+    "display-xl": {
+      "pt": 40,
+      "weight": "bold",
+      "role": "KPI-Hero (sparsam, eine Kachel darf invertieren: Fill primary, Text weiss)"
+    },
+    "display": {
+      "pt": 26,
+      "weight": "bold",
+      "role": "KPI-Standard (25–28 pt; 28 bei kurzen Werten)"
+    },
+    "title": {
+      "pt": 30,
+      "weight": "bold",
+      "role": "Folien-/Kapitel-/Cover-Titel (weiss auf Trennern), lnSpc 90 %"
+    },
+    "agenda": {
+      "pt": 24,
+      "weight": "bold",
+      "role": "Agenda-Eintraege; Cover-Untertitel Regular"
+    },
+    "headline": {
+      "pt": 13,
+      "weight": "bold",
+      "role": "Item-Headline, Panel-Titel (13–13.5 pt)"
+    },
+    "block": {
+      "pt": 12.5,
+      "weight": "bold",
+      "role": "Karten-/Charttitel"
+    },
+    "lead": {
+      "pt": 11.5,
+      "weight": "regular",
+      "role": "Lead-Zeile (fix y=3.00 cm)"
+    },
+    "table": {
+      "pt": 11,
+      "weight": "regular",
+      "role": "Tabellenwerte (aktuell Bold semantic role, Vorjahr Regular semantic role)"
+    },
+    "body": {
+      "pt": 10.5,
+      "weight": "regular",
+      "role": "Fliesstext (10–10.5 pt), lnSpc 115–125 %; im Takeaway semantic role"
+    },
+    "small": {
+      "pt": 10,
+      "weight": "mixed",
+      "role": "Delta (Bold rot/gruen), Balkenwert (Bold semantic role), Foliennummer (Bold schwarz)"
+    },
+    "caption": {
+      "pt": 9.5,
+      "weight": "regular",
+      "role": "Chart-Subline, Timeline-Label; Kategorie-Tag Bold in Kategoriefarbe"
+    },
+    "micro": {
+      "pt": 8.5,
+      "weight": "bold",
+      "role": "Tabellen-Spaltenkoepfe (VERSALIEN), Badge-Ziffern (weiss)"
+    },
+    "footnote": {
+      "pt": 8,
+      "weight": "mixed",
+      "role": "Quellenzeile (Regular), Eyebrows (Bold, VERSALIEN), Pill-Text (Bold weiss)"
+    }
+  },
+  "numberFormat": {
+    "tausender": "4'207'156 (Apostroph)",
+    "dezimal": "Komma (5,01 Mio.) — ausser CHF-Rappen mit Punkt (CHF 86'341.35)",
+    "minus": "echtes Minuszeichen U+2212",
+    "prozent": "50,7 % (Leerschlag vor %); im Satz ausgeschrieben «Prozent»",
+    "datum": "TT.MM.JJJJ, Spannen 1.1.–20.8.2026",
+    "waehrung": "CHF vorangestellt",
+    "separator": "· (Mittelpunkt) als universeller Separator",
+    "vergleich": "ggue. · pp fuer Prozentpunkte"
+  }
+}

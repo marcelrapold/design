@@ -14,3 +14,7 @@ apps/docs/public/brands/*/brand.json
 apps/docs/public/brands/*/presentation.json
 apps/docs/public/brands/index.json
 apps/docs/public/brands/goldbach/*.md
+apps/docs/public/icons/
+apps/docs/public/praesentation/
+apps/docs/public/brands/*/tokens.*
+apps/docs/public/brands/*/decks/

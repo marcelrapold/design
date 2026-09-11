@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "provenance": "Atlas semantic roles and shell geometry; expanded framework spacing, motion and typography scales are neutral defaults, overridable by brands.",
+  "spacing": {
+    "0": "0px",
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "20px",
+    "6": "24px",
+    "8": "32px",
+    "10": "40px",
+    "12": "48px",
+    "16": "64px",
+    "20": "80px",
+    "24": "96px"
+  },
+  "fontSize": {
+    "xs": "12px",
+    "sm": "14px",
+    "base": "16px",
+    "lg": "18px",
+    "xl": "20px",
+    "2xl": "24px",
+    "3xl": "30px",
+    "4xl": "36px",
+    "5xl": "48px"
+  },
+  "lineHeight": {
+    "tight": 1.15,
+    "heading": 1.25,
+    "body": 1.6,
+    "code": 1.7
+  },
+  "fontWeight": {
+    "regular": 400,
+    "medium": 500,
+    "semibold": 600,
+    "bold": 700
+  },
+  "radius": {
+    "none": "0px",
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "16px",
+    "full": "9999px"
+  },
+  "borderWidth": {
+    "thin": "1px",
+    "medium": "2px",
+    "focus": "3px"
+  },
+  "opacity": {
+    "disabled": 0.5,
+    "overlay": 0.5,
+    "hover": 0.08
+  },
+  "duration": {
+    "instant": "0ms",
+    "fast": "150ms",
+    "normal": "200ms",
+    "slow": "300ms",
+    "deliberate": "500ms"
+  },
+  "easing": {
+    "standard": "cubic-bezier(0.2, 0, 0, 1)",
+    "enter": "cubic-bezier(0, 0, 0.2, 1)",
+    "exit": "cubic-bezier(0.4, 0, 1, 1)"
+  },
+  "breakpoint": {
+    "sm": "640px",
+    "md": "768px",
+    "lg": "1024px",
+    "xl": "1280px",
+    "2xl": "1536px"
+  },
+  "layout": {
+    "sidebar": "224px",
+    "rail": "64px",
+    "header": "48px",
+    "footer": "56px",
+    "content": "1200px",
+    "reading": "720px"
+  },
+  "zIndex": {
+    "base": 0,
+    "sticky": 20,
+    "dropdown": 30,
+    "overlay": 40,
+    "modal": 50,
+    "toast": 60,
+    "tooltip": 70
+  },
+  "icon": {
+    "sm": "16px",
+    "md": "20px",
+    "lg": "24px",
+    "stroke": 1.5
+  }
+}

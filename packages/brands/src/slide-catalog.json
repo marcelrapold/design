@@ -1,0 +1,353 @@
+[
+  {
+    "id": "cover-foto",
+    "gruppe": "Struktur",
+    "titel": "Cover mit Foto",
+    "zweck": "Der Auftakt: ein Vollbild-Motiv trägt die Marke, Titel und Datum sagen, was heute verhandelt wird. Keine Inhalte, keine Zahlen — nur Absender und Anlass.",
+    "zonen": [
+      {
+        "zone": "Vollfläche",
+        "inhalt": "Ein Foto mit Bezug zum Thema — Vollbild 33.87 × 19.05, kein Rahmen."
+      },
+      {
+        "zone": "Oben links",
+        "inhalt": "Titel 30 pt Bold (mit Schatten für Lesbarkeit), darunter das Datum 24 pt Regular."
+      },
+      {
+        "zone": "Oben rechts",
+        "inhalt": "Das weisse Brand-Logo — nie die dunkle Fassung auf Foto."
+      }
+    ],
+    "fehler": "Foliennummer oder Quellzeile aufs Cover setzen — beides gehört hier nicht hin."
+  },
+  {
+    "id": "agenda",
+    "gruppe": "Struktur",
+    "titel": "Agenda",
+    "zweck": "Das Inhaltsverzeichnis — und ein Vertrag: die Agenda-Punkte sind exakt die Sektionstitel der Trenner, Wort für Wort. Wer hier etwas anderes schreibt, bricht die Dramaturgie.",
+    "zonen": [
+      {
+        "zone": "Titel",
+        "inhalt": "«Agenda» — einer der zwei erlaubten Themen-Titel (der andere: Trenner)."
+      },
+      {
+        "zone": "Liste",
+        "inhalt": "Einträge 24 pt Bold mit Pfeil-Bullet, hängender Einzug 1.0 cm — je einer pro Sektion, 4–7 Stück."
+      }
+    ],
+    "fehler": "Agenda-Punkte, die es als Trenner nie gibt — oder Trenner, die in der Agenda fehlen."
+  },
+  {
+    "id": "kapitel-trenner",
+    "gruppe": "Struktur",
+    "titel": "Kapitel-Trenner",
+    "zweck": "Der Taktgeber: Vollfläche Blau, ein Sektionstitel, ein Motiv. Genau zwei Variablen — alles andere ist fix. Vor jeder Sektion einer.",
+    "zonen": [
+      {
+        "zone": "Vollfläche",
+        "inhalt": "Kanonisches Blau bis y 17.52 — der weisse 1.53-cm-Fussstreifen bleibt."
+      },
+      {
+        "zone": "Titel",
+        "inhalt": "Der Sektionstitel 30 pt Bold weiss ab (0.93, 3.62) — identisch mit dem Agenda-Eintrag."
+      },
+      {
+        "zone": "Rechts",
+        "inhalt": "Deko-Piktogramm weiss @ 14 % Alpha, 9.65 cm, fix bei (23.29, 6.48) — ein Motiv pro Sektion."
+      }
+    ],
+    "fehler": "Eine Seitenzahl auf den Trenner setzen (er zählt mit, zeigt aber keine) — oder ein drittes Element erfinden."
+  },
+  {
+    "id": "foto-schluss",
+    "gruppe": "Struktur",
+    "titel": "Foto-Schluss",
+    "zweck": "Der Ausklang: wie ein Trenner, aber mit Foto statt Farbfläche. «Besten Dank» — danach kommt nur noch Back-up.",
+    "zonen": [
+      {
+        "zone": "Vollfläche",
+        "inhalt": "Foto 33.87 × 17.52, weisser Fussstreifen bleibt."
+      },
+      {
+        "zone": "Mitte",
+        "inhalt": "«Besten Dank» 30 pt Bold weiss — sonst nichts."
+      }
+    ],
+    "fehler": "Den Dank mit letzten Botschaften aufladen — dafür ist die Management-Summary davor da."
+  },
+  {
+    "id": "management-summary",
+    "gruppe": "Struktur",
+    "titel": "Management-Summary",
+    "zweck": "Die Schlussfolie mit Substanz: was sich seit dem letzten Mal verändert hat (Change-Log) und woran heute entschieden wird. Wer nur diese Folie liest, weiss alles Nötige.",
+    "zonen": [
+      {
+        "zone": "Oben",
+        "inhalt": "5 Change-Log-Blöcke (Pitch 1.98, Hairlines): Farbmarker 0.19 × 1.47 + Kategorielabel in Kategoriefarbe + Icon + Titel 13 pt Bold + ein Satz."
+      },
+      {
+        "zone": "Unten",
+        "inhalt": "Entscheidungs-Panel surface-info volle Breite mit Bullet-Quadraten: woran heute entschieden wird."
+      }
+    ],
+    "fehler": "Mehr als ~5 Blöcke — dann ist es kein Summary mehr, sondern eine zweite Präsentation."
+  },
+  {
+    "id": "karten-steckbrief",
+    "gruppe": "Karten",
+    "titel": "Karten-Steckbrief",
+    "zweck": "Drei Dinge nebeneinander vorstellen — Systeme, Quellen, Optionen. Genau EINE Karte trägt die Aussage (surface-info), die anderen sind Kontext. Das Referenz-«Woher die Zahlen kommen» ist dieser Typ.",
+    "zonen": [
+      {
+        "zone": "3er-Raster",
+        "inhalt": "Karten w 10.16 (Gap 0.762), h 6–10 cm: Icon → Titel 12.5–13 pt Bold → Label/Wert-Paare oder Bullet-Quadrat-Liste."
+      },
+      {
+        "zone": "Betonung",
+        "inhalt": "Die eine Karte, auf die es ankommt: surface-info. Der Rest: surface-neutral."
+      },
+      {
+        "zone": "Unten",
+        "inhalt": "1–2 Vollbreite-Bänder 32.00: blau = «steht fest», grau mit Ocker-Bullets = «Noch zu klären»."
+      }
+    ],
+    "fehler": "Zwei oder drei Karten betonen — dann betont keine mehr."
+  },
+  {
+    "id": "zwei-grosskarten",
+    "gruppe": "Karten",
+    "titel": "Zwei Grosskarten",
+    "zweck": "Das Gegenüber: links Fakten/Ist (betont), rechts Deutung/Ziel. Für Vergleiche, Vorher/Nachher, Ist/Soll — wenn zwei Hälften die ganze Geschichte sind.",
+    "zonen": [
+      {
+        "zone": "Links",
+        "inhalt": "Karte 15.75 breit, surface-info: das Belegte — Definitionen, Ist-Zahlen, Bullet-Quadrat-Listen."
+      },
+      {
+        "zone": "Rechts",
+        "inhalt": "Karte 15.75 breit, surface-neutral: die Folgerung — Ziel, Konsequenzen (Ocker-Bullets), Fähigkeiten (Grün-Bullets)."
+      },
+      {
+        "zone": "Varianten",
+        "inhalt": "100-%-Segmentbalken im Band · NEU-Datums-Pill statt Lead · 2×2 mit halbhohen Karten unten."
+      }
+    ],
+    "dataviz": "Segmentbalken: Prozent 10.5 pt Bold weiss IM Segment, Farbfolge primary → petrol → ocker → grau.",
+    "fehler": "Beide Karten gleich einfärben — die Farblogik (belegt vs. gedeutet) ist die halbe Aussage."
+  },
+  {
+    "id": "modul-karten-mit-chart",
+    "gruppe": "Karten",
+    "titel": "Modul-Karten mit Chart",
+    "zweck": "Drei Module vorstellen UND ihre Nutzung belegen — die Balkenfarben unten zitieren die Pills der Karten oben. Farbe als Querverweis, nicht als Deko.",
+    "zonen": [
+      {
+        "zone": "Oben",
+        "inhalt": "3er-Karten mit Eyebrow + rechtsbündiger Zähler-Pill + Titel 13.5 pt Bold."
+      },
+      {
+        "zone": "Unten links",
+        "inhalt": "Shape-Balkenchart — Balkenfarbe = Pill-Farbe derselben Folie."
+      },
+      {
+        "zone": "Unten rechts",
+        "inhalt": "Insight-Karte surface-info mit Screenshot und Zitat-Balken (0.15 × 1.02 primary + Bold-Satz)."
+      }
+    ],
+    "dataviz": "Werte am Balkenende statt Achsen; max. ~6 Balken, sonst eigene Chart-Folie.",
+    "fehler": "Balkenfarben, die nichts zitieren — dann behauptet die Folie einen Zusammenhang, den es nicht gibt."
+  },
+  {
+    "id": "phasen-karten-gate",
+    "gruppe": "Karten",
+    "titel": "Phasen-Karten mit Gate",
+    "zweck": "Ein Vorgehen in 4 Phasen, die Zielphase betont — und darunter das Gate: was passieren muss, bevor es weitergeht. Für Roadmap-Ausschnitte und Vergabe-Phasen.",
+    "zonen": [
+      {
+        "zone": "4er-Raster",
+        "inhalt": "Karten 7.47 × 6.65: Quartalslabel 13 pt Bold primary → Zeitraum 9.5 pt muted → Phasenname 12 pt Bold. Letzte Karte (Ziel) betont."
+      },
+      {
+        "zone": "Unten",
+        "inhalt": "Gate-Panel surface-info 32.00 × 5.49 mit nummerierten Chips (ø 0.56, Zeilenschritt 0.88): die Bedingungen."
+      }
+    ],
+    "fehler": "Phasen ohne Gate — dann ist es ein Kalender, keine Entscheidungsgrundlage."
+  },
+  {
+    "id": "quellen-grid",
+    "gruppe": "Karten",
+    "titel": "Quellen-Grid",
+    "zweck": "Das Quellenregister im Back-up: jede Quelle mit Name, Detail und Link. Die Folie, die «erst Quelle, dann Zahl» am Ende einlöst.",
+    "zonen": [
+      {
+        "zone": "3×2-Raster",
+        "inhalt": "Karten 10.41 × 5.74 (Gap 0.39), alle surface-neutral: je 3 Einträge à 2 Zeilen — Name 9.5 pt Bold, Detail 8.5 pt, Links primary unterstrichen."
+      },
+      {
+        "zone": "Abschluss",
+        "inhalt": "Banner 32.00 × 1.02 surface-info: der eine Satz zur Reproduzierbarkeit («alle Abrufe skriptiert, Datum …»)."
+      }
+    ],
+    "fehler": "Quellen nennen, die im Deck gar nicht vorkommen — das Register spiegelt die Fusszeilen, nicht die Bibliothek."
+  },
+  {
+    "id": "kpi-board",
+    "gruppe": "Evidenz",
+    "titel": "KPI-Board",
+    "zweck": "Die Kernzahlen zuerst: 5 Kacheln mit Wert, Label und Delta — dann erst das Detail. Jede Zahl trägt ihren Vergleichsanker («−2,9 % ggü. Vorjahr»); ohne Vergleich keine Zahl.",
+    "zonen": [
+      {
+        "zone": "Oben",
+        "inhalt": "5 KPI-Kacheln 5.95 × 3.45 (surface-info): Wert 25/28 pt Bold primary → Label 10.5 pt → Delta 10 pt Bold rot/grün."
+      },
+      {
+        "zone": "Unten links (60)",
+        "inhalt": "Das eine native Säulen-Chart des Decks: Zwei-Perioden-Vergleich, Vorjahr grau chart-previous hinter Blau."
+      },
+      {
+        "zone": "Unten rechts (40)",
+        "inhalt": "Takeaway-Panel surface-neutral «Was die Zahlen sagen» — kein Chart steht unkommentiert."
+      }
+    ],
+    "dataviz": "Einziger erlaubter Einsatz des nativen Charts. Chart-Labels als Literaltext setzen (CH-Zahlenformat, §7).",
+    "fehler": "KPI-Deltas rot für jede negative Zahl — Rot gilt nur ggü. Vorjahr; sonst ist negativ grau-Bold."
+  },
+  {
+    "id": "kpi-timeline",
+    "gruppe": "Evidenz",
+    "titel": "KPI + Timeline",
+    "zweck": "Grosse Zahlen über einem Zeitstrahl: wo stehen wir, was kommt wann. Genau EINE Kachel darf invertieren (Fill Blau, Text weiss) — die eine Zahl, um die es geht.",
+    "zonen": [
+      {
+        "zone": "Oben",
+        "inhalt": "4 Kacheln 7.61 × 3.61, Zahl bis 40 pt Bold — eine invertiert, drei normal."
+      },
+      {
+        "zone": "Unten",
+        "inhalt": "Timeline: Leiste #D3DBE0 29.97 × 0.09, Knoten ø 0.48 (grau = vergangen, blau = geplant), ø 0.66 Rot = heute/Frist. Datum 11.5 pt Bold über, Label 9.5 pt unter der Linie."
+      }
+    ],
+    "dataviz": "Farbe kodiert Zeitfortschritt: grau → blau → rot (heute). Max. 1 rotes Element pro Folie.",
+    "fehler": "Zwei invertierte Kacheln oder zwei rote Knoten — dann schreit alles, und nichts ist wichtig."
+  },
+  {
+    "id": "textbox-tabelle",
+    "gruppe": "Evidenz",
+    "titel": "Textbox-Tabelle",
+    "zweck": "Exakte Werte als Aussage — max. ~6 Datenzeilen + Total. Nie ein PowerPoint-a:tbl: Spalten sind getrennte Textboxen, die Highlight-Zeile ist eine Fläche dahinter.",
+    "zonen": [
+      {
+        "zone": "Kopf",
+        "inhalt": "Spaltenköpfe 8–8.5 pt Bold VERSALIEN text-muted; Hairlines nur unter Kopf und vor Total."
+      },
+      {
+        "zone": "Zeilen",
+        "inhalt": "Pitch 1.145–1.345. Vorjahr Regular grau · aktuell Bold dunkel · Veränderung Bold: negativ NEUTRAL-GRAU, positiv grün, erklärungsbedürftig ocker."
+      },
+      {
+        "zone": "Betonung",
+        "inhalt": "Highlight-Zeile = surface-info-Rechteck hinter der Zeile; Alarm-Zeile = #FBE9EB mit Wert danger."
+      },
+      {
+        "zone": "Abschluss",
+        "inhalt": "Takeaway-Banner surface-info oder Karten-Paar grau/blau — die Deutung, räumlich getrennt."
+      }
+    ],
+    "dataviz": "Zahlen rechtsbündig im CH-Format (Apostroph-Tausender, Dezimalkomma, echtes Minus U+2212).",
+    "fehler": "Negative Veränderungen rot einfärben — Rot ist für echte Alarme reserviert, nicht für Arithmetik."
+  },
+  {
+    "id": "split-tabelle",
+    "gruppe": "Evidenz",
+    "titel": "Split: Evidenz + Sidebar",
+    "zweck": "Der 60/40-Split: links die Evidenz (Grafik + Tabelle), rechts die Einordnung als gestapelte Karten. Wenn die Zahlen eine Begleitung brauchen, ohne dass die Deutung sie verdrängt.",
+    "zonen": [
+      {
+        "zone": "Links (60)",
+        "inhalt": "Gerenderte Grafik + Tabelle, Tabelle pur oder Tabelle in surface-info-Trägerkarte — x 0.93, w 18.80."
+      },
+      {
+        "zone": "Rechts (40)",
+        "inhalt": "2–3 gestapelte Karten (eine betont): Icon + Pill + Titel + Text — x 20.45, w 12.50."
+      }
+    ],
+    "dataviz": "Die Sidebar deutet, die Evidenz belegt — Zahlen stehen links, nie in den Sidebar-Karten erfunden.",
+    "fehler": "Die Sidebar zur zweiten Tabelle machen — dann fehlt die Deutung, und 60/40 war umsonst."
+  },
+  {
+    "id": "drei-schritt-beweis",
+    "gruppe": "Evidenz",
+    "titel": "Drei-Schritt-Beweis",
+    "zweck": "Das Signature-Pattern für «wir haben nachgeprüft»: Meldung → Ursache → geprüfte Zahl, plus Gegenproben. Für jede Zahl, die Schlagzeilen machte, bevor sie geprüft war.",
+    "zonen": [
+      {
+        "zone": "3 Schritt-Karten",
+        "inhalt": "Nummern-Chip (ø 0.56) + Caps-Eyebrow «DIE MELDUNG / DIE URSACHE / DIE GEPRÜFTE ZAHL». Schreckzahl 26 pt Bold signal, geprüfte Zahl auf surface-info."
+      },
+      {
+        "zone": "Unten (60/40)",
+        "inhalt": "Linien-Render links, Gegenproben-Panel rechts: unabhängige Belege, Restunsicherheit explizit."
+      }
+    ],
+    "dataviz": "Die Schreckzahl ist das eine erlaubte rote Element der Folie.",
+    "fehler": "Den dritten Schritt weglassen — Meldung und Ursache ohne geprüfte Zahl sind nur Gerücht plus Ausrede."
+  },
+  {
+    "id": "shape-balkendiagramm",
+    "gruppe": "Evidenz",
+    "titel": "Shape-Balkendiagramm",
+    "zweck": "Rankings bis ~10 Kategorien: Balken als Rechtecke, pixelgenau, Wert am Balkenende. Keine Achsen, keine Gridlines, keine Legende — die Werte SIND die Achse.",
+    "zonen": [
+      {
+        "zone": "Balken",
+        "inhalt": "Rechtecke h 0.44, Pitch 0.8, gemeinsame Nulllinie, Skala auf max ≈ 6.3–6.5 cm normalisiert."
+      },
+      {
+        "zone": "Labels",
+        "inhalt": "Kategorie links rechtsbündig 10 pt · Wert am Balkenende 10 pt Bold text-secondary."
+      },
+      {
+        "zone": "Farben",
+        "inhalt": "Semantisch: Blau = aktuell, Grau = Vergleich/«ohne Angabe», Ocker = Aufmerksamkeit — nie dekorativ bunt."
+      }
+    ],
+    "dataviz": "Farbfolge: primary → chart-previous → chart-2 → warning → Grau → Rot (max. 1) → Grün (nie als Fläche).",
+    "fehler": "Eine Achse dazubauen «für die Orientierung» — der Wert am Balken macht sie überflüssig, beides ist doppelt."
+  },
+  {
+    "id": "vollbild-grafik",
+    "gruppe": "Evidenz",
+    "titel": "Vollbild-Grafik",
+    "zweck": "Für alles, was PowerPoint nicht kann: Roadmaps, Multi-Serien, Flowcharts — extern aus dem Framework-Stack gerendert, exakt 32.00 cm breit. Die Fussnote deklariert die Pipeline.",
+    "zonen": [
+      {
+        "zone": "Grafik",
+        "inhalt": "PNG @ (0.93, ~3.76), Breite exakt 32.00 cm, mind. 2× Auflösung (~400 dpi)."
+      },
+      {
+        "zone": "Fussnote",
+        "inhalt": "«Gerendert mit <skript> aus <daten> · Designtokens design.rapold.io/tokens · Icons lucide, stroke 1.5» — die Provenienz der Grafik selbst."
+      }
+    ],
+    "dataviz": "Renderer-Palette aus deck-tokens.json → rendererPalette; Endlabels in Serienfarbe statt Legende.",
+    "fehler": "Einen Screenshot einsetzen statt zu rendern — dann ist die Grafik beim nächsten Datenstand tot."
+  },
+  {
+    "id": "entscheid-register",
+    "gruppe": "Evidenz",
+    "titel": "Entscheid-Register",
+    "zweck": "Wohin jede Sektion mündet: nummerierte Entscheide und Aufträge mit Badge und Begründung. Das Deck ist eine Entscheidungsvorlage — diese Folie ist ihr Ziel.",
+    "zonen": [
+      {
+        "zone": "Blöcke",
+        "inhalt": "Bis 6 Blöcke (Pitch 2.18, Hairlines): ID «E1» 11 pt Bold muted + Badge-Pill + Titel 12.5 pt Bold + Begründung 10 pt."
+      },
+      {
+        "zone": "Badges",
+        "inhalt": "danger «ENTSCHEID» (heute zu fällen) · warning «AUFTRAG» (jemand übernimmt) — 8 pt Bold weiss VERSALIEN, Pill h 0.6."
+      }
+    ],
+    "fehler": "Entscheide formulieren, die keine sind («zur Kenntnis nehmen») — dann gehört der Punkt in die Summary, nicht ins Register."
+  }
+]

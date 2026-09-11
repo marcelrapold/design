@@ -20,3 +20,17 @@ console.log(`Generated contracts for ${brands.length} brands.`);
 await copyFile(new URL('../brands/goldbach/README.md',import.meta.url),new URL('brands/goldbach/rules.md',root));
 await copyFile(new URL('../brands/goldbach/sources/DESIGN.md',import.meta.url),new URL('brands/goldbach/DESIGN.md',root));
 await copyFile(new URL('../brands/goldbach/sources/IMAGERY.md',import.meta.url),new URL('brands/goldbach/IMAGERY.md',root));
+
+const {tokenDocument,dtcgTokens,toCssVariables}=await import('../packages/brands/src/index.mjs');
+for(const brand of brands)for(const mode of Object.keys(brand.modes)) {
+ const directory=new URL(`brands/${brand.id}/`,root);
+ await writeFile(new URL(`tokens.${mode}.json`,directory),JSON.stringify(tokenDocument(brand,mode),null,2)+'\n');
+ await writeFile(new URL(`tokens.${mode}.dtcg.json`,directory),JSON.stringify(dtcgTokens(brand,mode),null,2)+'\n');
+ await writeFile(new URL(`tokens.${mode}.css`,directory),`[data-brand="${brand.id}"][data-mode="${mode}"] {\n${Object.entries(toCssVariables(brand,mode)).map(([k,v])=>`  ${k}: ${v};`).join('\n')}\n}\n`);
+}
+await mkdir(new URL('praesentation/',root),{recursive:true});
+await copyFile(new URL('../docs/repo-to-management.md',import.meta.url),new URL('praesentation/llms.txt',root));
+await copyFile(new URL('../docs/presentation-logic.md',import.meta.url),new URL('contracts/presentation-logic.md',root));
+await copyFile(new URL('../packages/brands/src/deck-validation.mjs',import.meta.url),new URL('praesentation/deck-validation.mjs',root));
+await import('./build-icons.mjs');
+await import('./build-decks.mjs');
