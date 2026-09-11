@@ -5,5 +5,8 @@
   "buildCommand": "npm run check",
   "outputDirectory": "apps/docs/out",
   "cleanUrls": true,
+  "git": {
+    "deploymentEnabled": false
+  },
   "alias": ["design.rapold.io"]
 }

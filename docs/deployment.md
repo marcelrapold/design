@@ -1,12 +1,46 @@
-# Produktionsrollout
+# CI/CD nach Vercel
 
-## Verifizierter Stand am 11.09.2026
+## Automatischer Ablauf
 
-Der Quellstand 0.4 ist auf `marcelrapold/design`, Branch `main`, veröffentlicht. Der Feature-Commit `08fe9674e44289b26011e5ad4dd491d7c2483734` hat [GitHub Actions Run 34607164270](https://github.com/marcelrapold/design/actions/runs/34607164270) erfolgreich durchlaufen: 20 Tests, TypeScript, statischer Produktionsbuild und Exportprüfungen.
+`.github/workflows/check.yml` führt bei jedem Push und Pull Request `npm run check` aus: Tests, TypeScript, statischer Produktionsbuild und Prüfung der Präsentationsdateien.
 
-Die Domain `design.rapold.io` zeigte bei der Browserprüfung weiterhin die Einseitenfassung 0.1. Der verbundene Vercel-Zugang listete kein Projekt. Ein tatsächlicher Deployment-Aufruf für `design` wurde mit HTTP 403 abgewiesen: Die Verbindung darf für dieses Projekt kein Preview Deployment erstellen. Es entstand kein neues Deployment. Die Freigabe des Benutzers zur Veröffentlichung liegt vor; der offene Punkt ist der technische Projektzugang.
+Nach einem erfolgreichen Check löst ein Push auf `main` den Job `Deploy production` aus. `workflow_dispatch` erlaubt denselben Ablauf manuell auf `main`. Pull Requests, Tags und andere Branches können kein Produktionsdeployment auslösen.
 
-## Sollkonfiguration des bestehenden Projekts
+Der Deployment-Job prüft die Zugangsdaten und den aktuellen `main`-Commit. Er liest die Konfiguration des bestehenden Vercel-Projekts, baut und prüft mit `vercel build --prod` und veröffentlicht das erzeugte Artefakt mit `vercel deploy --prebuilt --prod`. Die Vercel CLI ist auf `59.16.0` fixiert. Produktionsjobs werden nacheinander ausgeführt; ein laufender Upload wird nicht durch einen neuen Push abgebrochen.
+
+Anschliessend prüft `scripts/verify-deployment.mjs` auf `design.rapold.io`:
+
+- exakte Version und vollständige Commit-ID in `/build-info.json`;
+- erfolgreiche HTML-Antworten mit Framework-Inhalt für `/`, `/praesentation`, `/organigramm`, `/charts` und `/prompt-compiler`;
+- den ausgelieferten Engineering-Vertrag.
+
+Ein falscher Commit, eine Fehlerseite oder eine Anmeldeseite lässt den Deployment-Job fehlschlagen. Die Prüfung erlaubt kurze Verzögerungen der Domain-Zuordnung. Sie ersetzt keine visuelle Browser-Abnahme.
+
+GitHub Actions steuert den Rollout. `git.deploymentEnabled: false` in `vercel.json` verhindert zusätzliche Deployments durch Vercels native Git-Integration. Die GitHub-Prüfung baut bereits den statischen Export; der getrennte Produktionsjob baut erneut mit der Vercel-Projektkonfiguration. Auf Vercel selbst findet dank `--prebuilt` kein weiterer Build statt.
+
+Grundlage: [Vercel: GitHub Actions mit CLI und Prebuilt-Deployment](https://vercel.com/kb/guide/how-can-i-use-github-actions-with-vercel).
+
+## Einmalige Verbindung
+
+Im GitHub-Repository unter **Settings → Secrets and variables → Actions** diese Repository-Secrets hinterlegen; alternativ im vorhandenen GitHub-Environment `production`:
+
+| Secret | Inhalt |
+|---|---|
+| `VERCEL_TOKEN` | Vercel-Token mit Deployment-Rechten auf dem bestehenden Projekt |
+| `VERCEL_ORG_ID` | `orgId` des Teams, dem das Produktionsprojekt gehört |
+| `VERCEL_PROJECT_ID` | `projectId` des bestehenden Projekts für `design.rapold.io` |
+
+Die IDs liefert `.vercel/project.json` nach autorisiertem `vercel link` auf das bestehende Projekt. Keine Tokens in Chat, Repository oder Logs eintragen. Ein fehlendes Secret erzeugt eine ausdrückliche Fehlermeldung mit dessen Namen; der Job überspringt den Rollout nicht stillschweigend.
+
+Nach dem Hinterlegen können die fehlgeschlagenen Jobs des neuesten `main`-Runs erneut gestartet oder der Workflow auf `main` manuell ausgelöst werden. Weitere Pushes auf `main` lösen automatisch einen neuen Build und nach erfolgreicher Prüfung das Deployment aus. Bestehende Schutzregeln des GitHub-Environments gelten weiterhin.
+
+## Verbindungsstand am 11.09.2026
+
+Die verbundenen Werkzeuge können Code auf `marcelrapold/design` veröffentlichen. Der Vercel-Zugang listet im verbundenen Team weiterhin kein Projekt. Ein Deployment-Aufruf wurde zuvor mit HTTP 403 abgewiesen: Die Verbindung darf für das Projekt `design` kein Preview Deployment erstellen. Es wurde damit kein Deployment angelegt. In der lokalen Umgebung sind weder Vercel-Zugangsdaten noch eine Vercel-Projektverknüpfung vorhanden. Das GitHub-Werkzeug bietet keine Verwaltung von Actions-Secrets.
+
+Die Produktionsdomain zeigte bei der letzten Browserprüfung weiterhin die Einseitenfassung 0.1. Die Veröffentlichung ist vom Benutzer beauftragt; für die Ausführung der Pipeline müssen die drei oben genannten Secrets verfügbar sein und auf das richtige Projekt mit ausreichenden Rechten zeigen. Der tatsächliche Workflow-Lauf zeigt, welche Werte noch fehlen.
+
+## Sollkonfiguration des bestehenden Vercel-Projekts
 
 | Einstellung | Wert |
 |---|---|
@@ -22,15 +56,6 @@ Die Domain `design.rapold.io` zeigte bei der Browserprüfung weiterhin die Einse
 | Produktionsdomain | `design.rapold.io` |
 
 Die Build- und Routingwerte stehen in `vercel.json`. `cleanUrls` ordnet beispielsweise `/praesentation` der exportierten Datei `praesentation.html` zu. Quelle: [Vercel-Konfiguration](https://vercel.com/docs/project-configuration/vercel-json#cleanurls).
-
-## Wiederaufnahme
-
-1. Die Vercel-Verbindung mit einem Zugang verbinden, der das bestehende Produktionsprojekt sehen und darin Deployments anlegen darf. Keine Tokens in Chat, Repository oder Logs eintragen.
-2. Projekt-ID und vorhandene Domain-Zuordnung aus dem nun sichtbaren Projekt lesen; die obigen Einstellungen prüfen. Kein Ersatzprojekt oder eine zweite Domain-Zuordnung anlegen.
-3. Den aktuellen `main`-Commit auslesen und genau diesen Stand bauen. Bei aktiver Git-Integration den neuesten Commit deployen; einen manuell übergebenen Build mit derselben Commit-ID kennzeichnen.
-4. Vorschau öffnen und Direktaufrufe von `/praesentation`, `/organigramm`, `/charts` und `/prompt-compiler` prüfen. Markenwechsel, Suche, Mobilmenü, SVG-Export sowie PPTX/PDF-Downloads bedienen.
-5. Den geprüften Build auf dem bestehenden Produktionsprojekt ausliefern. Danach dieselben Direktaufrufe auf `design.rapold.io` prüfen.
-6. `/build-info.json` abrufen. `version` muss `0.4.0` und `commit` die vollständige tatsächlich ausgerollte Commit-ID sein. Ein Commit-Link oder ein grüner CI-Lauf allein belegt keinen Produktionsrollout.
 
 ## Rücknahme
 

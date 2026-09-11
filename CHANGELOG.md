@@ -2,6 +2,8 @@
 
 ## 0.4.0 — 2026-09-11
 
+- GitHub Actions: Produktionsdeployment bei Push auf main nach erfolgreichem Check; fixierte Vercel CLI, Prüfung der Zugangsdaten sowie des ausgelieferten Commits und der Kernrouten.
+
 - Organigramm und Zuständigkeiten mit dem Atlas-SVG-Renderer, öffentlicher Fassung ohne Namen, Live-Editor sowie SVG-, JSON- und HTML-Export.
 - Apache ECharts mit vier Diagrammtypen, zugänglichen Datentabellen und SVG-Export. Bundle lokal ausgeliefert, versioniert und gegen Apache geprüft.
 - Sprungnavigation auf der Präsentationsseite; Copy-Fehler werden sichtbar gemeldet.
