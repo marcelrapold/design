@@ -11,12 +11,14 @@ export interface Brand {
   readonly shape: { readonly radius: string; readonly shadow: string; readonly buttonMinHeight: string };
   readonly assets?: {readonly logo: {readonly path:string; readonly aspectRatio:number; readonly background:string; readonly padding:number}};
   readonly tokens?: Readonly<Record<string,Record<string,string | number>>>;
+  readonly palette?: Readonly<Record<string,string>>;
   readonly sources: readonly string[];
 }
 export const colorKeys: readonly ColorKey[];
 export function defineBrand(input: unknown): Brand;
 export const neutral: Brand;
 export const goldbach: Brand;
+export const sygnum: Brand;
 export const brands: readonly Brand[];
 export function toCssVariables(brand: Brand, mode?: Mode): Record<string,string | number>;
 export function contrast(a: string,b: string): number;

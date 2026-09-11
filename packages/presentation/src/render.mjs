@@ -10,7 +10,7 @@ export async function assetPath(root,relative){
 }
 export async function renderScenes(brand,scenes,{title=brand.name,notes=[],assetRoot,imageRoot=assetRoot}={}){
  const theme=presentationTheme(brand),pptx=new PptxGenJS();
- pptx.layout='LAYOUT_WIDE';pptx.author='Design Framework';pptx.title=title;pptx.lang='de-CH';pptx.theme={headFontFace:theme.typography.family,bodyFontFace:theme.typography.family,lang:'de-CH'};
+ pptx.layout='LAYOUT_WIDE';pptx.author='Design Framework';pptx.title=title;pptx.lang='de-CH';pptx.theme={headFontFace:brand.typography.headingFamily??theme.typography.family,bodyFontFace:brand.typography.bodyFamily??theme.typography.family,lang:'de-CH'};
  let logo;
  if(brand.assets?.logo){const spec=brand.assets.logo,file=await assetPath(assetRoot,spec.path);logo={...spec,file};}
  for(const [index,scene] of scenes.entries()){
@@ -28,7 +28,7 @@ export async function renderScenes(brand,scenes,{title=brand.name,notes=[],asset
    }else if(n.kind==='image'){
     const file=await assetPath(imageRoot,n.path);
     slide.addImage({path:file,...pos,sizing:{type:n.fit==='cover'?'cover':'contain',w:pos.w,h:pos.h},altText:n.alt});
-   }else slide.addText(n.kind==='brand'?brand.name:n.text??'',{...pos,fontFace:(n.bold?brand.typography.headingFamily:brand.typography.bodyFamily)??theme.typography.family,fontSize:n.pt??11,bold:n.bold??false,color:n.color?.slice(1)??theme.colors.text.slice(1),margin:0,align:n.align??'left',valign:'top',paraSpaceAfterPt:0,lang:'de-CH'});
+   }else slide.addText(n.kind==='brand'?brand.name:n.text??'',{...pos,fontFace:(n.bold?brand.typography.headingFamily:brand.typography.bodyFamily)??theme.typography.family,fontSize:n.pt??11,bold:Boolean(n.bold && brand.typography.headingWeight>=600),color:n.color?.slice(1)??theme.colors.text.slice(1),margin:0,align:n.align??'left',valign:'top',paraSpaceAfterPt:0,lang:'de-CH'});
   }
   if(notes[index])slide.addNotes(notes[index]);
  }

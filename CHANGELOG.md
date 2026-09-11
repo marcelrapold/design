@@ -1,5 +1,15 @@
 # Changelog
 
+## Sygnum-Adapter · 11.09.2026
+
+- Drittes isoliertes Preset mit gemessener PDF-Palette, referenzierten Originalfamilien, Presse-Logo und vollständigem Quellen-/Lückenmanifest.
+- Originalpalette getrennt von funktionalen Kontrastrollen; generische CSS-/JSON-/DTCG-Exporte.
+- Eigener Brand-Showcase und Management-Einstieg; keine Firmeninhalte im Default-Preset.
+- Leichte Brand-Headlines werden im PPTX nicht mehr automatisch fett gesetzt.
+- Vorschauprüfungen skalieren mit der Brand-Registry statt festen Zweibrand-Zahlen.
+- Keine Originalfonts, geschützten Vollreports oder erfundenen SVG-/Folienmaster ausgeliefert.
+
+
 ## 0.4.3 — 2026-09-11
 
 - Kurze Präsentationsaufträge mit einem Theme-spezifischen Management-Einstieg. Vollständiger Ablauf, Defaults, Nutzer-Overrides, Quellenprüfung, Export und Abnahme liegen im versionierten Vertrag.

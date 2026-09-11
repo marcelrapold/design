@@ -2,6 +2,7 @@ import { foundationVariables, semanticTokens, resolveFoundation } from './founda
 export { foundation, resolveFoundation, semanticTokens, tokenDocument, dtcgTokens } from './foundation.mjs';
 import neutralData from './neutral.json' with { type: 'json' };
 import goldbachData from './goldbach.json' with { type: 'json' };
+import sygnumData from './sygnum.json' with { type: 'json' };
 
 export const colorKeys = Object.freeze(Object.keys(neutralData.modes.light));
 const hex = /^#[0-9a-f]{6}$/i;
@@ -11,7 +12,7 @@ function keys(value, expected, name) {
   if (Object.keys(value).some(key => !expected.includes(key)) || expected.some(key => !(key in value))) throw new Error(`${name}: invalid keys`);
 }
 export function defineBrand(input) {
-  keys(input, [...(input.tokens ? ['tokens'] : []), ...(input.assets ? ['assets'] : []), 'schemaVersion','id','name','version','status','modes','typography','shape','sources'], 'brand');
+  keys(input, [...(input.palette ? ['palette'] : []), ...(input.tokens ? ['tokens'] : []), ...(input.assets ? ['assets'] : []), 'schemaVersion','id','name','version','status','modes','typography','shape','sources'], 'brand');
   if (input.schemaVersion !== 1 || !/^[a-z][a-z0-9-]*$/.test(input.id)) throw new Error('Invalid brand identity');
   if (typeof input.name !== 'string' || !input.name.trim() || !/^\d+\.\d+\.\d+$/.test(input.version)) throw new Error('Invalid brand metadata');
   if (!['baseline','draft','approved'].includes(input.status)) throw new Error('Invalid brand status');
@@ -32,6 +33,10 @@ export function defineBrand(input) {
     const logo=input.assets.logo;keys(logo,['path','aspectRatio','background','padding'],'assets.logo');
     if(typeof logo.path!=='string'||!/^[-A-Za-z0-9_/]+\.(svg|png)$/.test(logo.path)||logo.path.startsWith('/')||logo.path.split('/').includes('..')||!Number.isFinite(logo.aspectRatio)||logo.aspectRatio<=0||logo.aspectRatio>100||!hex.test(logo.background)||!Number.isFinite(logo.padding)||logo.padding<0||logo.padding>.4)throw new Error('Invalid brand logo');
   }
+  if (input.palette) {
+    if (typeof input.palette !== 'object' || Array.isArray(input.palette) || !Object.keys(input.palette).length || Object.keys(input.palette).length > 32) throw new Error('Invalid brand palette');
+    for (const [key,value] of Object.entries(input.palette)) if (!/^[a-z][a-z0-9-]{0,31}$/.test(key) || typeof value !== 'string' || !hex.test(value)) throw new Error('Invalid palette color');
+  }
   resolveFoundation(input);
   const result = structuredClone(input);
   function freeze(value) { Object.values(value).forEach(v => { if (v && typeof v === 'object') freeze(v); }); return Object.freeze(value); }
@@ -39,12 +44,15 @@ export function defineBrand(input) {
 }
 export const neutral = defineBrand(neutralData);
 export const goldbach = defineBrand(goldbachData);
-export const brands = Object.freeze([neutral, goldbach]);
+export const sygnum = defineBrand(sygnumData);
+export const brands = Object.freeze([neutral, goldbach, sygnum]);
 
 export function toCssVariables(brand, requestedMode = 'light') {
   const mode = requestedMode === 'dark' && brand.modes.dark ? 'dark' : 'light';
   return Object.fromEntries([
     ...Object.entries(foundationVariables(brand)),
+    ...Object.entries(brand.palette ?? {}).map(([key,value]) => [`--brand-color-${key}`,value]),
+    ['--brand-heading-font',brand.typography.headingFamily ? `"${brand.typography.headingFamily}", ${brand.typography.family}` : brand.typography.family],
     ...Object.entries(semanticTokens(brand,mode)).map(([key,value]) => [`--${key}`,value]),
     ['--radius',brand.shape.radius], ['--font-mono','ui-monospace, SFMono-Regular, Menlo, monospace'], ['--brand-font',brand.typography.family], ['--brand-body-weight',brand.typography.bodyWeight],
     ['--brand-heading-weight',brand.typography.headingWeight], ['--brand-radius',brand.shape.radius],

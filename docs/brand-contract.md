@@ -34,6 +34,10 @@ import { neutral, toCssVariables } from '@rapold/framework-brands';
 
 Tailwind v4 einbinden, `@rapold/framework-core/styles.css` importieren und den installierten Core-Quellpfad mit `@source` scannen. In Next.js den Core unter `transpilePackages` eintragen. Schriftdateien bindet die konsumierende Anwendung ein. Das Source-Package liefert keine kompilierten Universal-CSS-Dateien.
 
+## Originalpalette und semantische Rollen
+
+Optionales `palette` enthält ein bis 32 benannte RGB-Farben. Namen sind kleingeschriebene CSS-taugliche Bezeichner, Werte sechsstellige Hex-Codes. Originalfarben werden getrennt von den barrierearmen semantischen Rollen als `--brand-color-*`, `tokens.palette` und DTCG `palette` ausgegeben. Ein Originalfarbwert ist keine automatische Freigabe für kleinen Text. `--brand-heading-font` leitet sich aus der optionalen Display-Familie mit dem allgemeinen Font-Stack als Fallback ab. Schriften werden referenziert, nicht eingebettet.
+
 ## Grenzen des ersten Schnitts
 
 Fünf primitive UI-Bausteine, ein BrandProvider, zwei Brand-Konfigurationen, eine Referenz-App und ein Präsentationsvertrag. Auth, Mailing, Datenbank, Analytics, Standort-/Zeitlogik, Diagramm-Libraries und Motion-Engines gehören nicht zum Core. Portals und verschachtelte Brands mit gemischten Farbmodi sind noch kein unterstützter Integrationsvertrag. Spätere Dialog-/Popover-Adapter müssen den Brand-Scope explizit in ihren Portal-Container mitnehmen.
