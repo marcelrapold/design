@@ -23,16 +23,16 @@ for(const brand of brands)for(const set of [{id:'muster-deck',count:18},...prese
   assert.match(xml,/<c:numCache>/,'Native editable chart data must be retained');
  }
 }
-console.log('Production CSS, reference routes, standalone validator and 12 editable decks verified.');
+console.log(`Production CSS, reference routes, standalone validator and ${brands.length*(presets.length+1)} editable decks verified.`);
 const {verifyReferenceCache}=await import('./reference-cache.mjs');
 const reference=await verifyReferenceCache();
-assert.equal(reference.files.filter(x=>x.path.endsWith('.png')).length,36);
-assert.equal(reference.files.filter(x=>x.path.endsWith('.pdf')).length,12);
+assert.equal(reference.files.filter(x=>x.path.endsWith('.png')).length,brands.length*18);
+assert.equal(reference.files.filter(x=>x.path.endsWith('.pdf')).length,brands.length*(presets.length+1));
 for(const item of reference.files)assert.ok((await readFile(new URL(item.path,out))).length,`Missing exported reference: ${item.path}`);
 assert.ok((await readFile(new URL('praesentation/project-input.schema.json',out))).length);
 const projectValidator=await import(new URL('praesentation/project-validation.mjs',out));
 assert.equal(projectValidator.validateProject(JSON.parse(await readFile(new URL('praesentation/framework-review.json',out),'utf8'))).valid,true);
-console.log('All 36 genuine PPTX previews, 12 PDFs and project-deck contracts verified.');
+console.log(`All ${brands.length*18} genuine PPTX previews, ${brands.length*(presets.length+1)} PDFs and project-deck contracts verified.`);
 
 const {createHash}=await import('node:crypto');
 const echarts=await readFile(new URL('vendor/echarts-6.0.0.min.js',out));
@@ -45,7 +45,7 @@ console.log('Pinned ECharts bundle, attribution and engineering contract verifie
 for (const file of (await readdir(out)).filter(name=>name.endsWith('.html'))) {
  const html=await readFile(new URL(file,out),'utf8');
  const main=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1]??'';
- assert.doesNotMatch(main.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,''),/goldbach/i,`Corporate content in Default page: ${file}`);
+ assert.doesNotMatch(main.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,''),/goldbach|sygnum/i,`Corporate content in Default page: ${file}`);
 }
 for(const brand of brands){
  const guide=await readFile(new URL(`brands/${brand.id}/llms.txt`,out),'utf8');
@@ -66,5 +66,10 @@ for(const brand of brands){
  }
 }
 for(const file of ['llms.txt','brands/neutral/llms.txt','brands/neutral/management.md','contracts/repo-to-management.md','contracts/brand-contract.md'])
- assert.doesNotMatch(await readFile(new URL(file,out),'utf8'),/goldbach/i,`Corporate default in shared contract: ${file}`);
+ assert.doesNotMatch(await readFile(new URL(file,out),'utf8'),/goldbach|sygnum/i,`Corporate default in shared contract: ${file}`);
 console.log('Default pages and theme-specific agent contracts are isolated.');
+
+for(const brand of brands){
+ for(const source of brand.sources)assert.ok((await readFile(new URL(`brands/${brand.id}/${source.split('/').at(-1)}`,out))).length);
+ if(brand.assets?.logo)assert.ok((await readFile(new URL(brand.assets.logo.path,out))).length);
+}

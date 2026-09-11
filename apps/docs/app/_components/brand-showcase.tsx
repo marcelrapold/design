@@ -1,10 +1,12 @@
 'use client';
 import Link from 'next/link';
 import {Layers,Download} from 'lucide-react';
+import SygnumShowcase from './sygnum-showcase';
 import {useActiveBrand} from './framework-shell';
 
 export default function BrandShowcase() {
   const {brand}=useActiveBrand();
+  if(brand.id==='sygnum')return <SygnumShowcase/>;
   const goldbach=brand.id==='goldbach';
   return <>
     <section className="active-brand-card" aria-label="Aktives Theme">

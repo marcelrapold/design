@@ -26,11 +26,12 @@ export function semanticTokens(brand, mode='light') {
     'surface-info':mix(c.primary,c.card,.08),'surface-success':mix(c.success,c.card,.08),'surface-warning':mix(c.warning,c.card,.08),'surface-danger':mix(c.destructive,c.card,.08)};
 }
 export function tokenDocument(brand,mode='light') {
- return {schemaVersion:1,brand:brand.id,mode:brand.modes[mode]?mode:'light',foundation:resolveFoundation(brand),semantic:semanticTokens(brand,mode),typography:brand.typography,shape:brand.shape};
+ return {schemaVersion:1,brand:brand.id,mode:brand.modes[mode]?mode:'light',foundation:resolveFoundation(brand),semantic:semanticTokens(brand,mode),palette:brand.palette??{},typography:brand.typography,shape:brand.shape};
 }
 export function dtcgTokens(brand, mode='light') {
  const result={ $description:`${brand.name}: resolved design tokens` };
  for(const [key,value] of Object.entries(semanticTokens(brand,mode))) result[key]={$type:'color',$value:{colorSpace:'srgb',components:value.slice(1).match(/../g).map(x=>parseInt(x,16)/255),alpha:1,hex:value}};
+ if(brand.palette)result.palette=Object.fromEntries(Object.entries(brand.palette).map(([key,value])=>[key,{$type:'color',$value:{colorSpace:'srgb',components:value.slice(1).match(/../g).map(x=>parseInt(x,16)/255),alpha:1,hex:value}}]));
  const types={spacing:'dimension',fontSize:'dimension',lineHeight:'number',fontWeight:'fontWeight',radius:'dimension',borderWidth:'dimension',opacity:'number',duration:'duration',easing:'cubicBezier',breakpoint:'dimension',layout:'dimension',zIndex:'number',icon:'dimension'};
  for(const [group,values] of Object.entries(resolveFoundation(brand))) if(typeof values==='object') result[group]=Object.fromEntries(Object.entries(values).map(([key,value])=>[key,{$type:typeof value==='number' && group==='icon'?'number':types[group]??'string',$value:typeof value==='number'?value:group==='easing'?value.match(/[-\d.]+/g).map(Number):{value:parseFloat(value),unit:value.replace(/[\d.]/g,'')}}]));
  return result;

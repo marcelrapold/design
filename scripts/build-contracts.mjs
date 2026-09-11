@@ -1,4 +1,4 @@
-import { mkdir, writeFile, copyFile, readFile } from 'node:fs/promises';
+import { mkdir, writeFile, copyFile, readFile, access } from 'node:fs/promises';
 import { brands } from '../packages/brands/src/index.mjs';
 import { mermaidTheme,mermaidThemeCSS,mermaidClassDefs,MERMAID_WRAPPING_WIDTH,MERMAID_NODE_PADDING } from '../packages/brands/src/mermaid-theme.mjs';
 import { presentationTheme } from '../packages/brands/src/presentation.mjs';
@@ -16,6 +16,19 @@ await writeFile(new URL('brands/index.json',root),JSON.stringify({schemaVersion:
 for (const brand of brands) {
   const directory = new URL(`brands/${brand.id}/`,root);
   await mkdir(directory,{recursive:true});
+  const sourceNames=new Set();
+  for(const source of brand.sources){
+    if(!source.startsWith(`brands/${brand.id}/`) || source.split('/').includes('..'))throw new Error(`Invalid brand source path: ${source}`);
+    const name=source.split('/').at(-1);
+    if(sourceNames.has(name))throw new Error(`Duplicate public source name: ${name}`);
+    sourceNames.add(name);
+    await copyFile(new URL('../'+source,import.meta.url),new URL(name,directory));
+  }
+  if(brand.sources.length)await copyFile(new URL(`../brands/${brand.id}/README.md`,import.meta.url),new URL('rules.md',directory));
+  if(brand.assets?.logo){
+    const original=new URL('../'+brand.assets.logo.path,import.meta.url);
+    if(await access(original).then(()=>true,()=>false))await copyFile(original,new URL(brand.assets.logo.path,root));
+  }
   const brandSources=brand.sources.map(source=>`- /brands/${brand.id}/${source.split('/').at(-1)}`).join('\n');
   const activeGuide=`# ${brand.id==='neutral'?'Default-Preset':brand.name+'-Theme'}\n\nAktive Brand: ${brand.id} · Status: ${brand.status}\nNur die folgenden Theme-Vorgaben und die gemeinsamen Framework-Regeln verwenden.\n\n${sharedAgentGuide.replaceAll('{brand}',brand.id)}\n${brandSources?'## Quellen dieses Themes\n'+brandSources+'\n- /brands/'+brand.id+'/rules.md\n':''}${brand.assets?.logo?'\nOriginal-Logo: /'+brand.assets.logo.path+'\n':''}`;
   await writeFile(new URL('llms.txt',directory),activeGuide);
@@ -26,9 +39,6 @@ for (const brand of brands) {
 }
 console.log(`Generated contracts for ${brands.length} brands.`);
 
-await copyFile(new URL('../brands/goldbach/README.md',import.meta.url),new URL('brands/goldbach/rules.md',root));
-await copyFile(new URL('../brands/goldbach/sources/DESIGN.md',import.meta.url),new URL('brands/goldbach/DESIGN.md',root));
-await copyFile(new URL('../brands/goldbach/sources/IMAGERY.md',import.meta.url),new URL('brands/goldbach/IMAGERY.md',root));
 
 const {tokenDocument,dtcgTokens,toCssVariables}=await import('../packages/brands/src/index.mjs');
 for(const brand of brands)for(const mode of Object.keys(brand.modes)) {

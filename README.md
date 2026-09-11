@@ -12,7 +12,7 @@ White-Label-Framework auf Basis von Atlas. Ein neutraler Designstandard mit aust
 
 > Analysiere owner/repo und erstelle eine Management-Präsentation. Lies und befolge https://design.rapold.io/brands/neutral/management.md.
 
-Für Goldbach denselben Auftrag mit https://design.rapold.io/brands/goldbach/management.md verwenden. Der Einstieg enthält den vollständigen Ablauf: standardmässig acht Folien, Deutsch (Schweiz), 16:9, editierbare PPTX, PDF, Quellenmanifest und deck.json. Explizite Wünsche überschreiben diese Defaults. Auf der [Präsentationsseite](https://design.rapold.io/praesentation) und im Prompt-Compiler wird der Kurzauftrag für das aktive Theme erzeugt.
+Für Goldbach denselben Auftrag mit https://design.rapold.io/brands/goldbach/management.md verwenden. Sygnum: https://design.rapold.io/brands/sygnum/management.md. Der Einstieg enthält den vollständigen Ablauf: standardmässig acht Folien, Deutsch (Schweiz), 16:9, editierbare PPTX, PDF, Quellenmanifest und deck.json. Explizite Wünsche überschreiben diese Defaults. Auf der [Präsentationsseite](https://design.rapold.io/praesentation) und im Prompt-Compiler wird der Kurzauftrag für das aktive Theme erzeugt.
 
 Der Standard liefert Brand-Daten, Präsentationsrollen und einen vollständigen Agenten-Vertrag. Der ausführende Agent braucht Repo-Zugang und einen Renderer. Ein gehosteter Generator ist nicht Teil dieses ersten Schnitts.
 
@@ -51,7 +51,7 @@ npm run dev
 
 - Neutral: vollständige helle und dunkle Basis.
 - Goldbach: Adapter aus den vom Nutzer gelieferten `DESIGN.md` und `IMAGERY.md`, Version 1 vom 08.07.2026. Nur helle Darstellung. Status `draft`, da Verfeinerungen noch keine CI-Freigabe besitzen.
-- Sygnum: noch keine Brand-Datei. Vorgaben stehen aus.
+- Sygnum: quellenbasierte Rekonstruktion aus offiziellem Research-PDF, Webauftritt und Presse-Logo. Neusa Next Std/Benton Sans als Fontreferenzen, gemessene Coral-/Violettgrau-Palette und getrennte UI-Kontrastableitungen. Status `draft`, hell. Kein Original-CI-Manual oder Fontpaket. Einstieg: https://design.rapold.io/brand?brand=sygnum.
 
 Firmenlogos, interne Vorgaben und lizenzierte Assets sind getrennt vom neutralen Core. Eine künftige freie Code-Lizenz erteilt keine Marken- oder Fontrechte.
 
@@ -74,6 +74,6 @@ Die Domain-Auswahl steht in der Metadaten-Konfiguration und im Agenten-Einstieg.
 
 Bekannte Lücken und Abnahmestatus: docs/atlas-coverage.md.
 
-Der Muster-Renderer erzeugt zwölf editierbare PPTX-Dateien (zwei Brands × sechs Decks). Zusätzlich verarbeitet `@rapold/framework-presentation` echte Projektinhalte mit allen 18 Rezepten. `npm run deck:export -- deck.json --out ./ergebnis --repo-dir ./projekt --pdf` erzeugt PPTX, PDF und Quellenmanifest. Vollständiger Ablauf und Eingabeschema: [Projektdecks](docs/project-decks.md).
+Der Muster-Renderer erzeugt 18 editierbare PPTX-Dateien (drei Brands × sechs Decks). Zusätzlich verarbeitet `@rapold/framework-presentation` echte Projektinhalte mit allen 18 Rezepten. `npm run deck:export -- deck.json --out ./ergebnis --repo-dir ./projekt --pdf` erzeugt PPTX, PDF und Quellenmanifest. Vollständiger Ablauf und Eingabeschema: [Projektdecks](docs/project-decks.md).
 
 Version 0.4 ergänzt den Atlas-Organigramm-Renderer mit Editor und Exporten, vier lokale ECharts-Beispiele, vollständige Navigationsicons, formatabhängige Prompts und den [Engineering-Vertrag](docs/engineering.md).

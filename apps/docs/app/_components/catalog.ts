@@ -24,7 +24,16 @@ export const guidance:Record<string,{intro:string;sections:{title:string;body:st
 // Corporate additions are resolved only for the active theme.
 export function guidanceFor(section:string, brandId:string) {
  const base=guidance[section];
- if(!base||brandId!=='goldbach')return base;
+ if(!base)return base;
+ if(brandId==='sygnum'){
+  const specific:Record<string,typeof base>={
+   brand:{intro:'Sygnum: quellenbasierte Rekonstruktion aus öffentlichem Auftritt und Research-PDF, keine offizielle CI-Freigabe.',sections:[{title:'Beobachtung und Umsetzung trennen',body:'Farben und eingebettete Schriftnamen stammen aus dem Crypto Market Outlook 2025. UI-Zustände, Kontrastkorrekturen und 16:9-Raster sind dokumentierte Framework-Ableitungen.'},{title:'Freigabe und Herkunft',body:'Status draft. Originalschriften werden nicht mitgeliefert. Das Presse-Logo bleibt unverändert. Offizielles CI-Manual, SVG-Master und Original-PowerPoint-Master sind noch offen.'}]},
+   content:{intro:'Präzise, ruhig und institutionell. Chancen und Risiken stehen gemeinsam im Bild.',sections:[{title:'Tonalität',body:'Konkreter Nutzen, klar benannte Verantwortung und nachvollziehbare Quellen. Keine Renditegarantien, Superlative ohne Beleg oder suggerierte regulatorische Produktfreigaben.'},{title:'Zwei Bildwelten',body:'Banking und Management bleiben ruhig und strukturiert. Research-Cover dürfen bildstark und farbintensiv sein. Die expressive Titelbildsprache wird nicht zur Dekoration jedes Bedienelements.'}]},
+   agenten:{...base,sections:base.sections.map((s,i)=>i? s:{...s,body:'Der Sygnum-Kurzauftrag lädt den vollständigen Management-Vertrag mit DESIGN.md, IMAGERY.md, Quellenmanifest und Original-Presse-Logo. Acht Folien, Deutsch (Schweiz), PPTX, PDF und Quellen sind voreingestellt.'})}
+  };
+  return specific[section]??base;
+ }
+ if(brandId!=='goldbach')return base;
  const overrides:Record<string,Record<string,{body:string;items?:string[]}>>={
   brand:{
    'Quellen haben Vorrang':{body:'Goldbach verwendet die gelieferten DESIGN.md und IMAGERY.md vom 08.07.2026. Die Originalquellen bestimmen die Identität.',items:['Passion Red, Inter Light 300 und Inter Bold 700.','4 px Radius und flache Flächen.','Original-Logo und dokumentierte Bildrichtlinien.']},
