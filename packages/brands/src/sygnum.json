@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "sygnum",
   "name": "Sygnum",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "draft",
   "palette": {
     "coral": "#F04E69",
@@ -69,9 +69,24 @@
       "bold": 700
     }
   },
+  "presentation": {
+    "editorialDarkSurfaces": true,
+    "preferredDiagramShare": "2-4 per 12 slides",
+    "preferredGenAiImages": "max 3 per 12 slides",
+    "preferIconsForConcepts": true,
+    "preferMermaidForSystems": true,
+    "logoOnCover": true
+  },
+  "genAI": {
+    "contract": "brands/sygnum/sources/GENAI.md",
+    "families": ["swiss-roots-global-infrastructure", "human-stewardship", "secure-digital-infrastructure"],
+    "maxKeyVisualsPer12Slides": 3,
+    "logoGeneratedInImage": false
+  },
   "sources": [
     "brands/sygnum/sources/DESIGN.md",
     "brands/sygnum/sources/IMAGERY.md",
+    "brands/sygnum/sources/GENAI.md",
     "brands/sygnum/sources/sources.json",
     "brands/sygnum/sources/observations.json"
   ],
