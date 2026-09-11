@@ -1,4 +1,4 @@
-# Handover 0.3.0
+# Handover 0.4.0
 
 ## Ziel und Referenz
 
@@ -33,3 +33,16 @@ Goldbach bleibt ein CI-Entwurf aus den gelieferten Vorgaben. Sygnum erst nach ge
 ## Neuer Stand 0.3
 
 Präsentationsseite strukturell an Atlas angeglichen, inklusive 36 echten PNG-Vorschauen, 12 PDFs, Detailanleitungen und Preset-Filmstreifen. Versionierte Bilder besitzen einen Inhaltsfingerprint; veraltete Bilder lassen den Build fehlschlagen. Renderanleitung in docs/project-decks.md. Der Projektexport setzt keine Musterfakten ein und prüft Quellen, Textkapazitäten, Vergleichsperioden, Datenformat und Abschnittsreihenfolge. Neue Brands können Original-Logos und genaue Schriftschnittnamen konfigurieren.
+
+
+## Fortsetzung am 11.09.2026 · 0.4
+
+Der Benutzer bestätigte ausdrücklich seine Berechtigung und die Freigabe zur Übernahme und öffentlichen Veröffentlichung der Atlas-Bestandteile. Die Sicherheitsunterbrechung des vorherigen Chats wurde von ihm ausdrücklich zur Fortsetzung freigegeben. LICENSE bleibt unverändert.
+
+Quellabgleich: Die 155 Dateien des GitHub-Commits 37604af16dd32840efd41022fb53aba46639421b entsprachen bytegenau der übernommenen Arbeitskopie. Die Produktionsdomain zeigte zum Beginn dieses Durchlaufs weiterhin die alte Einseitenfassung 0.1.
+
+Ergänzt: Atlas-Navigationsicons inklusive Rail/Command-Suche, formatabhängiger Prompt-Compiler, Engineering-Vertrag, Versionsquelle package.json, Sprungnavigation für die Präsentation, Atlas-Organigramm- und Zuständigkeitsrenderer mit Editor und Exporten sowie Apache ECharts mit vier Diagrammtypen. Der ECharts-Browserbuild wird von Apache 6.0.0 unverändert lokal ausgeliefert und gegen den upstream Git-Blob geprüft.
+
+Die neue Referenz wurde im Browser geöffnet. Navigation und Brand-Wechsel funktionieren; ein Goldbach-KPI-Board mit echten Folienbildern und Detailregeln wurde visuell geprüft. Die öffentliche Organigramm-Fassung entfernt Namen auch aus den exportierten Daten und der JSON-LD-Struktur. Die direkte Anmeldung bei Atlas im Browser wurde nicht abgeschlossen; der Referenz-Quellstand ist über GitHub verfügbar und geprüft.
+
+Release-Prüfung: npm run check. Produktion erst mit passendem build-info.json als ausgeliefert bezeichnen. Vercel-Connector listete in dieser Sitzung keine Projekte, CLI war abgemeldet. Keine erfolgreiche Produktionsauslieferung allein aus dem GitHub-Commit ableiten.

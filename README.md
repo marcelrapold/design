@@ -2,7 +2,7 @@
 
 White-Label-Framework auf Basis von Atlas. Ein neutraler Designstandard mit austauschbaren Brand-Vorgaben für Interfaces und Management-Präsentationen.
 
-**Stand:** 0.3.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Die Referenz ist auf https://design.rapold.io erreichbar.
+**Stand:** 0.4.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Die Referenz ist auf https://design.rapold.io erreichbar.
 
 ## Verbindliche Referenz
 
@@ -73,3 +73,5 @@ Die Domain-Auswahl steht in der Metadaten-Konfiguration und im Agenten-Einstieg.
 Bekannte Lücken und Abnahmestatus: docs/atlas-coverage.md.
 
 Der Muster-Renderer erzeugt zwölf editierbare PPTX-Dateien (zwei Brands × sechs Decks). Zusätzlich verarbeitet `@rapold/framework-presentation` echte Projektinhalte mit allen 18 Rezepten. `npm run deck:export -- deck.json --out ./ergebnis --repo-dir ./projekt --pdf` erzeugt PPTX, PDF und Quellenmanifest. Vollständiger Ablauf und Eingabeschema: [Projektdecks](docs/project-decks.md).
+
+Version 0.4 ergänzt den Atlas-Organigramm-Renderer mit Editor und Exporten, vier lokale ECharts-Beispiele, vollständige Navigationsicons, formatabhängige Prompts und den [Engineering-Vertrag](docs/engineering.md).

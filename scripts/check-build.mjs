@@ -32,3 +32,9 @@ assert.ok((await readFile(new URL('praesentation/project-input.schema.json',out)
 const projectValidator=await import(new URL('praesentation/project-validation.mjs',out));
 assert.equal(projectValidator.validateProject(JSON.parse(await readFile(new URL('praesentation/framework-review.json',out),'utf8'))).valid,true);
 console.log('All 36 genuine PPTX previews, 12 PDFs and project-deck contracts verified.');
+
+const {createHash}=await import('node:crypto');
+const echarts=await readFile(new URL('vendor/echarts-6.0.0.min.js',out));
+assert.equal(createHash('sha1').update(Buffer.concat([Buffer.from(`blob ${echarts.length}\0`),echarts])).digest('hex'),'22b33ffe0548465757267dc03ca8656d7cfef643','ECharts must match the Apache upstream bundle');
+for(const file of ['vendor/echarts-LICENSE.txt','vendor/echarts-NOTICE.txt','contracts/engineering.md'])assert.ok((await readFile(new URL(file,out))).length);
+console.log('Pinned ECharts bundle, attribution and engineering contract verified.');

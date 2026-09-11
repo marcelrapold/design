@@ -1,6 +1,7 @@
 import { mkdir, writeFile, copyFile, readFile } from 'node:fs/promises';
 import { brands } from '../packages/brands/src/index.mjs';
 import { presentationTheme } from '../packages/brands/src/presentation.mjs';
+const {version}=JSON.parse(await readFile(new URL('../package.json',import.meta.url),'utf8'));
 const root = new URL('../apps/docs/public/',import.meta.url);
 await mkdir(new URL('contracts/',root),{recursive:true});
 await copyFile(new URL('../docs/repo-to-management.md',import.meta.url),new URL('contracts/repo-to-management.md',root));
@@ -37,9 +38,11 @@ await writeFile(new URL('praesentation/deck-validation.mjs',root),validator.repl
 await import('./build-icons.mjs');
 await import('./build-decks.mjs');
 await copyFile(new URL('../packages/brands/src/deck-input.schema.json',import.meta.url),new URL('praesentation/deck-input.schema.json',root));
-await writeFile(new URL('build-info.json',root),JSON.stringify({version:'0.3.0',builtAt:new Date().toISOString(),commit:process.env.VERCEL_GIT_COMMIT_SHA??process.env.GITHUB_SHA??'local-build',atlasReference:'1c75c95417cc371040e1e24a0986213314b53c13',uiModules:19,slideTypes:18,deckPresets:5},null,2)+'\n');
+await writeFile(new URL('build-info.json',root),JSON.stringify({version,builtAt:new Date().toISOString(),commit:process.env.VERCEL_GIT_COMMIT_SHA??process.env.GITHUB_SHA??'local-build',atlasReference:'1c75c95417cc371040e1e24a0986213314b53c13',uiModules:19,slideTypes:18,deckPresets:5},null,2)+'\n');
 await copyFile(new URL('../packages/presentation/src/project-input.schema.json',import.meta.url),new URL('praesentation/project-input.schema.json',root));
 await copyFile(new URL('../examples/framework-review.json',import.meta.url),new URL('praesentation/framework-review.json',root));
 const projectValidator=await readFile(new URL('../packages/presentation/src/validate-project.mjs',import.meta.url),'utf8');
 await writeFile(new URL('praesentation/project-validation.mjs',root),projectValidator.replace('../../brands/src/deck-validation.mjs','./deck-validation.mjs'));
 await copyFile(new URL('../docs/project-decks.md',import.meta.url),new URL('contracts/project-decks.md',root));
+
+await copyFile(new URL('../docs/engineering.md',import.meta.url),new URL('contracts/engineering.md',root));
