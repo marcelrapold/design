@@ -1,0 +1,58 @@
+name: Sygnum source audit
+on:
+  push:
+    branches: [feat/sygnum-brand]
+    paths: [.github/workflows/sygnum-source-audit.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/sygnum-brand
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Inspect public website resources without downloading fonts
+        run: |
+          mkdir -p brands/sygnum/research
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import crypto from 'node:crypto';
+          const home='https://www.sygnum.com/';
+          const html=await (await fetch(home)).text();
+          const attr=(s,k)=>s.match(new RegExp(k+'=["\\\']([^"\\\']+)["\\\']','i'))?.[1];
+          const links=[...html.matchAll(/<link\b[^>]*>/gi)].map(m=>m[0]).filter(t=>/stylesheet/i.test(t)).map(t=>new URL(attr(t,'href'),home).href);
+          const images=[...html.matchAll(/<img\b[^>]*>/gi)].map(m=>m[0]).filter(t=>/logo|sygnum/i.test(t)).map(t=>({src:attr(t,'src'),alt:attr(t,'alt'),class:attr(t,'class')}));
+          const fonts=[],colors=new Map(),rules=[],resources=[];
+          for(const url of links){
+            if(!url.startsWith('https://www.sygnum.com/'))continue;
+            try{
+              const response=await fetch(url); const css=await response.text();
+              resources.push({url,status:response.status,sha256:crypto.createHash('sha256').update(css).digest('hex')});
+              fonts.push(...[...css.matchAll(/@font-face\s*\{[^}]+\}/g)].map(m=>({url,rule:m[0]})));
+              for(const m of css.matchAll(/#[0-9a-f]{3,8}\b/gi)){const c=m[0].toUpperCase();colors.set(c,(colors.get(c)||0)+1);}
+              for(const m of css.matchAll(/([^{}]+)\{([^{}]+)\}/g)){
+                const [_,selector,body]=m;
+                if(/font-family|--primary|--secondary|--.*color|\.btn|\.button|h1|h2|body|\.logo/i.test(selector+' '+body)){
+                  const props=body.split(';').filter(p=>/font-family|font-weight|font-size|line-height|letter-spacing|(?:^|\s)color:|background(?:-color)?:|border-radius:|--.*color/.test(p));
+                  if(props.length)rules.push({source:url,selector:selector.trim().slice(0,300),declarations:props.join(';').slice(0,1000)});
+                }
+              }
+            }catch(e){resources.push({url,error:String(e)});}
+          }
+          const report={observedAt:new Date().toISOString(),url:home,title:html.match(/<title>(.*?)<\/title>/)?.[1],stylesheets:resources,fonts,colors:[...colors].sort((a,b)=>b[1]-a[1]).slice(0,60),images,inlineLogos:[...html.matchAll(/<svg\b[^>]*>[\s\S]*?<\/svg>/g)].map(m=>m[0]).filter(s=>/logo|sygnum/i.test(s)).slice(0,5),rules:rules.slice(0,250)};
+          await fs.writeFile('brands/sygnum/research/website-observations.json',JSON.stringify(report,null,2)+'\n');
+          console.log(JSON.stringify({title:report.title,fonts,colors:report.colors,images},null,2));
+          NODE
+      - name: Save observed public evidence on feature branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add brands/sygnum/research/website-observations.json
+          git diff --cached --quiet || git commit -m 'docs(sygnum): capture dated official CSS and asset observations'
+          git push origin HEAD:feat/sygnum-brand
