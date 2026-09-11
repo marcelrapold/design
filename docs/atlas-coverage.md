@@ -7,7 +7,7 @@ Referenz: zvvch/zvv-atlas, Commit 1c75c95417cc371040e1e24a0986213314b53c13. Folg
 | UI-Exports | 19/19 Module aus packages/atlas/src/ui, einschliesslich markenfähiger Portale | Browser-Abnahme aller Zustände |
 | Farbrollen | Alle neutralen Atlas-Rollen, Light/Dark, Brand-Overrides, JSON/CSS/DTCG | Visuelle Gegenprüfung mit Atlas |
 | Foundation | Abstände, Typografie, Radius, Borders, Opacity, Motion, Breakpoints, Shell, z-index, Icongrössen | Neutrale Ergänzungen sind Defaults, keine gelieferten CI-Vorgaben |
-| Shell | 35 Referenzseiten, Gruppen, Atlas-Lucide-Icons, Cmd-K-Suche, Breadcrumbs, Rail, persistente Auswahl, mobile Navigation | Browser-Abnahme auf Desktop und Mobilgeräten |
+| Shell | 35 Referenzseiten, Gruppen, Atlas-Lucide-Icons, Cmd-K-Suche, Breadcrumbs, Rail, persistente Auswahl, mobile Navigation | Repräsentative Desktop-Prüfung sowie 320-/390-px-Ansicht bestanden; physische Geräte offen |
 | Icons | Alle 1'834 Lucide-Icons der installierten Version, React-Import, Suchkatalog, SVG, ISC-Lizenz | ZVV-Zeichen bewusst ausgeschlossen |
 | Inhaltslogik | Atlas-Abschnitte 1–7 neutral übertragen; vollständige lesbare Seite und Agenten-Vertrag | Weitere Projektanlässe und CI-Abnahme |
 | Folienkatalog | 18 Rezepte, fünf Presets, 13 Schriftrollen; 14 komplexe Inhaltsmuster aus muster_bausteine.py in gemeinsame Szenen übertragen | Fotos und dekorative Brand-Motive fehlen in strukturellen Folien |
@@ -29,4 +29,4 @@ Die Galerie zeigt 36 echte, versionierte PPTX-Renderings über LibreOffice/PDF. 
 
 Die Präsentationsseite übernimmt zusätzlich den erklärenden Einstieg, den Erzeugungsablauf, Farb- und Typorollen, gruppierte Galerie, Detailanleitung neben der Folie, fünf Preset-Filmstreifen, Downloads je Preset sowie die sechs Grundregeln. Die direkte visuelle Browser-Gegenprüfung mit der geschützten Atlas-Seite bleibt offen.
 
-Version 0.4: Desktop-Navigation, Brand-Wechsel, Folien-Detailansicht und öffentliche Organigramm-Fassung wurden im Browser bedient. Die direkte visuelle Atlas-Gegenprüfung bleibt wegen nicht abgeschlossener PIN-Anmeldung offen; der Quellcode wurde am genannten Commit geprüft.
+Version 0.4: Desktop-Navigation, Rail, gefilterte Suche, Brand-Wechsel, Folien-Detailansicht, ECharts und öffentliche Organigramm-Fassung wurden im Browser bedient. Mobilnavigation bei 390 px und Prompt-Compiler bei 320 px wurden geprüft; ein Toolbar-Überlauf wurde behoben. Die direkte visuelle Atlas-Gegenprüfung bleibt wegen nicht abgeschlossener PIN-Anmeldung offen; der Quellcode wurde am genannten Commit geprüft.

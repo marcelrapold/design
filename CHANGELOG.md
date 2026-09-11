@@ -8,6 +8,7 @@
 - Atlas-Lucide-Icons in Navigation, eingeklappter Seitenleiste, Mobilnavigation und Suche übernommen; alle Links besitzen zugängliche Namen.
 - Prompt-Compiler trennt Präsentation, Interface und schriftliches Management-Briefing mit passenden Quellen, Arbeitsschritten und Abnahmeregeln.
 - Engineering-Vertrag um Releaseablauf, Herkunft, Browser-Abnahme, Integrationsverantwortung und Rollback ergänzt.
+- Kopfzeile bleibt auch bei 320 px innerhalb der Ansicht; lange Seitentitel werden gekürzt. Statische Vercel-Routen erhalten explizite Clean URLs.
 - Version und Buildstand werden aus package.json abgeleitet. Entwicklungsstart unterstützt weitergereichte Host- und Portparameter.
 
 ## 0.3.0 — 2026-09-11
