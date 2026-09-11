@@ -1,0 +1,48 @@
+name: Verify Sygnum production release
+on:
+  push:
+    branches: [feat/sygnum-brand]
+    paths: [.github/workflows/sygnum-production-check.yml]
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify revision and Sygnum assets over public HTTPS
+        run: |
+          mkdir -p /tmp/release-evidence
+          node --input-type=module <<'JS'
+          import fs from 'node:fs/promises';
+          const base='https://design.rapold.io',expected='241c83297649f2df1ed12c8b670fa11e708c0fd2';
+          const get=async path=>{const r=await fetch(base+path,{signal:AbortSignal.timeout(20000),headers:{'Cache-Control':'no-cache'}});if(!r.ok)throw Error(path+' HTTP '+r.status);return r};
+          let report={expected,base};
+          for(let n=0;n<12;n++){
+            try{
+              const info=await(await get('/build-info.json?commit='+expected)).json();
+              if(info.commit!==expected)throw Error('Stale production revision: '+info.commit);
+              const brand=await(await get('/brands/sygnum/brand.json')).json();
+              if(brand.id!=='sygnum'||brand.palette?.coral!=='#F04E69')throw Error('Wrong brand export');
+              const routes=['/brand?brand=sygnum','/praesentation?brand=sygnum','/mermaid?brand=sygnum','/tables?brand=sygnum'];
+              for(const p of routes){const r=await get(p);if(!r.headers.get('content-type')?.includes('text/html')||!(await r.text()).includes('id="main"'))throw Error('Invalid page '+p)}
+              const sources=await(await get('/brands/sygnum/sources.json')).json();
+              for(const p of ['/brands/sygnum/logo.png','/brands/sygnum/decks/muster-deck.pptx','/brands/sygnum/reference/muster-deck.pdf','/brands/sygnum/management.md']){const r=await get(p);if(r.headers.get('content-type')?.includes('text/html'))throw Error('Wrong asset type '+p);await r.arrayBuffer()}
+              report={...report,verifiedAt:new Date().toISOString(),info,brand:brand.id,brandStatus:brand.status,sourceCount:sources.sources.length,routes,result:'PASS'};
+              await fs.writeFile('/tmp/release-evidence/production.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));process.exit(0);
+            }catch(e){report={...report,lastError:String(e),attempt:n+1};console.log(JSON.stringify(report));if(n<11)await new Promise(r=>setTimeout(r,15000));}
+          }
+          await fs.writeFile('/tmp/release-evidence/production.json',JSON.stringify({...report,result:'FAIL'},null,2));process.exit(1);
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sygnum-production-evidence
+          path: /tmp/release-evidence
+          retention-days: 3
