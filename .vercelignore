@@ -1,0 +1,8 @@
+.git
+.next
+node_modules
+apps/docs/.next
+apps/docs/out
+.sites-runtime
+*.bundle
+*.zip
