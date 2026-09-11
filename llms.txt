@@ -4,7 +4,7 @@ Ein White-Label-Designstandard für Web-Interfaces und Management-Präsentatione
 Hauptadresse: https://design.rapold.io
 Optionaler Alias: https://framework.rapold.io
 Repository: https://github.com/marcelrapold/design
-Status: Framework 0.2.0 im Repository. Den tatsächlich ausgelieferten Stand über /build-info.json prüfen. Fehlt die Datei, ist der neue Build nicht bestätigt.
+Status: Framework 0.3.0 im Repository. Den tatsächlich ausgelieferten Stand über /build-info.json prüfen. Fehlt die Datei, ist der neue Build nicht bestätigt.
 Verbindliche Referenz für Designsystem und Website: https://atlas.zvv.dev.
 Die aktive Brand ersetzt die Markenidentität, Atlas bestimmt die gemeinsame Struktur.
 
@@ -48,3 +48,9 @@ Muster-Decks sind illustrative Beispiele, keine analysierten Projektdeck-Ergebni
 Inhaltsschema: /praesentation/deck-input.schema.json
 Eigenständig importierbarer Validator: /praesentation/deck-validation.mjs
 Redaktionelle Regeln im Browser: /praesentationslogik
+
+Projektdeck-Export: /contracts/project-decks.md
+Schema für renderbare Inhalte: /praesentation/project-input.schema.json
+Projektvalidator: /praesentation/project-validation.mjs
+Belegtes Beispiel: /praesentation/framework-review.json
+Echte Referenzbilder und PDFs: /presentation-reference.json

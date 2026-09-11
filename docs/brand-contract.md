@@ -39,3 +39,7 @@ Tailwind v4 einbinden, `@rapold/framework-core/styles.css` importieren und den i
 Fünf primitive UI-Bausteine, ein BrandProvider, zwei Brand-Konfigurationen, eine Referenz-App und ein Präsentationsvertrag. Auth, Mailing, Datenbank, Analytics, Standort-/Zeitlogik, Diagramm-Libraries und Motion-Engines gehören nicht zum Core. Portals und verschachtelte Brands mit gemischten Farbmodi sind noch kein unterstützter Integrationsvertrag. Spätere Dialog-/Popover-Adapter müssen den Brand-Scope explizit in ihren Portal-Container mitnehmen.
 
 SemVer: neue optionale Tokens und Adapter als Minor, Umbenennung/Entfernung semantischer Rollen als Major. App-Projekte pinnen die Brand-Version.
+
+## Original-Assets und PowerPoint-Schriftfamilien
+
+Optionales `assets.logo` enthält `path`, `aspectRatio`, `background` und `padding`. Der Pfad ist relativ zum öffentlichen Asset-Verzeichnis, `padding` ein Anteil des vorgesehenen Logo-Feldes. Goldbach verwendet das Seitenverhältnis 282.8 / 47.7 und mindestens eine H-Höhe Schutzraum. Optionale `typography.bodyFamily` und `headingFamily` benennen die konkreten PowerPoint-Schriftschnitte. Die CSS-Schriftfamilie bleibt in `family`.

@@ -11,7 +11,7 @@ function keys(value, expected, name) {
   if (Object.keys(value).some(key => !expected.includes(key)) || expected.some(key => !(key in value))) throw new Error(`${name}: invalid keys`);
 }
 export function defineBrand(input) {
-  keys(input, [...(input.tokens ? ['tokens'] : []), 'schemaVersion','id','name','version','status','modes','typography','shape','sources'], 'brand');
+  keys(input, [...(input.tokens ? ['tokens'] : []), ...(input.assets ? ['assets'] : []), 'schemaVersion','id','name','version','status','modes','typography','shape','sources'], 'brand');
   if (input.schemaVersion !== 1 || !/^[a-z][a-z0-9-]*$/.test(input.id)) throw new Error('Invalid brand identity');
   if (typeof input.name !== 'string' || !input.name.trim() || !/^\d+\.\d+\.\d+$/.test(input.version)) throw new Error('Invalid brand metadata');
   if (!['baseline','draft','approved'].includes(input.status)) throw new Error('Invalid brand status');
@@ -20,12 +20,18 @@ export function defineBrand(input) {
     keys(colors, colorKeys, mode);
     for (const [key, value] of Object.entries(colors)) if (typeof value !== 'string' || !hex.test(value)) throw new Error(`Invalid color: ${mode}.${key}`);
   }
-  keys(input.typography, ['family','bodyWeight','headingWeight'], 'typography');
+  keys(input.typography, ['family','bodyWeight','headingWeight',...(input.typography?.bodyFamily?['bodyFamily']:[]),...(input.typography?.headingFamily?['headingFamily']:[])], 'typography');
   if (typeof input.typography.family !== 'string' || !/^[A-Za-z0-9 ,"'-]+$/.test(input.typography.family)) throw new Error('Invalid font family');
+  for(const key of ['bodyFamily','headingFamily'])if(input.typography[key]!==undefined&&(typeof input.typography[key]!=='string'||!/^[A-Za-z0-9 ,"'-]+$/.test(input.typography[key])))throw new Error('Invalid font face');
   for (const weight of [input.typography.bodyWeight,input.typography.headingWeight]) if (!Number.isInteger(weight) || weight < 100 || weight > 900) throw new Error('Invalid font weight');
   keys(input.shape, ['radius','shadow','buttonMinHeight'], 'shape');
   if (!length.test(input.shape.radius) || !length.test(input.shape.buttonMinHeight) || !['none','0 1px 3px #00000014'].includes(input.shape.shadow)) throw new Error('Invalid geometry');
   if (!Array.isArray(input.sources) || input.sources.some(s => typeof s !== 'string')) throw new Error('Invalid sources');
+  if(input.assets){
+    keys(input.assets,['logo'],'assets');
+    const logo=input.assets.logo;keys(logo,['path','aspectRatio','background','padding'],'assets.logo');
+    if(typeof logo.path!=='string'||!/^[-A-Za-z0-9_/]+\.(svg|png)$/.test(logo.path)||logo.path.startsWith('/')||logo.path.split('/').includes('..')||!Number.isFinite(logo.aspectRatio)||logo.aspectRatio<=0||logo.aspectRatio>100||!hex.test(logo.background)||!Number.isFinite(logo.padding)||logo.padding<0||logo.padding>.4)throw new Error('Invalid brand logo');
+  }
   resolveFoundation(input);
   const result = structuredClone(input);
   function freeze(value) { Object.values(value).forEach(v => { if (v && typeof v === 'object') freeze(v); }); return Object.freeze(value); }

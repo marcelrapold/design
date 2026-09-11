@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 1,
+  "title": "Design Framework: Management-Briefing",
+  "repository": "marcelrapold/design",
+  "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+  "brand": "goldbach",
+  "decisionQuestion": "Welche Pilotpräsentation dient als erste gemeinsame Abnahme?",
+  "sections": [
+    {
+      "id": "stand",
+      "title": "Lieferstand"
+    },
+    {
+      "id": "freigabe",
+      "title": "Nächste Freigabe"
+    }
+  ],
+  "slides": [
+    {
+      "type": "agenda",
+      "title": "Design Framework: Stand und Abnahme",
+      "items": [
+        "Lieferstand",
+        "Nächste Freigabe"
+      ]
+    },
+    {
+      "lead": {
+        "period": "Quellstand 0.2 vom 11.09.2026",
+        "source": "marcelrapold/design"
+      },
+      "sources": [
+        {
+          "id": "framework",
+          "label": "Framework 0.2",
+          "path": "README.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Alle 19 Atlas-UI-Module und BrandProvider"
+        },
+        {
+          "id": "abnahme",
+          "label": "Abnahme und offene Punkte",
+          "path": "docs/atlas-coverage.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Browser-Abnahme auf Desktop und Mobilgeräten"
+        },
+        {
+          "id": "ausgang",
+          "label": "Ursprünglicher Auszug",
+          "path": "docs/extraction.md",
+          "commit": "a30164904c435c5677876202df1f38225e4288a7",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "{button,card,input,badge,label}.tsx"
+        }
+      ],
+      "type": "karten-steckbrief",
+      "title": "Die Bewertung stützt sich auf drei versionierte Quellen",
+      "section": "stand",
+      "takeaway": "Die Aussagen beziehen sich auf den Commit 9fcf9f9. Sie bestätigen keine spätere Produktionsauslieferung.",
+      "introducesSources": true
+    },
+    {
+      "lead": {
+        "period": "Quellstand 0.2 vom 11.09.2026",
+        "source": "marcelrapold/design"
+      },
+      "sources": [
+        {
+          "id": "framework",
+          "label": "Framework 0.2",
+          "path": "README.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Alle 19 Atlas-UI-Module und BrandProvider"
+        },
+        {
+          "id": "abnahme",
+          "label": "Abnahme und offene Punkte",
+          "path": "docs/atlas-coverage.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Browser-Abnahme auf Desktop und Mobilgeräten"
+        },
+        {
+          "id": "ausgang",
+          "label": "Ursprünglicher Auszug",
+          "path": "docs/extraction.md",
+          "commit": "a30164904c435c5677876202df1f38225e4288a7",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "{button,card,input,badge,label}.tsx"
+        }
+      ],
+      "type": "textbox-tabelle",
+      "title": "Der Baukasten deckt mehr ab als der erste Auszug",
+      "section": "stand",
+      "takeaway": "Der grössere Umfang schafft eine Grundlage für gemeinsame Anwendungen. Die Nutzungsqualität braucht eine gesonderte Abnahme.",
+      "metrics": [
+        {
+          "label": "UI-Module",
+          "value": 19,
+          "comparison": 5,
+          "unit": "Module",
+          "period": "Version 0.2",
+          "comparisonPeriod": "Ursprünglicher Auszug",
+          "sourceId": "framework",
+          "comparisonSourceId": "ausgang"
+        },
+        {
+          "label": "Deck-Export",
+          "value": "Editierbare PPTX",
+          "comparison": "Agenten-Vertrag",
+          "unit": "Lieferform",
+          "period": "Version 0.2",
+          "comparisonPeriod": "Ursprünglicher Auszug",
+          "sourceId": "abnahme",
+          "comparisonSourceId": "ausgang"
+        },
+        {
+          "label": "Inhaltsprüfung",
+          "value": "JS-Validator",
+          "comparison": "Dokumentierte Regeln",
+          "unit": "Umsetzung",
+          "period": "Version 0.2",
+          "comparisonPeriod": "Ursprünglicher Auszug",
+          "sourceId": "abnahme",
+          "comparisonSourceId": "ausgang"
+        }
+      ]
+    },
+    {
+      "lead": {
+        "period": "Quellstand 0.2 vom 11.09.2026",
+        "source": "marcelrapold/design"
+      },
+      "sources": [
+        {
+          "id": "framework",
+          "label": "Framework 0.2",
+          "path": "README.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Alle 19 Atlas-UI-Module und BrandProvider"
+        },
+        {
+          "id": "abnahme",
+          "label": "Abnahme und offene Punkte",
+          "path": "docs/atlas-coverage.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Browser-Abnahme auf Desktop und Mobilgeräten"
+        },
+        {
+          "id": "ausgang",
+          "label": "Ursprünglicher Auszug",
+          "path": "docs/extraction.md",
+          "commit": "a30164904c435c5677876202df1f38225e4288a7",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "{button,card,input,badge,label}.tsx"
+        }
+      ],
+      "type": "entscheid-register",
+      "title": "Der erste Einsatz braucht ein konkretes Abnahmeszenario",
+      "section": "stand",
+      "takeaway": "Welche Pilotpräsentation dient als erste gemeinsame Abnahme?",
+      "resolution": {
+        "kind": "open-question",
+        "text": "Welche Pilotpräsentation dient als erste gemeinsame Abnahme?"
+      },
+      "claims": [
+        {
+          "title": "Prüfbarer Einstieg",
+          "text": "Ein echtes Projektdeck kann Inhaltslogik, Bearbeitbarkeit und Brand-Anwendung gemeinsam sichtbar machen.",
+          "kind": "inference",
+          "sourceId": "abnahme"
+        }
+      ]
+    },
+    {
+      "lead": {
+        "period": "Quellstand 0.2 vom 11.09.2026",
+        "source": "marcelrapold/design"
+      },
+      "sources": [
+        {
+          "id": "framework",
+          "label": "Framework 0.2",
+          "path": "README.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Alle 19 Atlas-UI-Module und BrandProvider"
+        },
+        {
+          "id": "abnahme",
+          "label": "Abnahme und offene Punkte",
+          "path": "docs/atlas-coverage.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Browser-Abnahme auf Desktop und Mobilgeräten"
+        },
+        {
+          "id": "ausgang",
+          "label": "Ursprünglicher Auszug",
+          "path": "docs/extraction.md",
+          "commit": "a30164904c435c5677876202df1f38225e4288a7",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "{button,card,input,badge,label}.tsx"
+        }
+      ],
+      "type": "quellen-grid",
+      "title": "Die Lückenliste trennt Umsetzung und Abnahme",
+      "section": "freigabe",
+      "takeaway": "Die folgenden offenen Punkte stammen aus dem dokumentierten Stand. Ihre Erledigung muss anhand neuer Belege bestätigt werden."
+    },
+    {
+      "lead": {
+        "period": "Quellstand 0.2 vom 11.09.2026",
+        "source": "marcelrapold/design"
+      },
+      "sources": [
+        {
+          "id": "framework",
+          "label": "Framework 0.2",
+          "path": "README.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Alle 19 Atlas-UI-Module und BrandProvider"
+        },
+        {
+          "id": "abnahme",
+          "label": "Abnahme und offene Punkte",
+          "path": "docs/atlas-coverage.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Browser-Abnahme auf Desktop und Mobilgeräten"
+        },
+        {
+          "id": "ausgang",
+          "label": "Ursprünglicher Auszug",
+          "path": "docs/extraction.md",
+          "commit": "a30164904c435c5677876202df1f38225e4288a7",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "{button,card,input,badge,label}.tsx"
+        }
+      ],
+      "type": "zwei-grosskarten",
+      "title": "Goldbach ist als Entwurf vorhanden, Sygnum noch offen",
+      "section": "freigabe",
+      "takeaway": "Eine neue Brand braucht belastbare Vorgaben. Der Framework-Core kann diese Vorgaben aufnehmen, aber nicht selbst als CI freigeben.",
+      "claims": [
+        {
+          "title": "Goldbach",
+          "text": "Der Adapter nutzt die gelieferten Design- und Bildregeln sowie das originale Logo. Die Erweiterungen bleiben als Entwurf gekennzeichnet.",
+          "kind": "fact",
+          "sourceId": "framework"
+        },
+        {
+          "title": "Sygnum",
+          "text": "Im dokumentierten Quellstand fehlen gelieferte Brand-Vorgaben. Eine fertige Sygnum-Ausprägung ist deshalb noch nicht belegt.",
+          "kind": "fact",
+          "sourceId": "abnahme"
+        }
+      ]
+    },
+    {
+      "lead": {
+        "period": "Quellstand 0.2 vom 11.09.2026",
+        "source": "marcelrapold/design"
+      },
+      "sources": [
+        {
+          "id": "framework",
+          "label": "Framework 0.2",
+          "path": "README.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Alle 19 Atlas-UI-Module und BrandProvider"
+        },
+        {
+          "id": "abnahme",
+          "label": "Abnahme und offene Punkte",
+          "path": "docs/atlas-coverage.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Browser-Abnahme auf Desktop und Mobilgeräten"
+        },
+        {
+          "id": "ausgang",
+          "label": "Ursprünglicher Auszug",
+          "path": "docs/extraction.md",
+          "commit": "a30164904c435c5677876202df1f38225e4288a7",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "{button,card,input,badge,label}.tsx"
+        }
+      ],
+      "type": "drei-schritt-beweis",
+      "title": "Modulumfang und Abnahme sind getrennte Nachweise",
+      "section": "freigabe",
+      "takeaway": "Für eine Freigabe braucht es die gemeinsame Prüfung des konkreten Einsatzes.",
+      "claims": [
+        {
+          "title": "Vorhanden",
+          "text": "Der Quellstand dokumentiert die UI-Module, Folienrezepte und editierbaren Muster-Decks.",
+          "kind": "fact",
+          "sourceId": "framework"
+        },
+        {
+          "title": "Noch offen",
+          "text": "Die Lückenliste führt die Browser-Abnahme und die visuelle Gegenprüfung mit Atlas weiterhin als offen.",
+          "kind": "fact",
+          "sourceId": "abnahme"
+        },
+        {
+          "title": "Zu entscheiden",
+          "text": "Welche Nutzung, welche Brand und welches Projektdeck bilden den ersten verbindlichen Abnahmefall?",
+          "kind": "open-question"
+        }
+      ]
+    },
+    {
+      "lead": {
+        "period": "Quellstand 0.2 vom 11.09.2026",
+        "source": "marcelrapold/design"
+      },
+      "sources": [
+        {
+          "id": "framework",
+          "label": "Framework 0.2",
+          "path": "README.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Alle 19 Atlas-UI-Module und BrandProvider"
+        },
+        {
+          "id": "abnahme",
+          "label": "Abnahme und offene Punkte",
+          "path": "docs/atlas-coverage.md",
+          "commit": "9fcf9f95dc89cf6487fe454dba031b85a3111497",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "Browser-Abnahme auf Desktop und Mobilgeräten"
+        },
+        {
+          "id": "ausgang",
+          "label": "Ursprünglicher Auszug",
+          "path": "docs/extraction.md",
+          "commit": "a30164904c435c5677876202df1f38225e4288a7",
+          "retrievedAt": "2026-09-11",
+          "excerpt": "{button,card,input,badge,label}.tsx"
+        }
+      ],
+      "type": "management-summary",
+      "title": "Die nächste Freigabe richtet sich auf einen realen Einsatz",
+      "section": "freigabe",
+      "takeaway": "Welche Pilotpräsentation dient als erste gemeinsame Abnahme?",
+      "resolution": {
+        "kind": "open-question",
+        "text": "Welche Pilotpräsentation dient als erste gemeinsame Abnahme?"
+      },
+      "claims": [
+        {
+          "title": "Baukasten erweitert",
+          "text": "UI-Module, Tokens, Icons und Präsentationsmuster sind im Quellstand dokumentiert.",
+          "kind": "fact",
+          "sourceId": "framework"
+        },
+        {
+          "title": "Abnahme ausstehend",
+          "text": "Vollständige visuelle Atlas-Parität und Produktionsauslieferung sind durch diese Quellen nicht bestätigt.",
+          "kind": "fact",
+          "sourceId": "abnahme"
+        },
+        {
+          "title": "Pilot festlegen",
+          "text": "Ein benanntes Projektdeck macht die nächste Abnahme konkret. Zuständigkeit und Termin sind noch festzulegen.",
+          "kind": "inference",
+          "sourceId": "abnahme"
+        }
+      ]
+    }
+  ],
+  "designDeviations": [
+    "Acht Folien ohne fotografisches Cover: Für diesen Quellenstand wurde kein Bildmotiv bereitgestellt."
+  ]
+}

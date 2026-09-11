@@ -1,6 +1,6 @@
 {
   "name": "rapold-framework",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "White-label design system extracted from Atlas",
   "license": "UNLICENSED",
@@ -20,7 +20,9 @@
     "contracts": "node scripts/build-contracts.mjs",
     "predev": "npm run contracts",
     "prebuild": "npm run contracts",
-    "postbuild": "node scripts/check-build.mjs"
+    "postbuild": "node scripts/check-build.mjs",
+    "deck:export": "node scripts/export-project.mjs",
+    "deck:reference": "node scripts/render-reference.mjs"
   },
   "devDependencies": {
     "@types/node": "26.0.1",

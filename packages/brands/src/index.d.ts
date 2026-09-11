@@ -7,8 +7,9 @@ export interface Brand {
   readonly version: string;
   readonly status: 'baseline' | 'draft' | 'approved';
   readonly modes: { readonly light: Readonly<Record<ColorKey,string>>; readonly dark?: Readonly<Record<ColorKey,string>> };
-  readonly typography: { readonly family: string; readonly bodyWeight: number; readonly headingWeight: number };
+  readonly typography: { readonly family: string; readonly bodyWeight: number; readonly headingWeight: number; readonly bodyFamily?: string; readonly headingFamily?: string };
   readonly shape: { readonly radius: string; readonly shadow: string; readonly buttonMinHeight: string };
+  readonly assets?: {readonly logo: {readonly path:string; readonly aspectRatio:number; readonly background:string; readonly padding:number}};
   readonly tokens?: Readonly<Record<string,Record<string,string | number>>>;
   readonly sources: readonly string[];
 }

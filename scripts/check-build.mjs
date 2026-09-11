@@ -23,3 +23,12 @@ for(const brand of brands)for(const set of [{id:'muster-deck',count:18},...prese
  }
 }
 console.log('Production CSS, reference routes, standalone validator and 12 editable decks verified.');
+const {verifyReferenceCache}=await import('./reference-cache.mjs');
+const reference=await verifyReferenceCache();
+assert.equal(reference.files.filter(x=>x.path.endsWith('.png')).length,36);
+assert.equal(reference.files.filter(x=>x.path.endsWith('.pdf')).length,12);
+for(const item of reference.files)assert.ok((await readFile(new URL(item.path,out))).length,`Missing exported reference: ${item.path}`);
+assert.ok((await readFile(new URL('praesentation/project-input.schema.json',out))).length);
+const projectValidator=await import(new URL('praesentation/project-validation.mjs',out));
+assert.equal(projectValidator.validateProject(JSON.parse(await readFile(new URL('praesentation/framework-review.json',out),'utf8'))).valid,true);
+console.log('All 36 genuine PPTX previews, 12 PDFs and project-deck contracts verified.');

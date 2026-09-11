@@ -1,4 +1,4 @@
-# Handover 0.2.0
+# Handover 0.3.0
 
 ## Ziel und Referenz
 
@@ -26,6 +26,10 @@ Upload und Produktionsdeployment sind beauftragt. Der zuletzt geprüfte Vercel-Z
 
 ## Verbleibende Arbeit
 
-Die verbindliche Lückenliste steht in docs/atlas-coverage.md. Priorität: Produktionsprojekt zugänglich machen und neuen Build ausliefern; Website und Interaktionen gegen Atlas prüfen; reale Projektinhalte durch den Deck-Vertrag bis zur exportierten Präsentation führen. Der vorhandene Muster-Renderer ist noch kein allgemeiner Datenadapter für beliebige Projekte. Corporate-Master, PDF, ECharts, grafischer Organigramm-Editor und vertiefte Engineering-/Integrationsstandards fehlen.
+Die verbindliche Lückenliste steht in docs/atlas-coverage.md. Priorität: Produktionsprojekt zugänglich machen und neuen Build ausliefern; Website und Interaktionen gegen Atlas prüfen; reale Projektinhalte durch den Deck-Vertrag bis zur exportierten Präsentation führen. Der Datenadapter für alle 18 Rezepte ist implementiert. Ein achtseitiges Briefing wurde gegen historische Git-Objekte geprüft und als PPTX/PDF/Quellenmanifest exportiert. Corporate-Master-Import, ECharts, grafischer Organigramm-Editor und vertiefte Engineering-/Integrationsstandards fehlen.
 
 Goldbach bleibt ein CI-Entwurf aus den gelieferten Vorgaben. Sygnum erst nach gelieferten Quellen ergänzen. Original-LICENSE bleibt erhalten; öffentliche Quellablage und freie Neulizenzierung sind verschiedene Entscheidungen. Keine ZVV-Assets oder internen Dienste übernehmen.
+
+## Neuer Stand 0.3
+
+Präsentationsseite strukturell an Atlas angeglichen, inklusive 36 echten PNG-Vorschauen, 12 PDFs, Detailanleitungen und Preset-Filmstreifen. Versionierte Bilder besitzen einen Inhaltsfingerprint; veraltete Bilder lassen den Build fehlschlagen. Renderanleitung in docs/project-decks.md. Der Projektexport setzt keine Musterfakten ein und prüft Quellen, Textkapazitäten, Vergleichsperioden, Datenformat und Abschnittsreihenfolge. Neue Brands können Original-Logos und genaue Schriftschnittnamen konfigurieren.

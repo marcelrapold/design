@@ -1,0 +1,766 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://design.rapold.io/praesentation/project-input.schema.json",
+  "title": "Renderable project deck",
+  "type": "object",
+  "required": [
+    "decisionQuestion",
+    "sections",
+    "slides",
+    "schemaVersion",
+    "title",
+    "brand",
+    "repository",
+    "commit"
+  ],
+  "properties": {
+    "decisionQuestion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "brand": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "title"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "cover-foto",
+              "agenda",
+              "kapitel-trenner",
+              "foto-schluss",
+              "management-summary",
+              "karten-steckbrief",
+              "zwei-grosskarten",
+              "modul-karten-mit-chart",
+              "phasen-karten-gate",
+              "quellen-grid",
+              "kpi-board",
+              "kpi-timeline",
+              "textbox-tabelle",
+              "split-tabelle",
+              "drei-schritt-beweis",
+              "shape-balkendiagramm",
+              "vollbild-grafik",
+              "entscheid-register"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90
+          },
+          "section": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "introducesSources": {
+            "type": "boolean"
+          },
+          "placeholder": {
+            "type": "boolean"
+          },
+          "lead": {
+            "type": "object",
+            "required": [
+              "period",
+              "source"
+            ],
+            "properties": {
+              "period": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              }
+            }
+          },
+          "takeaway": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "retrievedAt",
+                "path",
+                "commit"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "commit": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string",
+                  "maxLength": 50
+                },
+                "repository": {
+                  "type": "string"
+                },
+                "excerpt": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "value",
+                "unit",
+                "period",
+                "comparison",
+                "sourceId",
+                "label",
+                "comparisonPeriod"
+              ],
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "string"
+                  ]
+                },
+                "unit": {
+                  "type": "string"
+                },
+                "period": {
+                  "type": "string"
+                },
+                "comparison": {
+                  "type": [
+                    "number",
+                    "string"
+                  ]
+                },
+                "sourceId": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "comparisonPeriod": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                },
+                "comparisonSourceId": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "kind",
+                "text",
+                "title"
+              ],
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "fact",
+                    "inference",
+                    "open-question"
+                  ]
+                },
+                "text": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                },
+                "sourceId": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 55
+                },
+                "value": {
+                  "type": "string",
+                  "maxLength": 22
+                }
+              }
+            }
+          },
+          "alarmCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "highlightCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "resolution": {
+            "type": "object",
+            "required": [
+              "kind",
+              "text"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "decision",
+                  "assignment",
+                  "open-question"
+                ]
+              },
+              "owner": {
+                "type": "string"
+              },
+              "dueDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 140
+              }
+            }
+          },
+          "content": {
+            "type": "object",
+            "properties": {
+              "subtitle": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "chart": {
+                "type": "boolean"
+              },
+              "image": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "alt",
+                  "credit"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "alt": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "credit": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "gates": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 3,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 130
+                }
+              },
+              "timeline": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 7,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "label",
+                    "date",
+                    "kind"
+                  ],
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 35
+                    },
+                    "date": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 25
+                    },
+                    "kind": {
+                      "enum": [
+                        "past",
+                        "current",
+                        "future"
+                      ]
+                    }
+                  }
+                }
+              },
+              "columns": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 12,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 12
+                }
+              },
+              "rows": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 4,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "label",
+                    "start",
+                    "span"
+                  ],
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "maxLength": 40
+                    },
+                    "start": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "span": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "management-summary"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "claims"
+              ],
+              "properties": {
+                "claims": {
+                  "minItems": 1,
+                  "maxItems": 5
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "karten-steckbrief"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "sources"
+              ],
+              "properties": {
+                "sources": {
+                  "minItems": 1,
+                  "maxItems": 3
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "zwei-grosskarten"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "claims"
+              ],
+              "properties": {
+                "claims": {
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "modul-karten-mit-chart"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "claims"
+              ],
+              "properties": {
+                "claims": {
+                  "minItems": 3,
+                  "maxItems": 3
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "phasen-karten-gate"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "claims"
+              ],
+              "properties": {
+                "claims": {
+                  "minItems": 4,
+                  "maxItems": 4
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "quellen-grid"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "sources"
+              ],
+              "properties": {
+                "sources": {
+                  "minItems": 1,
+                  "maxItems": 12
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "kpi-board"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "metrics"
+              ],
+              "properties": {
+                "metrics": {
+                  "minItems": 1,
+                  "maxItems": 5
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "kpi-timeline"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "metrics"
+              ],
+              "properties": {
+                "metrics": {
+                  "minItems": 1,
+                  "maxItems": 4
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "textbox-tabelle"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "metrics"
+              ],
+              "properties": {
+                "metrics": {
+                  "minItems": 1,
+                  "maxItems": 6
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "split-tabelle"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "metrics"
+              ],
+              "properties": {
+                "metrics": {
+                  "minItems": 1,
+                  "maxItems": 6
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "drei-schritt-beweis"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "claims"
+              ],
+              "properties": {
+                "claims": {
+                  "minItems": 3,
+                  "maxItems": 3
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "shape-balkendiagramm"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "metrics"
+              ],
+              "properties": {
+                "metrics": {
+                  "minItems": 1,
+                  "maxItems": 10
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "cover-foto"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "content"
+              ],
+              "properties": {
+                "content": {
+                  "required": [
+                    "image"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "foto-schluss"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "content"
+              ],
+              "properties": {
+                "content": {
+                  "required": [
+                    "image"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "phasen-karten-gate"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "content"
+              ],
+              "properties": {
+                "content": {
+                  "required": [
+                    "gates"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "kpi-timeline"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "content"
+              ],
+              "properties": {
+                "content": {
+                  "required": [
+                    "timeline"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "vollbild-grafik"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "content"
+              ],
+              "properties": {
+                "content": {
+                  "required": [
+                    "columns",
+                    "rows"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 90
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[\\w.-]+/[\\w.-]+$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{40}$"
+    },
+    "designDeviations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

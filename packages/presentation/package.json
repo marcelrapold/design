@@ -1,0 +1,9 @@
+{
+  "name": "@rapold/framework-presentation",
+  "version": "0.3.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "exports": {".": "./src/index.mjs", "./scene": "./src/project-scene.mjs", "./validation": "./src/validate-project.mjs"},
+  "dependencies": {"@rapold/framework-brands": "0.2.0", "pptxgenjs": "^4.0.1", "jszip": "^3.10.1"}
+}

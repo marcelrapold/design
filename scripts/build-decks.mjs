@@ -1,35 +1,15 @@
-import PptxGenJS from 'pptxgenjs';
-import {mkdir,readFile,writeFile} from 'node:fs/promises';
-import {localizeChartLabels} from './chart-labels.mjs';
+import {mkdir,writeFile} from 'node:fs/promises';
 import {brands} from '../packages/brands/src/index.mjs';
 import {presentationTheme} from '../packages/brands/src/presentation.mjs';
 import {slideScene} from '../packages/brands/src/slide-scene.mjs';
-// Framework renderer, not a hosted repository-analysis service.
+import {renderScenes} from '../packages/presentation/src/render.mjs';
 for(const brand of brands){
- const deck=presentationTheme(brand), directory=new URL(`../apps/docs/public/brands/${brand.id}/decks/`,import.meta.url);
+ const theme=presentationTheme(brand),directory=new URL(`../apps/docs/public/brands/${brand.id}/decks/`,import.meta.url);
  await mkdir(directory,{recursive:true});
- const sets=[{id:'muster-deck',types:deck.slides.map(s=>s.id)},...deck.presets.map(p=>({id:p.id,types:p.folgen.map(f=>f.typ)}))];
- for(const set of sets){
-  const pptx=new PptxGenJS();pptx.layout='LAYOUT_WIDE';pptx.author='Design Framework';pptx.subject='Illustrative framework reference';pptx.title=`${brand.name} · ${set.id}`;pptx.lang='de-CH';pptx.theme={headFontFace:deck.typography.family,bodyFontFace:deck.typography.family,lang:'de-CH'};
-  for(const [slideIndex,id] of set.types.entries()){
-   const slide=pptx.addSlide();
-   for(const n of slideScene(id,deck).nodes){
-    const pos={x:n.x/2.54,y:n.y/2.54,w:n.w/2.54,h:n.h/2.54};
-    if(n.kind==='chart'||n.kind==='linechart'){
-     slide.addChart(n.kind==='chart'?pptx.ChartType.bar:pptx.ChartType.line,n.series.map(s=>({name:s.name,labels:n.labels??s.values.map((_,i)=>String(i+1)),values:s.values})),{...pos,barDir:'col',catAxisLabelFontFace:deck.typography.family,catAxisLabelFontSize:9,valAxisLabelFontSize:9,showLegend:true,showValue:n.kind==='chart',showCatName:false,showTitle:false,showBorder:false,legendPos:'b',legendFontSize:9,chartColors:n.series.map(s=>s.color.slice(1)),showCatName:false,valAxisHidden:true,showShadow:false,catAxisLineColor:deck.colors.border.slice(1),valGridLine:{style:'none'},dataLabelFormatCode:'0.00'});
-    } else if(n.kind==='rect')slide.addShape(pptx.ShapeType[n.shape??'rect'],{...pos,line:{color:n.fill.slice(1),transparency:100},fill:{color:n.fill.slice(1)}});
-    else if(n.kind==='brand'&&brand.id==='goldbach'){
-     const svg=await readFile(new URL('../apps/docs/public/brands/goldbach/logo.svg',import.meta.url),'utf8');
-     slide.addShape(pptx.ShapeType.rect,{...pos,line:{transparency:100},fill:{color:'FFFFFF'}});
-     slide.addImage({data:'image/svg+xml;base64,'+Buffer.from(svg).toString('base64'),...pptxgenImageContain(pptx,svg,pos)});
-    } else slide.addText(n.text==='01'&&n.y>17?String(slideIndex+1).padStart(2,'0'):n.text??'',{...pos,fontFace:deck.typography.family,fontSize:n.pt??11,bold:n.bold??false,color:n.color?.slice(1)??'000000',margin:0,align:n.align??'left',breakLine:false,valign:'top',paraSpaceAfterPt:0});
-   }
-   slide.addNotes(`Illustrative Beispieldaten, keine Projektfakten. Brand: ${brand.id}. Typ: ${id}. Layout: Atlas 1c75c95417cc371040e1e24a0986213314b53c13. Quelle: packages/brands/src/slide-scene.mjs. Originalfotos vor Verwendung ergänzen.`);
-  }
-  await writeFile(new URL(`${set.id}.pptx`,directory),await localizeChartLabels(await pptx.write({outputType:'nodebuffer'})));
+ for(const set of [{id:'muster-deck',types:theme.slides.map(s=>s.id)},...theme.presets.map(p=>({id:p.id,types:p.folgen.map(f=>f.typ)}))]){
+  const scenes=set.types.map((id,i)=>{const scene=slideScene(id,theme);scene.nodes.forEach(n=>{if(n.kind==='text'&&n.text==='01'&&n.y>17)n.text=String(i+1).padStart(2,'0');});return scene;});
+  const notes=set.types.map(id=>`Illustrative Beispieldaten, keine Projektfakten. Brand: ${brand.id}. Typ: ${id}. Layout: Atlas 1c75c95417cc371040e1e24a0986213314b53c13. Originalfotos vor Verwendung ergänzen.`);
+  await writeFile(new URL(`${set.id}.pptx`,directory),await renderScenes(brand,scenes,{title:`${brand.name} · ${set.id}`,notes,assetRoot:new URL('../apps/docs/public/',import.meta.url).pathname}));
  }
-}
-function pptxgenImageContain(pptx,svg,pos){
- const match=svg.match(/viewBox="[^"]*?([\d.]+)\s+([\d.]+)"/);let ratio=5.76;if(match)ratio=Number(match[1])/Number(match[2]);const w=Math.min(pos.w*.9,pos.h*.8*ratio),h=w/ratio;return {x:pos.x+(pos.w-w)/2,y:pos.y+(pos.h-h)/2,w,h};
 }
 console.log('Generated editable decks for every brand and preset.');

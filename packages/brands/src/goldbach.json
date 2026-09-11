@@ -36,7 +36,9 @@
   "typography": {
     "family": "Inter, Arial, sans-serif",
     "bodyWeight": 300,
-    "headingWeight": 700
+    "headingWeight": 700,
+    "bodyFamily": "Inter Light",
+    "headingFamily": "Inter"
   },
   "shape": {
     "radius": "4px",
@@ -46,5 +48,13 @@
   "sources": [
     "brands/goldbach/sources/DESIGN.md",
     "brands/goldbach/sources/IMAGERY.md"
-  ]
+  ],
+  "assets": {
+    "logo": {
+      "path": "brands/goldbach/logo.svg",
+      "aspectRatio": 5.928721174004193,
+      "background": "#ffffff",
+      "padding": 0.13
+    }
+  }
 }

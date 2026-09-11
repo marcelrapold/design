@@ -1,6 +1,6 @@
 # Repository zu Management-Präsentation
 
-Status: Agenten-Vertrag v1. Kein gehosteter Generator. Ein ausführender Agent braucht Repository-Zugriff und einen PPTX-/PDF-Renderer.
+Status: Agenten-Vertrag v2. Ein ausführender Agent braucht Repository-Zugriff. Der enthaltene Projektdeck-Renderer erzeugt editierbare PPTX und optional PDF; siehe project-decks.md.
 
 ## Auftrag
 
@@ -45,3 +45,7 @@ Inter 300/700. Logo ausschliesslich als bereitgestelltes SVG mit Schutzraum eine
 
 ## Verbindliche Dramaturgie
 Vor dem Aufbau zusätzlich https://design.rapold.io/contracts/presentation-logic.md lesen. Die 18 Rezepte, fünf Presets und 13 Typorollen aus dem aktuellen Brand-Präsentationsvertrag verwenden. Inhaltsmodell vor dem Rendering mit scripts/validate-deck.mjs prüfen. Alle Folien danach visuell abnehmen.
+
+## Ausführbarer Export
+
+Inhaltsmodell nach `/praesentation/project-input.schema.json` erstellen. Mit `npm run deck:export -- deck.json --out ./ergebnis --repo-dir ./projekt --pdf` exportieren. Ohne `--pdf` ist kein Office-Renderer nötig. Kapazitäten, Quellenidentität, Vergleichsperioden und Abschnittsreihenfolge werden vor dem Rendering geprüft. `/contracts/project-decks.md` beschreibt alle 18 Inhaltsrezepte.

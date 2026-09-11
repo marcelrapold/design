@@ -2,7 +2,7 @@
 
 White-Label-Framework auf Basis von Atlas. Ein neutraler Designstandard mit austauschbaren Brand-Vorgaben für Interfaces und Management-Präsentationen.
 
-**Stand:** 0.2.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Die Referenz ist auf https://design.rapold.io erreichbar.
+**Stand:** 0.3.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Die Referenz ist auf https://design.rapold.io erreichbar.
 
 ## Verbindliche Referenz
 
@@ -31,6 +31,7 @@ npm run dev
 |---|---|
 | `packages/core/src` | Alle 19 Atlas-UI-Module und BrandProvider |
 | `packages/brands/src` | Validierter Brand-Vertrag, neutrale Basis, Goldbach-Adapter, Präsentationsadapter |
+| `packages/presentation/src` | Datenadapter, Inhaltsprüfung und editierbarer PPTX-Export |
 | `apps/docs` | Next.js-Referenz mit 35 Seiten, statisch exportierbar |
 | `brands/goldbach` | Gelieferte Vorgaben und dokumentierte Verfeinerungen |
 | `docs/atlas-reference.md` | Verbindliche Atlas-Referenz für System und Website |
@@ -66,9 +67,9 @@ Die Domain-Auswahl steht in der Metadaten-Konfiguration und im Agenten-Einstieg.
 - Vollständiger neutraler Lucide-Katalog mit SVG- und React-Verwendung.
 - Grundlagen, semantische Rollen, CSS-, JSON- und DTCG-Exporte.
 - 18 Folienrezepte, fünf Presets, vermessene Raster und 13 Typorollen.
-- Editierbare Muster-Decks pro Brand. Die Vorschauen stammen aus demselben Geometriemodell, sind aber noch keine gerenderten PPTX-Screenshots wie bei Atlas.
+- Editierbare Muster-Decks pro Brand. Die Vorschauen werden aus den exportierten PowerPoints über PDF nach PNG gerendert. Ein Build-Gate prüft ihre Aktualität.
 - Inhaltslogik: docs/presentation-logic.md und scripts/validate-deck.mjs.
 
 Bekannte Lücken und Abnahmestatus: docs/atlas-coverage.md.
 
-Der Muster-Renderer erzeugt zwölf editierbare PPTX-Dateien (zwei Brands × sechs Decks). Er verarbeitet derzeit illustrative Rezeptdaten, keine beliebigen Projektinhalte. Für reale Projektdecks liefert `/praesentation/deck-input.schema.json` das Eingabeschema und `/praesentation/deck-validation.mjs` einen eigenständig importierbaren Inhaltsvalidator.
+Der Muster-Renderer erzeugt zwölf editierbare PPTX-Dateien (zwei Brands × sechs Decks). Zusätzlich verarbeitet `@rapold/framework-presentation` echte Projektinhalte mit allen 18 Rezepten. `npm run deck:export -- deck.json --out ./ergebnis --repo-dir ./projekt --pdf` erzeugt PPTX, PDF und Quellenmanifest. Vollständiger Ablauf und Eingabeschema: [Projektdecks](docs/project-decks.md).
