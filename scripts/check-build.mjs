@@ -38,3 +38,20 @@ const echarts=await readFile(new URL('vendor/echarts-6.0.0.min.js',out));
 assert.equal(createHash('sha1').update(Buffer.concat([Buffer.from(`blob ${echarts.length}\0`),echarts])).digest('hex'),'22b33ffe0548465757267dc03ca8656d7cfef643','ECharts must match the Apache upstream bundle');
 for(const file of ['vendor/echarts-LICENSE.txt','vendor/echarts-NOTICE.txt','contracts/engineering.md'])assert.ok((await readFile(new URL(file,out))).length);
 console.log('Pinned ECharts bundle, attribution and engineering contract verified.');
+
+// Inspect the published output: inactive corporate content must not become part
+// of the Default preset through a shared FAQ, introduction or agent contract.
+for (const file of (await readdir(out)).filter(name=>name.endsWith('.html'))) {
+ const html=await readFile(new URL(file,out),'utf8');
+ const main=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1]??'';
+ assert.doesNotMatch(main.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,''),/goldbach/i,`Corporate content in Default page: ${file}`);
+}
+for(const brand of brands){
+ const guide=await readFile(new URL(`brands/${brand.id}/llms.txt`,out),'utf8');
+ assert.ok(guide.includes(`/brands/${brand.id}/brand.json`));
+ for(const other of brands.filter(b=>b.id!==brand.id))assert.ok(!guide.includes(`/brands/${other.id}/`),`Foreign brand contract in ${brand.id} guide`);
+ if(brand.assets?.logo)assert.ok(guide.includes(brand.assets.logo.path));
+}
+for(const file of ['llms.txt','brands/neutral/llms.txt','contracts/repo-to-management.md','contracts/brand-contract.md'])
+ assert.doesNotMatch(await readFile(new URL(file,out),'utf8'),/goldbach/i,`Corporate default in shared contract: ${file}`);
+console.log('Default pages and theme-specific agent contracts are isolated.');

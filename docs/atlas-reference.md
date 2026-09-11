@@ -12,7 +12,7 @@ Vom Benutzer ausdrücklich festgelegt: **https://atlas.zvv.dev ist die ultimativ
 
 ## Was über die Brand ausgetauscht wird
 
-Farben, Schriften, Logos, Icons, Bildwelt, Tonalität und ausdrücklich definierte Formregeln stammen aus dem gewählten Brand-Paket. Goldbach-Vorgaben gelten für Goldbach, spätere Sygnum-Vorgaben für Sygnum. Atlas bleibt die Referenz für das gemeinsame System und die Seite. ZVV-Assets oder interne Dienste gehören nicht in den neutralen Core.
+Farben, Schriften, Logos, Icons, Bildwelt, Tonalität und ausdrücklich definierte Formregeln stammen aus dem gewählten Brand-Paket. Firmenvorgaben gelten ausschliesslich im zugehörigen Theme. Das Default-Preset enthält nur neutrale Informationen. Atlas bleibt die Referenz für das gemeinsame System und die Seite. ZVV-Assets oder interne Dienste gehören nicht in den neutralen Core.
 
 ## Vorgehen bei Änderungen
 

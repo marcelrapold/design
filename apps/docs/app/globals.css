@@ -35,3 +35,5 @@
 
 /* Keep diagram triggers below the sticky section navigation. */
 .mermaid-surface .cursor-zoom-in{z-index:1}
+
+.active-brand-card{display:flex;align-items:center;gap:28px;padding:24px;border:1px solid var(--border);border-radius:var(--brand-radius);background:var(--card)}.active-brand-mark{display:flex;align-items:center;justify-content:center;padding:30px;background:var(--card);color:var(--primary)}.active-brand-mark:has(img){background:#fff}.active-brand-mark img{width:168px;height:auto}.active-brand-card h2{font-size:24px;margin:6px 0 10px}.active-brand-card p{font-size:14px;color:var(--muted-foreground);margin:0}.active-brand-card .eyebrow{font-size:12px}@media(max-width:767px){.active-brand-card{align-items:flex-start;flex-direction:column;gap:18px}.active-brand-mark{align-self:center}.active-brand-card h2{font-size:22px}}

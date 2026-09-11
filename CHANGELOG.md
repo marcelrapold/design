@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.2 — 2026-09-11
+
+- Default-Preset und Goldbach-Theme in Markenansicht, Präsentations-FAQs, Bildwelt, Abdeckung und Agentenhinweisen getrennt. Firmenlogos und Goldbach-Vorgaben erscheinen nur im aktiven Goldbach-Theme.
+- Eigene Agenten-Einstiege pro Theme; kopierte Aufträge und Downloads folgen der aktiven Brand. Gemeinsame Verträge enthalten keine vorausgewählte Firmen-CI.
+- Theme-Auswahl kennzeichnet die neutrale Basis ausdrücklich als Default.
+
 ## 0.4.1 — 2026-09-11
 
 - Tabellen nach Atlas verfeinert: kompakte Zeilen und Kopfzeile, Badges, Monospace-Kennungen, rechtsbündige Zahlen, sichtbare Sortierung, Suchfeld mit Zurücksetzen, 12 Zeilen als Standard und zugänglicher Leerzustand.

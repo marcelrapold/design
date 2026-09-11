@@ -2,7 +2,7 @@
 
 White-Label-Framework auf Basis von Atlas. Ein neutraler Designstandard mit austauschbaren Brand-Vorgaben für Interfaces und Management-Präsentationen.
 
-**Stand:** 0.4.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Produktionsadresse: https://design.rapold.io. Die native Vercel-Git-Verbindung übernimmt Builds bei Pushes auf main. Der Live-Stand wird anhand von build-info.json geprüft. Details: [Deployment](docs/deployment.md).
+**Stand:** 0.4.2, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Produktionsadresse: https://design.rapold.io. Die native Vercel-Git-Verbindung übernimmt Builds bei Pushes auf main. Der Live-Stand wird anhand von build-info.json geprüft. Details: [Deployment](docs/deployment.md).
 
 ## Verbindliche Referenz
 
@@ -10,7 +10,7 @@ White-Label-Framework auf Basis von Atlas. Ein neutraler Designstandard mit aust
 
 ## Zielauftrag
 
-> Analysiere das Repository owner/repo. Erstelle aus dem Projekt eine Management-Präsentation mit design.rapold.io im Goldbach-CI.
+> Analysiere das Repository owner/repo. Erstelle aus dem Projekt eine Management-Präsentation mit design.rapold.io im gewählten Theme.
 
 Der Standard liefert Brand-Daten, Präsentationsrollen und einen vollständigen Agenten-Vertrag. Der ausführende Agent braucht Repo-Zugang und einen Renderer. Ein gehosteter Generator ist nicht Teil dieses ersten Schnitts.
 

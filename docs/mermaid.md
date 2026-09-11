@@ -22,9 +22,8 @@ Torten sind vollständig deckend und haben abgegrenzte Segmente.
 120-Prozent-Aufhellung der Ereignisflächen. Die Korrektur wird ins SVG exportiert;
 so bleiben Brand-Farben und Textkontraste auch im Download erhalten.
 
-Bewusste Abweichung von Atlas: ZVV-Farben werden nicht übernommen. Goldbach nutzt
-Passion Red und die gelieferten Graustufen; andere Brands verwenden ihre neutralen
-und semantischen Farben. Flowchart-Klassen `source`, `delivery` und `consumer`
+Bewusste Abweichung von Atlas: Die Kategorien verwenden ausschliesslich die
+Identitätsfarben der aktiven Brand. Andere Firmenpaletten werden nicht übernommen. Flowchart-Klassen `source`, `delivery` und `consumer`
 benennen Rollen statt Unternehmensfarben. Explizite `classDef`-Farben im eigenen
 Quelltext haben Vorrang vor dem Theme; ein kopiertes Beispiel enthält die Farben
 der zum Kopierzeitpunkt aktiven Brand.

@@ -4,7 +4,7 @@ Ein White-Label-Designstandard für Web-Interfaces und Management-Präsentatione
 Hauptadresse: https://design.rapold.io
 Optionaler Alias: https://framework.rapold.io
 Repository: https://github.com/marcelrapold/design
-Status: Framework 0.3.0 im Repository. Den tatsächlich ausgelieferten Stand über /build-info.json prüfen. Fehlt die Datei, ist der neue Build nicht bestätigt.
+Den tatsächlich ausgelieferten Stand über /build-info.json prüfen.
 Verbindliche Referenz für Designsystem und Website: https://atlas.zvv.dev.
 Die aktive Brand ersetzt die Markenidentität, Atlas bestimmt die gemeinsame Struktur.
 
@@ -14,17 +14,15 @@ Die aktive Brand ersetzt die Markenidentität, Atlas bestimmt die gemeinsame Str
 - /contracts/repo-to-management.md: vollständiger Auftrag vom Repository zur Management-Präsentation
 - /contracts/brand-contract.md: Tokenmodell, Erweiterung und Abnahme
 - /brands/index.json: verfügbare Brands mit Version, Status und Asset-Pfaden
-- /brands/neutral/brand.json: neutrale Designbasis
-- /brands/neutral/presentation.json: neutrale Präsentationsrollen
-- /brands/goldbach/brand.json: Goldbach-Adapter aus gelieferten Quellen, Status draft
-- /brands/goldbach/presentation.json: Goldbach-Präsentationsrollen
-- /brands/goldbach/rules.md: dokumentierte Verfeinerungen und fehlende Assets
-- /brands/goldbach/DESIGN.md: vollständige gelieferte Designvorgaben
-- /brands/goldbach/IMAGERY.md: vollständige gelieferte Bildvorgaben
-- /brands/goldbach/logo.svg: bereitgestelltes Wortmarken-SVG
+- /brands/{brand}/llms.txt: Einstieg ausschliesslich für das aktive Theme
+- /brands/{brand}/brand.json: Identität des aktiven Themes
+- /brands/{brand}/presentation.json: Präsentationsrollen des aktiven Themes
 
 Repository-Entsprechungen: docs/repo-to-management.md, docs/brand-contract.md,
-packages/brands/src/*.json und brands/goldbach/sources/*.md.
+packages/brands/src/*.json und die Quellen des aktiven Brand-Pakets.
+
+Ohne ausdrückliche Theme-Wahl gilt das Default-Preset (brand: neutral).
+Nur Quellen und Assets der aktiven Brand verwenden; keine Firmenvorgaben aus anderen Themes übernehmen.
 
 Der Standard liefert Regeln und Daten. Repository-Analyse, PPTX-Erzeugung und PDF-Export
 führt der konsumierende Agent mit seinen verfügbaren Werkzeugen aus.
@@ -57,5 +55,3 @@ Echte Referenzbilder und PDFs: /presentation-reference.json
 
 Mermaid-Regeln: /contracts/mermaid.md
 Mermaid-Theme: /brands/{brand}/mermaid.{mode}.json
-Goldbach-Originale: /brand?brand=goldbach
-Logo-SVGs: /brands/goldbach/logo.svg, /brands/goldbach/logo-white.svg, /brands/goldbach/logo-black.svg

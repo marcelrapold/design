@@ -46,3 +46,12 @@ Tabellen folgen `example/app/(showcase)/tables/page.tsx` desselben Atlas-Commits
 Such-Icon und 12 Zeilen pro Seite. Neutrale Bausteindaten ersetzen die Fahrzeugdaten.
 Zusätzlich: eindeutige Sortierzustände, rechtsbündige Zahlen, Seitenlängenauswahl,
 Filter-Reset und horizontaler Scrollbereich auf Mobilgeräten.
+
+## Theme-Trennung · 0.4.2
+
+Gemäss Benutzerauftrag enthält das Default-Preset keine Goldbach-Informationen.
+Corporate-Quellen, Logos, FAQs und Bildwelt-Hinweise erscheinen ausschliesslich im
+aktiven Goldbach-Theme. Der Theme-Wähler enthält nur die Namen zur Auswahl.
+Jedes Theme hat einen eigenen Agenten-Einstieg unter `/brands/{id}/llms.txt`.
+Gemeinsame Verträge setzen keine Firmen-CI voraus. Der Produktionscheck prüft
+die Default-Seiten und verhindert Verweise auf fremde Brand-Verträge im Agenten-Einstieg.

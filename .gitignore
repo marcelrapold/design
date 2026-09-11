@@ -23,3 +23,5 @@ apps/docs/public/build-info.json
 deck-output/
 
 apps/docs/public/brands/*/mermaid.*.json
+
+apps/docs/public/brands/*/llms.txt

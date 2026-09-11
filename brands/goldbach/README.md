@@ -34,3 +34,7 @@ beschriebenen Varianten Weiss und Schwarz. Bei den Varianten wird ausschliesslic
 die Pfadfüllung geändert. Die Navigation und die Präsentationsdownloads verwenden
 das rote Original mit Schutzraum; eine eingeklappte Rail zeigt das Framework-Symbol,
 da die Logo-Mindestbreite dort nicht eingehalten werden kann.
+
+## Goldbach-Zusatz
+
+Inter 300/700. Logo ausschliesslich als bereitgestelltes SVG mit Schutzraum einer H-Höhe; keine getippte Ersatzwortmarke. Keine roten dekorativen Rahmen, Pill-Buttons, Schatten oder frei gewählten Icon-Sets. Die Icons-Datei fehlt im gelieferten Paket, deshalb derzeit Icons weglassen. Bildregeln stehen in `brands/goldbach/sources/IMAGERY.md`. Bildflächen nur anlegen, wenn tatsächlich geeignetes Bildmaterial verfügbar ist. Ein dunkler Modus ist nicht aus der Quelle belegt.

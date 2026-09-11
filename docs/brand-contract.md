@@ -25,9 +25,9 @@ Konflikte werden festgehalten. Ein Adapter setzt `status: draft`, solange Abweic
 
 ```tsx
 import { BrandProvider, Button } from '@rapold/framework-core';
-import { goldbach, toCssVariables } from '@rapold/framework-brands';
+import { neutral, toCssVariables } from '@rapold/framework-brands';
 
-<BrandProvider brand={{id: goldbach.id, mode: 'light', variables: toCssVariables(goldbach)}}>
+<BrandProvider brand={{id: neutral.id, mode: 'light', variables: toCssVariables(neutral)}}>
   <Button>Projekt öffnen</Button>
 </BrandProvider>
 ```
@@ -42,4 +42,4 @@ SemVer: neue optionale Tokens und Adapter als Minor, Umbenennung/Entfernung sema
 
 ## Original-Assets und PowerPoint-Schriftfamilien
 
-Optionales `assets.logo` enthält `path`, `aspectRatio`, `background` und `padding`. Der Pfad ist relativ zum öffentlichen Asset-Verzeichnis, `padding` ein Anteil des vorgesehenen Logo-Feldes. Goldbach verwendet das Seitenverhältnis 282.8 / 47.7 und mindestens eine H-Höhe Schutzraum. Optionale `typography.bodyFamily` und `headingFamily` benennen die konkreten PowerPoint-Schriftschnitte. Die CSS-Schriftfamilie bleibt in `family`.
+Optionales `assets.logo` enthält `path`, `aspectRatio`, `background` und `padding`. Der Pfad ist relativ zum öffentlichen Asset-Verzeichnis, `padding` ein Anteil des vorgesehenen Logo-Feldes. Seitenverhältnis und Schutzraum müssen aus dem Original-Asset und dessen Brand-Vorgaben stammen. Optionale `typography.bodyFamily` und `headingFamily` benennen die konkreten PowerPoint-Schriftschnitte. Die CSS-Schriftfamilie bleibt in `family`.

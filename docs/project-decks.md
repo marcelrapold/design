@@ -47,7 +47,7 @@ Numerische Diagramme brauchen konsistente Einheiten und Vergleichsperioden. Inha
 
 ## Assets und neue Brands
 
-`assets.logo` im Brand-Vertrag liefert Pfad, Seitenverhältnis, Hintergrund und Schutzraumanteil. Die Datei liegt im öffentlichen Asset-Verzeichnis. `typography.bodyFamily` und `headingFamily` können für PowerPoint die exakten Schriftschnittnamen nennen. Goldbach nutzt Inter Light und Inter Bold sowie das Seitenverhältnis des Original-SVG.
+`assets.logo` im Brand-Vertrag liefert Pfad, Seitenverhältnis, Hintergrund und Schutzraumanteil. Die Datei liegt im öffentlichen Asset-Verzeichnis. `typography.bodyFamily` und `headingFamily` können für PowerPoint die exakten Schriftschnittnamen nennen. Die exakten Schriftschnitte und Original-Assets werden ausschliesslich aus der aktiven Brand gelesen.
 
 Projektbilder werden relativ zur Inhaltsdatei aufgelöst. Pfade und symbolische Verknüpfungen dürfen dieses Verzeichnis nicht verlassen. Es gibt keine automatischen Netzwerkabrufe. Ein fotografisches Rezept ohne Bild schlägt fehl. Originale Corporate-Master haben weiterhin Vorrang; der Adapter importiert sie noch nicht.
 
