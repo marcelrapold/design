@@ -6,7 +6,12 @@
   "outputDirectory": "apps/docs/out",
   "cleanUrls": true,
   "git": {
-    "deploymentEnabled": false
+    "deploymentEnabled": {
+      "main": true,
+      "**": false
+    }
   },
-  "alias": ["design.rapold.io"]
+  "alias": [
+    "design.rapold.io"
+  ]
 }

@@ -24,7 +24,7 @@ Repräsentative Goldbach-PPTX-Folien wurden mit einem unabhängigen PPTX-Import 
 
 Upload und Produktionsdeployment sind beauftragt. Release 0.4 wurde als Commit `08fe9674e44289b26011e5ad4dd491d7c2483734` auf main veröffentlicht. GitHub Actions Run `34607164270` war erfolgreich. Der Vercel-Connector listete im verbundenen Team kein Projekt; die CLI war nicht angemeldet. Der tatsächliche Preview-Deployment-Aufruf für `design` wurde am 11.09.2026 mit HTTP 403 abgewiesen: "You don't have permission to create a Preview Deployment for this Vercel project: design." Es wurde kein Deployment angelegt. Die Produktionsdomain zeigte weiter Version 0.1.
 
-Offen ist eine Vercel-Verbindung mit Deployment-Rechten auf dem bestehenden Produktionsprojekt. Vorgehen und Sollkonfiguration stehen in `docs/deployment.md`. Keine weiteren Login-Schleifen. Ein Push bestätigt nur den Repository-Stand. Produktionsnachweis ist ein erfolgreicher Abruf von `/build-info.json` mit dem tatsächlich ausgerollten Commit.
+Der native Git-Rollout ist nach Bestätigung der bestehenden Git-Verbindung wieder aktiviert. Der direkte Vercel-Connector bleibt separat eingeschränkt. Vorgehen und Sollkonfiguration stehen in `docs/deployment.md`. Keine weiteren Login-Schleifen. Ein Push bestätigt nur den Repository-Stand. Produktionsnachweis ist ein erfolgreicher Abruf von `/build-info.json` mit dem tatsächlich ausgerollten Commit.
 
 ## Verbleibende Arbeit
 
@@ -49,6 +49,6 @@ Die neue Referenz wurde im Browser geöffnet. Desktop-Navigation, Rail, gefilter
 
 Release-Prüfung: npm run check. Produktion erst mit passendem build-info.json als ausgeliefert bezeichnen. Vercel-Connector listete in dieser Sitzung keine Projekte, CLI war abgemeldet. Keine erfolgreiche Produktionsauslieferung allein aus dem GitHub-Commit ableiten.
 
-## CI/CD-Fortsetzung
+## CI/CD-Fortsetzung: native Git-Integration
 
-Auf ausdrücklichen Auftrag löst jeder Push auf main nach erfolgreichem Check den Vercel-Produktionsjob aus. Workflow: `.github/workflows/check.yml`. Benötigt die GitHub-Actions-Secrets VERCEL_TOKEN, VERCEL_ORG_ID und VERCEL_PROJECT_ID. Der verbundene Vercel-Zugang sieht weiterhin kein Projekt; lokale Zugangsdaten fehlen und Actions-Secrets sind mit dem GitHub-Werkzeug nicht verwaltbar. Native Vercel-Git-Deployments sind in vercel.json deaktiviert, damit Actions den Rollout steuert. Der Workflow meldet fehlende Secrets ausdrücklich. Er prüft nach dem Deployment den exakten Commit und die Kernrouten auf der Produktionsdomain. Details: docs/deployment.md.
+Der Benutzer bestätigt, dass GitHub bereits direkt mit dem Vercel-Projekt verbunden ist. Die separate GitHub-Actions-Deployment-Pipeline aus cf57f7c war deshalb unnötig und ist entfernt. Die zuvor gesetzte Sperre git.deploymentEnabled=false ist aufgehoben; main löst native Vercel-Deployments aus. Vercel verwendet npm run check als Build-Befehl und veröffentlicht nur nach erfolgreicher Prüfung. GitHub Actions führt zusätzlich den Check aus und benötigt keine Vercel-Secrets. Der direkte Vercel-Connector-Zugang ist von dieser Git-Verbindung unabhängig. Die historischen 403/404-Antworten belegen keine fehlende native Git-Verknüpfung. Den tatsächlichen Rollout über GitHub-Commitstatus und build-info.json prüfen. Details: docs/deployment.md.

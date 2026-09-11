@@ -2,7 +2,7 @@
 
 White-Label-Framework auf Basis von Atlas. Ein neutraler Designstandard mit austauschbaren Brand-Vorgaben für Interfaces und Management-Präsentationen.
 
-**Stand:** 0.4.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Produktionsadresse: https://design.rapold.io. Die Domain zeigt beim letzten geprüften Stand noch 0.1; der Rollout von 0.4 ist wegen fehlender Vercel-Projektrechte blockiert. Details und Wiederaufnahme: [Deployment](docs/deployment.md).
+**Stand:** 0.4.0, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Produktionsadresse: https://design.rapold.io. Die native Vercel-Git-Verbindung übernimmt Builds bei Pushes auf main. Der Live-Stand wird anhand von build-info.json geprüft. Details: [Deployment](docs/deployment.md).
 
 ## Verbindliche Referenz
 
