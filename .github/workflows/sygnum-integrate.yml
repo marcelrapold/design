@@ -6,11 +6,13 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
-  actions: read
+defaults:
+  run:
+    shell: bash
 jobs:
   integrate:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -18,36 +20,27 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - uses: actions/download-artifact@v4
-        with:
-          name: sygnum-source-evidence
-          run-id: 34628656697
-          github-token: ${{ github.token }}
-          path: /tmp/sygnum-evidence
-      - name: Install checked source changes
+      - name: Correct and save source import
         run: |
           mkdir -p /tmp/sygnum-qa
           python <<'PY'
           from pathlib import Path
-          import base64,gzip,hashlib,subprocess
-          if not Path('packages/brands/src/sygnum.json').exists():
-              encoded=''.join(Path(f'.github/sygnum-install.{n}.b64').read_text().strip() for n in (1,2,3))
-              source=gzip.decompress(base64.b64decode(encoded))
-              assert hashlib.sha256(source).hexdigest()=='67550c74a51821c38c7b3d49da9a6d9e71519815634500318ff2798c764bdea2'
-              Path('/tmp/install-sygnum.py').write_bytes(source)
-              subprocess.run(['python','/tmp/install-sygnum.py'],check=True)
+          p=Path('apps/docs/app/_components/sygnum-showcase.tsx')
+          p.write_text(p.read_text().replace('../../../../../brands/sygnum/sources/sources.json','../../../../brands/sygnum/sources/sources.json'))
+          assert (p.parent/'../../../../brands/sygnum/sources/sources.json').resolve().is_file()
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add packages apps brands docs tests scripts README.md CHANGELOG.md
-          git diff --cached --quiet || git commit -m 'feat(sygnum): add evidence-based isolated brand adapter and design documentation'
+          git add apps/docs/app/_components/sygnum-showcase.tsx
+          git diff --cached --quiet || git commit -m 'fix(sygnum): resolve research manifest relative to workspace root'
           git push origin HEAD:feat/sygnum-brand
       - name: Install build and document tools
         run: |
           npm ci
+          npm audit --json > /tmp/sygnum-qa/dependency-audit.json || true
           sudo apt-get update -qq
           sudo apt-get install -y -qq libreoffice-impress poppler-utils
-      - name: Generate contracts and all brand reference renders
+      - name: Generate contracts and reference renders
         run: |
           npm run contracts
           npm run deck:reference 2>&1 | tee /tmp/sygnum-qa/render.log
@@ -58,10 +51,13 @@ jobs:
           npm install -g agent-browser
           agent-browser install --with-deps
           agent-browser --version > /tmp/sygnum-qa/browser-version.txt
-      - name: Verify rendered pages, responsive behaviour and brand isolation
+      - name: Verify pages, responsive layout and brand isolation
+        timeout-minutes: 4
         run: |
+          test -f apps/docs/out/brand.html
           nohup npx --yes serve@14 apps/docs/out -l 4173 >/tmp/sygnum-qa/server.log 2>&1 &
-          for n in $(seq 1 40); do curl -fsS http://127.0.0.1:4173/brand >/dev/null && break || sleep 1; done
+          for n in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/brand >/dev/null && break || sleep 1; done
+          curl -fsS http://127.0.0.1:4173/brand >/dev/null
           cat >/tmp/sygnum-qa/init.js <<'JS'
           window.__qaErrors=[];window.addEventListener('error',e=>window.__qaErrors.push(e.message));window.addEventListener('unhandledrejection',e=>window.__qaErrors.push(String(e.reason)));
           const original=console.error;console.error=(...args)=>{window.__qaErrors.push(args.map(String).join(' '));original.apply(console,args)};
@@ -72,11 +68,13 @@ jobs:
           agent-browser wait --load networkidle
           agent-browser snapshot -i > /tmp/sygnum-qa/desktop-snapshot.txt
           agent-browser screenshot /tmp/sygnum-qa/sygnum-desktop.png --full
-          agent-browser eval '(()=>{if(document.querySelector("[data-brand=sygnum]")===null)throw Error("wrong brand");if(document.documentElement.scrollWidth>innerWidth+1)throw Error("horizontal overflow");if(window.__qaErrors.length)throw Error(window.__qaErrors.join(";"));if([...document.images].some(i=>!i.complete||i.naturalWidth===0))throw Error("broken image");return "desktop PASS"})()'
+          agent-browser eval '(()=>{if(!document.querySelector("[data-brand=sygnum]"))throw Error("wrong brand");if(document.documentElement.scrollWidth>innerWidth+1)throw Error("horizontal overflow");if(window.__qaErrors.length)throw Error(window.__qaErrors.join(";"));if([...document.images].some(i=>!i.complete||i.naturalWidth===0))throw Error("broken image");return "desktop PASS"})()'
           agent-browser select '#brand-choice' neutral
+          agent-browser wait '[data-brand=neutral]'
           agent-browser eval '(()=>{if(document.querySelector(".sygnum-hero"))throw Error("brand content leaked");return "default isolation PASS"})()'
           agent-browser select '#brand-choice' goldbach
-          agent-browser eval '(()=>{if(document.querySelector(".sygnum-hero")||!document.querySelector("[data-brand=goldbach]"))throw Error("brand isolation failed");return "goldbach isolation PASS"})()'
+          agent-browser wait '[data-brand=goldbach]'
+          agent-browser eval '(()=>{if(document.querySelector(".sygnum-hero"))throw Error("brand isolation failed");return "goldbach isolation PASS"})()'
           agent-browser screenshot /tmp/sygnum-qa/goldbach-regression.png
           agent-browser select '#brand-choice' sygnum
           agent-browser wait '.sygnum-hero'
@@ -94,8 +92,8 @@ jobs:
           agent-browser screenshot /tmp/sygnum-qa/sygnum-mermaid.png
           agent-browser eval '(()=>{if(!document.querySelector("[data-brand=sygnum]"))throw Error("diagram brand");if(document.body.innerText.includes("Syntax error"))throw Error("Mermaid error");return "mermaid PASS"})()'
           agent-browser close
-          echo 'Desktop, mobile, original logo, theme isolation, presentation and Mermaid smoke checks passed.' > /tmp/sygnum-qa/result.txt
-      - name: Package Sygnum deliverables without font files
+          echo 'Desktop, mobile, logo, theme isolation, presentation and Mermaid smoke checks passed.' > /tmp/sygnum-qa/result.txt
+      - name: Package deliverables without font files
         run: |
           python <<'PY'
           from pathlib import Path
@@ -106,7 +104,7 @@ jobs:
                       if p.is_file() and p.suffix.lower() not in {'.woff','.woff2','.ttf','.otf','.eot'}:
                           z.write(p,str(Path(prefix)/p.relative_to(folder)))
           PY
-      - name: Commit generated references and remove temporary transport
+      - name: Commit references and remove temporary transport
         run: |
           rm -f .github/sygnum-install.*.b64 .github/workflows/sygnum-source-audit.yml .github/workflows/sygnum-integrate.yml
           git add -A
