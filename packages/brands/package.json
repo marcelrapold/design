@@ -1,0 +1,17 @@
+{
+  "name": "@rapold/framework-brands",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "files": [
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.mjs"
+    },
+    "./presentation": "./src/presentation.mjs"
+  }
+}

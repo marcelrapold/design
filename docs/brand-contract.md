@@ -1,0 +1,41 @@
+# Brand-Vertrag v1
+
+Der Core kennt keine Firma. Seine Komponenten konsumieren ausschliesslich semantische CSS-Variablen. React ist der Adapter für Web-UI, JSON bleibt unabhängig vom Renderer. Ein Präsentationsadapter liest dieselbe Brand-Identität.
+
+## Vorrang
+
+1. Expliziter Auftrag und freigegebene Firmenvorlage.
+2. Atlas unter `https://atlas.zvv.dev` für Systemstruktur, Website, Navigation und Komponentenverhalten; siehe `atlas-reference.md`.
+3. Belegte Brand-Quellen mit Version und Herkunft für die markenspezifische Gestaltung. Sie ersetzen die ZVV-Markenidentität.
+4. Dokumentierte, noch nicht freigegebene Verfeinerungen.
+5. Framework-Defaults für Eigenschaften, die weder Atlas noch die Brand-Vorlage definieren.
+
+Konflikte werden festgehalten. Ein Adapter setzt `status: draft`, solange Abweichungen offen sind. Technische Validierung ist keine CI-Freigabe.
+
+## Neue Brand
+
+1. Folien, DESIGN.md und Assets getrennt vom Core einordnen. Vertrauliche Quellen bleiben in einem privaten Brand-Repository. Der Ordner `brands-private/` ist ignoriert.
+2. Eine Brand-Datei nach `packages/brands/src/neutral.json` anlegen. `defineBrand()` validiert das vollständige Objekt. Jede Farbe ist ein sechsstelliger Hex-Wert. Keine HTML- oder CSS-Fragmente in Tokenwerten.
+3. Nur belegte Darstellungsmodi hinzufügen. Licht-/Dunkelwerte sind vollständige Sätze; ein fehlender dunkler Modus wird nicht erfunden.
+4. Den Eintrag in `packages/brands/src/index.mjs` registrieren. Bei wachsendem Bestand kann die Registry in einen eigenen Brand-Loader wandern; Core-Komponenten brauchen keine Änderung.
+5. Anpassungen in einer README begründen. Textkontrast mindestens 4.5:1, funktionaler Fokus und Eingabekontur mindestens 3:1. Ganze Oberflächen zusätzlich visuell und mit Tastatur testen.
+6. `npm run check` ausführen. `npm run contracts` erzeugt die maschinenlesbaren Zugänge für Web und Präsentation.
+
+## Integration
+
+```tsx
+import { BrandProvider, Button } from '@rapold/framework-core';
+import { goldbach, toCssVariables } from '@rapold/framework-brands';
+
+<BrandProvider brand={{id: goldbach.id, mode: 'light', variables: toCssVariables(goldbach)}}>
+  <Button>Projekt öffnen</Button>
+</BrandProvider>
+```
+
+Tailwind v4 einbinden, `@rapold/framework-core/styles.css` importieren und den installierten Core-Quellpfad mit `@source` scannen. In Next.js den Core unter `transpilePackages` eintragen. Schriftdateien bindet die konsumierende Anwendung ein. Das Source-Package liefert keine kompilierten Universal-CSS-Dateien.
+
+## Grenzen des ersten Schnitts
+
+Fünf primitive UI-Bausteine, ein BrandProvider, zwei Brand-Konfigurationen, eine Referenz-App und ein Präsentationsvertrag. Auth, Mailing, Datenbank, Analytics, Standort-/Zeitlogik, Diagramm-Libraries und Motion-Engines gehören nicht zum Core. Portals und verschachtelte Brands mit gemischten Farbmodi sind noch kein unterstützter Integrationsvertrag. Spätere Dialog-/Popover-Adapter müssen den Brand-Scope explizit in ihren Portal-Container mitnehmen.
+
+SemVer: neue optionale Tokens und Adapter als Minor, Umbenennung/Entfernung semantischer Rollen als Major. App-Projekte pinnen die Brand-Version.

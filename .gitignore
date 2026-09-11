@@ -1,0 +1,15 @@
+node_modules/
+.next/
+out/
+.sites-runtime/
+.env*
+!.env.example
+*.tsbuildinfo
+*.tgz
+brands-private/
+apps/docs/public/contracts/
+apps/docs/public/llms.txt
+apps/docs/public/brands/*/brand.json
+apps/docs/public/brands/*/presentation.json
+apps/docs/public/brands/index.json
+apps/docs/public/brands/goldbach/*.md

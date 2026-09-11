@@ -1,0 +1,30 @@
+# Design Framework
+
+Ein White-Label-Designstandard für Web-Interfaces und Management-Präsentationen.
+Geplante Hauptadresse: https://design.rapold.io
+Geplanter Alias: https://framework.rapold.io
+Repository: https://github.com/marcelrapold/design
+Status: Entwicklungsschnitt, Website noch nicht deployed. Die Domain-URLs sind Zieladressen.
+Verbindliche Referenz für Designsystem und Website: https://atlas.zvv.dev.
+Die aktive Brand ersetzt die Markenidentität, Atlas bestimmt die gemeinsame Struktur.
+
+## Einstieg für ausführende Agenten
+
+- /contracts/atlas-reference.md: verbindliche Atlas-Referenz, Quellenprüfung und Abweichungen
+- /contracts/repo-to-management.md: vollständiger Auftrag vom Repository zur Management-Präsentation
+- /contracts/brand-contract.md: Tokenmodell, Erweiterung und Abnahme
+- /brands/index.json: verfügbare Brands mit Version, Status und Asset-Pfaden
+- /brands/neutral/brand.json: neutrale Designbasis
+- /brands/neutral/presentation.json: neutrale Präsentationsrollen
+- /brands/goldbach/brand.json: Goldbach-Adapter aus gelieferten Quellen, Status draft
+- /brands/goldbach/presentation.json: Goldbach-Präsentationsrollen
+- /brands/goldbach/rules.md: dokumentierte Verfeinerungen und fehlende Assets
+- /brands/goldbach/DESIGN.md: vollständige gelieferte Designvorgaben
+- /brands/goldbach/IMAGERY.md: vollständige gelieferte Bildvorgaben
+- /brands/goldbach/logo.svg: bereitgestelltes Wortmarken-SVG
+
+Repository-Entsprechungen: docs/repo-to-management.md, docs/brand-contract.md,
+packages/brands/src/*.json und brands/goldbach/sources/*.md.
+
+Der Standard liefert Regeln und Daten. Repository-Analyse, PPTX-Erzeugung und PDF-Export
+führt der konsumierende Agent mit seinen verfügbaren Werkzeugen aus.

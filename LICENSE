@@ -1,0 +1,42 @@
+ZVV Atlas — Internal Use License
+================================
+
+Copyright (c) 2026 Zürcher Verkehrsverbund (ZVV)
+
+This repository contains the internal foundation documentation, brand assets,
+and engineering specifications for digital applications operated by the
+Zürcher Verkehrsverbund. It is intended exclusively for use within ZVV and
+by parties contracted by ZVV ("Mandatsträger").
+
+GRANT OF USE
+------------
+ZVV employees and contracted parties may use, copy, and adapt the contents
+of this repository for the purpose of building, maintaining, or operating
+digital applications that fall within the ZVV mandate.
+
+RESTRICTIONS
+------------
+- This content MUST NOT be redistributed, republished, or made publicly
+  available outside of ZVV or its Mandatsträger without prior written
+  consent from ZVV ICT.
+
+- Brand assets in `assets/` (ZVV logos, ZVV Brown Narrow font files,
+  ZVV color tokens) are proprietary to ZVV / Lineto and are NOT covered
+  by any open-source license. They MUST NOT be uploaded to public NPM,
+  CDN, or asset libraries.
+
+- The "ZVV" name, the ZVV logo, and the ZVV Brand Identity are trademarks
+  of the Zürcher Verkehrsverbund. Use outside of ZVV-mandated work is
+  not permitted.
+
+WARRANTY
+--------
+THIS REPOSITORY IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. ZVV
+DOES NOT WARRANT THAT THE CONTENTS ARE FREE OF ERRORS, COMPLETE, OR
+SUITABLE FOR ANY PARTICULAR PURPOSE.
+
+CONTACT
+-------
+Maintainer: Marcel Rapold (MRA) · ICT ZVV
+E-Mail:     ict@zvv.zh.ch
+
