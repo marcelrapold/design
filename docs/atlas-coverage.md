@@ -30,3 +30,19 @@ Die Galerie zeigt 36 echte, versionierte PPTX-Renderings über LibreOffice/PDF. 
 Die Präsentationsseite übernimmt zusätzlich den erklärenden Einstieg, den Erzeugungsablauf, Farb- und Typorollen, gruppierte Galerie, Detailanleitung neben der Folie, fünf Preset-Filmstreifen, Downloads je Preset sowie die sechs Grundregeln. Die direkte visuelle Browser-Gegenprüfung mit der geschützten Atlas-Seite bleibt offen.
 
 Version 0.4: Desktop-Navigation, Rail, gefilterte Suche, Brand-Wechsel, Folien-Detailansicht, ECharts und öffentliche Organigramm-Fassung wurden im Browser bedient. Mobilnavigation bei 390 px und Prompt-Compiler bei 320 px wurden geprüft; ein Toolbar-Überlauf wurde behoben. Die direkte visuelle Atlas-Gegenprüfung bleibt wegen nicht abgeschlossener PIN-Anmeldung offen; der Quellcode wurde am genannten Commit geprüft.
+
+## Mermaid und Goldbach · 0.4.1
+
+Die fünf Mermaid-Referenzmuster aus dem oben genannten Atlas-Commit sind als
+automatische Galerie mit Vollbild übernommen. Theme-Gruppen, Font-Vermessung und
+Textumbruch entsprechen der Quellenlogik; Farben stammen aus der aktiven Brand.
+Weitere Diagrammtypen sind nicht vollständig abgenommen. Details: [Mermaid](mermaid.md).
+Goldbach zeigt das Original-Logo in der Shell und vier Farbkonstellationen mit
+Downloads auf der Brand-Seite. ZIP-Quellen bleiben unverändert; Fotografien und
+ein separater Firmen-Icon-Satz sind nicht im gelieferten Paket enthalten.
+
+Tabellen folgen `example/app/(showcase)/tables/page.tsx` desselben Atlas-Commits:
+10 × 16 px Zellen, dezente Header- und Hoverflächen, Badges, Monospace-Werte,
+Such-Icon und 12 Zeilen pro Seite. Neutrale Bausteindaten ersetzen die Fahrzeugdaten.
+Zusätzlich: eindeutige Sortierzustände, rechtsbündige Zahlen, Seitenlängenauswahl,
+Filter-Reset und horizontaler Scrollbereich auf Mobilgeräten.

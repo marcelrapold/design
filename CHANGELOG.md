@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.1 — 2026-09-11
+
+- Tabellen nach Atlas verfeinert: kompakte Zeilen und Kopfzeile, Badges, Monospace-Kennungen, rechtsbündige Zahlen, sichtbare Sortierung, Suchfeld mit Zurücksetzen, 12 Zeilen als Standard und zugänglicher Leerzustand.
+
+- Mermaid auf die fünf Atlas-Referenzmuster erweitert: automatisches Rendern, Vollbild, Editor, Quelltext, SVG-/MMD-Export und vollständige Brand-Farbgruppen. Font-Vermessung, lange Labels und Render-Reihenfolge abgesichert.
+- Goldbach-Original-Logo in Navigation, mobiler Navigation und Präsentationsdownloads sichtbar. Markenansicht mit vier in der Quelle beschriebenen Farbkonstellationen der gelieferten Logo-Pfade, SVG-Downloads, Typografie und Vorlagen.
+- Brand-Direktlinks über ?brand=goldbach, maschinenlesbare Mermaid-Themes und dokumentierte Herkunft.
+
 ## 0.4.0 — 2026-09-11
 
 - Native Vercel-Git-Integration für Pushes auf main aktiviert; Vercel führt vor der Veröffentlichung npm run check aus. GitHub Actions prüft unabhängig. Die zusätzliche Token-Pipeline wurde entfernt.

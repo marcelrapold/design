@@ -1,5 +1,6 @@
 import { mkdir, writeFile, copyFile, readFile } from 'node:fs/promises';
 import { brands } from '../packages/brands/src/index.mjs';
+import { mermaidTheme,mermaidThemeCSS,mermaidClassDefs,MERMAID_WRAPPING_WIDTH,MERMAID_NODE_PADDING } from '../packages/brands/src/mermaid-theme.mjs';
 import { presentationTheme } from '../packages/brands/src/presentation.mjs';
 const {version}=JSON.parse(await readFile(new URL('../package.json',import.meta.url),'utf8'));
 const root = new URL('../apps/docs/public/',import.meta.url);
@@ -25,6 +26,7 @@ await copyFile(new URL('../brands/goldbach/sources/IMAGERY.md',import.meta.url),
 const {tokenDocument,dtcgTokens,toCssVariables}=await import('../packages/brands/src/index.mjs');
 for(const brand of brands)for(const mode of Object.keys(brand.modes)) {
  const directory=new URL(`brands/${brand.id}/`,root);
+ await writeFile(new URL(`mermaid.${mode}.json`,directory),JSON.stringify({schemaVersion:1,brand:brand.id,mode,theme:'base',look:'classic',themeVariables:mermaidTheme(brand,mode),themeCSS:mermaidThemeCSS(brand,mode),flowchart:{wrappingWidth:MERMAID_WRAPPING_WIDTH,padding:MERMAID_NODE_PADDING},classDefs:mermaidClassDefs(brand)},null,2)+'\n');
  await writeFile(new URL(`tokens.${mode}.json`,directory),JSON.stringify(tokenDocument(brand,mode),null,2)+'\n');
  await writeFile(new URL(`tokens.${mode}.dtcg.json`,directory),JSON.stringify(dtcgTokens(brand,mode),null,2)+'\n');
  await writeFile(new URL(`tokens.${mode}.css`,directory),`[data-brand="${brand.id}"][data-mode="${mode}"] {\n${Object.entries(toCssVariables(brand,mode)).map(([k,v])=>`  ${k}: ${v};`).join('\n')}\n}\n`);
@@ -45,4 +47,5 @@ const projectValidator=await readFile(new URL('../packages/presentation/src/vali
 await writeFile(new URL('praesentation/project-validation.mjs',root),projectValidator.replace('../../brands/src/deck-validation.mjs','./deck-validation.mjs'));
 await copyFile(new URL('../docs/project-decks.md',import.meta.url),new URL('contracts/project-decks.md',root));
 
+await copyFile(new URL('../docs/mermaid.md',import.meta.url),new URL('contracts/mermaid.md',root));
 await copyFile(new URL('../docs/engineering.md',import.meta.url),new URL('contracts/engineering.md',root));

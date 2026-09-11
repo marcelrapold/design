@@ -26,3 +26,11 @@ Das SVG hat 282.8 × 47.7 Einheiten; die H-Höhe beträgt gemäss Pfad etwa 45.9
 ## Rechte
 
 Marke, SVG und gelieferte Vorgaben werden nicht durch eine künftige Core-Lizenz freigegeben. Der Benutzer hat die Übernahme des vollständigen vorbereiteten Pakets nach `marcelrapold/design` ausdrücklich beauftragt. Daraus folgt keine freie Lizenz für Marke oder Assets. Das Fontsource-Paket enthält die separate Inter-Lizenz.
+
+## Sichtbare Assets
+
+`/brand?brand=goldbach` zeigt das Original-SVG und die in DESIGN.md ausdrücklich
+beschriebenen Varianten Weiss und Schwarz. Bei den Varianten wird ausschliesslich
+die Pfadfüllung geändert. Die Navigation und die Präsentationsdownloads verwenden
+das rote Original mit Schutzraum; eine eingeklappte Rail zeigt das Framework-Symbol,
+da die Logo-Mindestbreite dort nicht eingehalten werden kann.

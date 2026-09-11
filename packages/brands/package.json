@@ -12,6 +12,10 @@
       "types": "./src/index.d.ts",
       "default": "./src/index.mjs"
     },
-    "./presentation": "./src/presentation.mjs"
+    "./presentation": "./src/presentation.mjs",
+    "./mermaid": {
+      "types": "./src/mermaid-theme.d.mts",
+      "default": "./src/mermaid-theme.mjs"
+    }
   }
 }

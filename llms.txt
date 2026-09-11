@@ -54,3 +54,8 @@ Schema für renderbare Inhalte: /praesentation/project-input.schema.json
 Projektvalidator: /praesentation/project-validation.mjs
 Belegtes Beispiel: /praesentation/framework-review.json
 Echte Referenzbilder und PDFs: /presentation-reference.json
+
+Mermaid-Regeln: /contracts/mermaid.md
+Mermaid-Theme: /brands/{brand}/mermaid.{mode}.json
+Goldbach-Originale: /brand?brand=goldbach
+Logo-SVGs: /brands/goldbach/logo.svg, /brands/goldbach/logo-white.svg, /brands/goldbach/logo-black.svg

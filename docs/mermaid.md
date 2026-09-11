@@ -1,0 +1,59 @@
+# Mermaid-Diagramme
+
+Referenz: Atlas `1c75c95417cc371040e1e24a0986213314b53c13`,
+`example/app/(showcase)/mermaid/`,
+`example/components/showcase/mermaid-diagram.tsx` und
+`packages/atlas/src/lib/mermaid-theme.ts`.
+
+Die Referenzseite zeigt dieselben fünf Muster: Flussdiagramm, Sequenzdiagramm,
+Zeitstrahl, Torte und lange Beschriftungen. Beispiele sind illustrative Daten.
+Alle Diagramme rendern automatisch und öffnen im vorhandenen Atlas-Lightbox-Modul.
+Der zusätzliche Editor bietet Quelltext, SVG- und MMD-Download und Copy-Rückmeldung.
+
+## Brand und Darstellung
+
+`packages/brands/src/mermaid-theme.mjs` liefert die vollständigen Farbgruppen.
+Neutrale Flächen, Texte, Konturen, Akteure, Signale, Schleifen und Notizen kommen
+aus den aktiven semantischen Brand-Tokens. Zwölf Kategorien steuern Timeline,
+Journey und Pie; acht steuern GitGraph. Die Kategorien bleiben zwischen Hell und
+Dunkel konstant, mit mindestens 4,5:1 Kontrast zu weissen Beschriftungen.
+Torten sind vollständig deckend und haben abgegrenzte Segmente.
+`mermaidThemeCSS` hält Timeline-Achsen sichtbar und entfernt die automatische
+120-Prozent-Aufhellung der Ereignisflächen. Die Korrektur wird ins SVG exportiert;
+so bleiben Brand-Farben und Textkontraste auch im Download erhalten.
+
+Bewusste Abweichung von Atlas: ZVV-Farben werden nicht übernommen. Goldbach nutzt
+Passion Red und die gelieferten Graustufen; andere Brands verwenden ihre neutralen
+und semantischen Farben. Flowchart-Klassen `source`, `delivery` und `consumer`
+benennen Rollen statt Unternehmensfarben. Explizite `classDef`-Farben im eigenen
+Quelltext haben Vorrang vor dem Theme; ein kopiertes Beispiel enthält die Farben
+der zum Kopierzeitpunkt aktiven Brand.
+
+Exporte: `/brands/{id}/mermaid.{mode}.json`. Das Dokument enthält Theme-Variablen,
+Klassen und Flowchart-Geometrie. Es dient auch als Agenten-Vertrag.
+
+## Rendern und Vermessen
+
+- Mermaid als lokales npm-Bundle laden, `securityLevel: strict` beibehalten.
+- Auf `document.fonts.ready` warten; dieselbe Schrift für Vermessung und SVG nutzen.
+- Messcontainer mit `visibility: hidden` ausserhalb der Ansicht positionieren,
+  niemals mit `display: none`; er bleibt Teil des Brand-Bereichs.
+- `look: classic` explizit setzen: Mermaid 12 verwendet sonst Neo-Schatten.
+- Flowchart: `wrappingWidth: 260`, `padding: 10`. Kantenbeschriftungen kurz halten.
+- `initialize` und `render` gemeinsam serialisieren, da Mermaid globale Konfiguration hat.
+- Veraltete Ergebnisse nach einem Brand-Wechsel verwerfen, Messcontainer auch bei
+  Syntaxfehlern leeren. Keine Mermaid-Fehlergrafik am Dokumentende hinterlassen.
+- Definitionen auf 30 000 Zeichen und 500 Kanten begrenzen.
+- SVG mit unverzerrtem Seitenverhältnis zeigen. Vollbild über dieselbe Lightbox
+  mit Fokusfalle, Escape und Rückkehr zum Auslöser anbieten.
+
+## Abdeckung
+
+Flowchart, Sequence, Timeline und Pie haben sichtbare Beispiele. Journey und
+GitGraph besitzen vorbereitete Paletten, aber noch keine eigene Abnahme. Weitere
+Mermaid-Typen sind nicht vollständig auf die Brand geprüft. SVG enthält Schrift-
+referenzen; für dieselbe Darstellung ausserhalb der Website muss Inter verfügbar sein.
+
+Der Quellenabgleich ersetzt keine vollständige visuelle Gegenprüfung mit dem
+geschützten Atlas-Showcase. Der direkte Atlas-Browserzugriff war bei diesem Update
+nicht erfolgreich; der Vergleich erfolgte anhand des oben genannten Quellstands.
