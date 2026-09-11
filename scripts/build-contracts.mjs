@@ -5,6 +5,7 @@ import { presentationTheme } from '../packages/brands/src/presentation.mjs';
 const {version}=JSON.parse(await readFile(new URL('../package.json',import.meta.url),'utf8'));
 const root = new URL('../apps/docs/public/',import.meta.url);
 const sharedAgentGuide = await readFile(new URL('../llms.txt',import.meta.url),'utf8');
+const managementContract = await readFile(new URL('../docs/repo-to-management.md',import.meta.url),'utf8');
 await mkdir(new URL('contracts/',root),{recursive:true});
 await copyFile(new URL('../docs/repo-to-management.md',import.meta.url),new URL('contracts/repo-to-management.md',root));
 await copyFile(new URL('../docs/brand-contract.md',import.meta.url),new URL('contracts/brand-contract.md',root));
@@ -18,6 +19,8 @@ for (const brand of brands) {
   const brandSources=brand.sources.map(source=>`- /brands/${brand.id}/${source.split('/').at(-1)}`).join('\n');
   const activeGuide=`# ${brand.id==='neutral'?'Default-Preset':brand.name+'-Theme'}\n\nAktive Brand: ${brand.id} · Status: ${brand.status}\nNur die folgenden Theme-Vorgaben und die gemeinsamen Framework-Regeln verwenden.\n\n${sharedAgentGuide.replaceAll('{brand}',brand.id)}\n${brandSources?'## Quellen dieses Themes\n'+brandSources+'\n- /brands/'+brand.id+'/rules.md\n':''}${brand.assets?.logo?'\nOriginal-Logo: /'+brand.assets.logo.path+'\n':''}`;
   await writeFile(new URL('llms.txt',directory),activeGuide);
+  const managementGuide=`# Management-Präsentation · ${brand.id==='neutral'?'Default':brand.name}\n\nAktive Brand: ${brand.id} · Status: ${brand.status} · Framework: ${version}\nDieser verlinkte Einstieg ist die Theme-Wahl des Auftrags. Nur die aktiven Brand-Quellen und Original-Assets verwenden. Explizite abweichende Nutzerangaben haben Vorrang.\n\n${managementContract.replaceAll('{brand}',brand.id)}\n${brandSources?'## Pflichtquellen der aktiven Brand\n'+brandSources+'\n- /brands/'+brand.id+'/rules.md\n':''}${brand.assets?.logo?'\nOriginal-Logo: /'+brand.assets.logo.path+'\n':''}`;
+  await writeFile(new URL('management.md',directory),managementGuide.replace(/(^|[\s(`])\/(brands|contracts|praesentation)\//gm,'$1https://design.rapold.io/$2/'));
   await writeFile(new URL('brand.json',directory),JSON.stringify(brand,null,2)+'\n');
   await writeFile(new URL('presentation.json',directory),JSON.stringify(presentationTheme(brand),null,2)+'\n');
 }

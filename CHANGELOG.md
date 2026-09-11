@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.3 — 2026-09-11
+
+- Kurze Präsentationsaufträge mit einem Theme-spezifischen Management-Einstieg. Vollständiger Ablauf, Defaults, Nutzer-Overrides, Quellenprüfung, Export und Abnahme liegen im versionierten Vertrag.
+- Präsentationsseite, Agenten-Einstieg und Prompt-Compiler verwenden denselben Generator. Das aktive Theme und ein gewähltes Preset bleiben im Kurzauftrag erhalten.
+- Generierte Management-Verträge werden im Produktionsbuild auf vollständige lokale Ziele und Brand-Isolation geprüft.
+
 ## 0.4.2 — 2026-09-11
 
 - Default-Preset und Goldbach-Theme in Markenansicht, Präsentations-FAQs, Bildwelt, Abdeckung und Agentenhinweisen getrennt. Firmenlogos und Goldbach-Vorgaben erscheinen nur im aktiven Goldbach-Theme.

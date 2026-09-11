@@ -10,6 +10,13 @@ Die aktive Brand ersetzt die Markenidentität, Atlas bestimmt die gemeinsame Str
 
 ## Einstieg für ausführende Agenten
 
+Bei «Repo analysieren und Management-Präsentation erstellen» direkt den vollständigen Ablauf
+unter https://design.rapold.io/brands/{brand}/management.md laden und ausführen.
+Die ausdrücklich genannte Brand beziehungsweise der verlinkte Theme-Einstieg bestimmt `{brand}`;
+ohne Theme-Wahl `neutral` verwenden. Namen über /brands/index.json auflösen.
+Der Vertrag enthält Defaults, Quellenprüfung, Gestaltung, Export und Abnahme.
+Der Nutzer muss diese Regeln nicht in den Auftrag kopieren.
+
 - /contracts/atlas-reference.md: verbindliche Atlas-Referenz, Quellenprüfung und Abweichungen
 - /contracts/repo-to-management.md: vollständiger Auftrag vom Repository zur Management-Präsentation
 - /contracts/brand-contract.md: Tokenmodell, Erweiterung und Abnahme

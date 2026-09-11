@@ -2,7 +2,7 @@
 
 White-Label-Framework auf Basis von Atlas. Ein neutraler Designstandard mit austauschbaren Brand-Vorgaben für Interfaces und Management-Präsentationen.
 
-**Stand:** 0.4.2, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Produktionsadresse: https://design.rapold.io. Die native Vercel-Git-Verbindung übernimmt Builds bei Pushes auf main. Der Live-Stand wird anhand von build-info.json geprüft. Details: [Deployment](docs/deployment.md).
+**Stand:** 0.4.3, Quellstand für `marcelrapold/design`. Das Repository ist öffentlich. Die Herkunftslizenz bleibt unter `LICENSE` erhalten; eine freie Neulizenzierung ist damit nicht verbunden. Produktionsadresse: https://design.rapold.io. Die native Vercel-Git-Verbindung übernimmt Builds bei Pushes auf main. Der Live-Stand wird anhand von build-info.json geprüft. Details: [Deployment](docs/deployment.md).
 
 ## Verbindliche Referenz
 
@@ -10,7 +10,9 @@ White-Label-Framework auf Basis von Atlas. Ein neutraler Designstandard mit aust
 
 ## Zielauftrag
 
-> Analysiere das Repository owner/repo. Erstelle aus dem Projekt eine Management-Präsentation mit design.rapold.io im gewählten Theme.
+> Analysiere owner/repo und erstelle eine Management-Präsentation. Lies und befolge https://design.rapold.io/brands/neutral/management.md.
+
+Für Goldbach denselben Auftrag mit https://design.rapold.io/brands/goldbach/management.md verwenden. Der Einstieg enthält den vollständigen Ablauf: standardmässig acht Folien, Deutsch (Schweiz), 16:9, editierbare PPTX, PDF, Quellenmanifest und deck.json. Explizite Wünsche überschreiben diese Defaults. Auf der [Präsentationsseite](https://design.rapold.io/praesentation) und im Prompt-Compiler wird der Kurzauftrag für das aktive Theme erzeugt.
 
 Der Standard liefert Brand-Daten, Präsentationsrollen und einen vollständigen Agenten-Vertrag. Der ausführende Agent braucht Repo-Zugang und einen Renderer. Ein gehosteter Generator ist nicht Teil dieses ersten Schnitts.
 

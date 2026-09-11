@@ -27,3 +27,7 @@ Farben, Schriften, Logos, Icons, Bildwelt, Tonalität und ausdrücklich definier
 Die Extraktion basiert auf Atlas-Commit `1c75c95417cc371040e1e24a0986213314b53c13`. Alle 19 exportierten UI-Module sind übernommen und entkoppelt. Die Referenz umfasst 35 Seiten, vollständige Token-Exporte, neutrale Icons und ausführbare Präsentationsmuster. Vollständige Seitenparität mit Atlas und eine visuelle Gegenprüfung sind noch nicht abgeschlossen.
 
 Diese Referenzentscheidung gilt für alle weiteren Arbeiten in `marcelrapold/design`, unabhängig davon, welcher Agent oder Renderer sie ausführt.
+
+## Bewusste Abweichung: Kurzaufträge
+
+Auf Benutzerauftrag vom 11.09.2026 verweist der kopierte Präsentationsprompt auf einen vollständigen Theme-spezifischen Management-Vertrag. Analyse, Defaults, Export und Abnahme liegen dort statt wiederholt im Eingabeprompt. Die Atlas-Seitenstruktur, Layouts, Rezepte und Inhaltslogik bleiben die Referenz. Diese Änderung betrifft die Übergabe an den ausführenden Agenten.

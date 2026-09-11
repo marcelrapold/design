@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import JSZip from 'jszip';
 import {brands} from '../packages/brands/src/index.mjs';
 import {presets} from '../packages/brands/src/presentation.mjs';
+import {compilePrompt} from '../packages/brands/src/prompt-compiler.mjs';
 const out=new URL('../apps/docs/out/',import.meta.url);
 let css='';
 async function collect(dir) {for(const e of await readdir(dir,{withFileTypes:true})) {const p=new URL(e.name+(e.isDirectory()?'/':''),dir); if(e.isDirectory()) await collect(p); else if(e.name.endsWith('.css')) css+=await readFile(p,'utf8');}}
@@ -51,7 +52,19 @@ for(const brand of brands){
  assert.ok(guide.includes(`/brands/${brand.id}/brand.json`));
  for(const other of brands.filter(b=>b.id!==brand.id))assert.ok(!guide.includes(`/brands/${other.id}/`),`Foreign brand contract in ${brand.id} guide`);
  if(brand.assets?.logo)assert.ok(guide.includes(brand.assets.logo.path));
+ const prompt=compilePrompt({idea:'Analysiere owner/repo.',format:'Präsentation',brand});
+ const entry=prompt.match(/https:\/\/design\.rapold\.io\/(brands\/[^\s]+\/management\.md)/)?.[1];
+ assert.ok(entry,'Short presentation task must resolve to a published management contract');
+ const management=await readFile(new URL(entry,out),'utf8');
+ assert.ok(guide.includes(`https://design.rapold.io/${entry}`),'General agent entry must discover the short-task contract');
+ assert.ok(management.includes(`Aktive Brand: ${brand.id}`));
+ assert.ok(management.includes(`"brand": "${brand.id}"`),'Source manifest example must use the selected brand');
+ for(const other of brands.filter(b=>b.id!==brand.id))assert.ok(!management.includes(`/brands/${other.id}/`),`Foreign brand in ${brand.id} management contract`);
+ for(const match of management.matchAll(/https:\/\/design\.rapold\.io\/([\w./-]+)/g)){
+  const path=match[1].replace(/[.,]+$/,'');
+  assert.ok((await readFile(new URL(path,out))).length,`Broken management contract dependency: ${path}`);
+ }
 }
-for(const file of ['llms.txt','brands/neutral/llms.txt','contracts/repo-to-management.md','contracts/brand-contract.md'])
+for(const file of ['llms.txt','brands/neutral/llms.txt','brands/neutral/management.md','contracts/repo-to-management.md','contracts/brand-contract.md'])
  assert.doesNotMatch(await readFile(new URL(file,out),'utf8'),/goldbach/i,`Corporate default in shared contract: ${file}`);
 console.log('Default pages and theme-specific agent contracts are isolated.');
