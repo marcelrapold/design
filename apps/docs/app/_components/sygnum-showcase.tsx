@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {ArrowUpRight,Download} from 'lucide-react';
 import {Button} from '@rapold/framework-core';
 import {sygnum,contrast} from '@rapold/framework-brands';
-import evidence from '../../../../../brands/sygnum/sources/sources.json';
+import evidence from '../../../../brands/sygnum/sources/sources.json';
 const labels:Record<string,string>={coral:'Coral',ink:'Ink',slate:'Slate',lavender:'Lavender',mist:'Mist',frost:'Frost',lilac:'Lilac',rose:'Rose',magenta:'Magenta'};
 export default function SygnumShowcase(){
  const c=sygnum.modes.light;
