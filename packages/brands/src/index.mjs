@@ -11,8 +11,15 @@ function keys(value, expected, name) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error(`${name}: object required`);
   if (Object.keys(value).some(key => !expected.includes(key)) || expected.some(key => !(key in value))) throw new Error(`${name}: invalid keys`);
 }
+function optionalKeys(value, allowed, name) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error(`${name}: object required`);
+  keys(value, allowed.filter(key => key in value), name);
+}
+const rule = /^[A-Za-z0-9][A-Za-z0-9 ,.\u2013-]{0,63}$/;
+const slug = /^[a-z][a-z0-9-]{0,47}$/;
+const docPath = /^[-A-Za-z0-9_/]+\.md$/;
 export function defineBrand(input) {
-  keys(input, [...(input.palette ? ['palette'] : []), ...(input.tokens ? ['tokens'] : []), ...(input.assets ? ['assets'] : []), 'schemaVersion','id','name','version','status','modes','typography','shape','sources'], 'brand');
+  keys(input, [...(input.palette ? ['palette'] : []), ...(input.tokens ? ['tokens'] : []), ...(input.assets ? ['assets'] : []), ...(input.presentation ? ['presentation'] : []), ...(input.genAI ? ['genAI'] : []), 'schemaVersion','id','name','version','status','modes','typography','shape','sources'], 'brand');
   if (input.schemaVersion !== 1 || !/^[a-z][a-z0-9-]*$/.test(input.id)) throw new Error('Invalid brand identity');
   if (typeof input.name !== 'string' || !input.name.trim() || !/^\d+\.\d+\.\d+$/.test(input.version)) throw new Error('Invalid brand metadata');
   if (!['baseline','draft','approved'].includes(input.status)) throw new Error('Invalid brand status');
@@ -32,6 +39,19 @@ export function defineBrand(input) {
     keys(input.assets,['logo'],'assets');
     const logo=input.assets.logo;keys(logo,['path','aspectRatio','background','padding'],'assets.logo');
     if(typeof logo.path!=='string'||!/^[-A-Za-z0-9_/]+\.(svg|png)$/.test(logo.path)||logo.path.startsWith('/')||logo.path.split('/').includes('..')||!Number.isFinite(logo.aspectRatio)||logo.aspectRatio<=0||logo.aspectRatio>100||!hex.test(logo.background)||!Number.isFinite(logo.padding)||logo.padding<0||logo.padding>.4)throw new Error('Invalid brand logo');
+  }
+  if(input.presentation){
+    optionalKeys(input.presentation,['editorialDarkSurfaces','preferIconsForConcepts','preferMermaidForSystems','logoOnCover','preferredDiagramShare','preferredGenAiImages'],'presentation');
+    for(const key of ['editorialDarkSurfaces','preferIconsForConcepts','preferMermaidForSystems','logoOnCover'])if(input.presentation[key]!==undefined&&typeof input.presentation[key]!=='boolean')throw new Error(`Invalid presentation contract: ${key}`);
+    for(const key of ['preferredDiagramShare','preferredGenAiImages'])if(input.presentation[key]!==undefined&&(typeof input.presentation[key]!=='string'||!rule.test(input.presentation[key])))throw new Error(`Invalid presentation contract: ${key}`);
+  }
+  if(input.genAI){
+    optionalKeys(input.genAI,['contract','families','maxKeyVisualsPer12Slides','logoGeneratedInImage'],'genAI');
+    const {contract,families,maxKeyVisualsPer12Slides:maxKeyVisuals,logoGeneratedInImage}=input.genAI;
+    if(contract!==undefined&&(typeof contract!=='string'||!docPath.test(contract)||contract.startsWith('/')||contract.split('/').includes('..')))throw new Error('Invalid GenAI contract');
+    if(families!==undefined&&(!Array.isArray(families)||!families.length||families.length>8||families.some(f=>typeof f!=='string'||!slug.test(f))))throw new Error('Invalid GenAI families');
+    if(maxKeyVisuals!==undefined&&(!Number.isInteger(maxKeyVisuals)||maxKeyVisuals<0||maxKeyVisuals>12))throw new Error('Invalid GenAI key visual budget');
+    if(logoGeneratedInImage!==undefined&&typeof logoGeneratedInImage!=='boolean')throw new Error('Invalid GenAI logo rule');
   }
   if (input.palette) {
     if (typeof input.palette !== 'object' || Array.isArray(input.palette) || !Object.keys(input.palette).length || Object.keys(input.palette).length > 32) throw new Error('Invalid brand palette');
