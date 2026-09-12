@@ -22,7 +22,8 @@
     "prebuild": "npm run contracts",
     "postbuild": "node scripts/check-build.mjs",
     "deck:export": "node scripts/export-project.mjs",
-    "deck:reference": "node scripts/render-reference.mjs"
+    "deck:reference": "node scripts/render-reference.mjs",
+    "verify:deployment": "node scripts/verify-deployment.mjs"
   },
   "devDependencies": {
     "@types/node": "26.0.1",

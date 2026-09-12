@@ -1,3 +1,5 @@
+// Names only: keeps the component index out of the lazily loaded demo bundle.
+export const componentNames=['Button','Badge','Card','Input','Label','Checkbox','Command','Dialog','Dropdown Menu','Empty State','Lightbox','Popover','Select','Separator','Sheet','Skeleton','Toaster','Tabs','Tooltip'];
 export const groups = [
  {title:'Einstieg',items:[['overview','Übersicht'],['coverage','Atlas-Abgleich']]},
  {title:'Marke',items:[['brand','Marken & Identität'],['tokens','Design-Tokens'],['typography','Typografie'],['layout','Raster & Abstände'],['icons','Iconografie'],['content','Inhalt & Sprache'],['organigramm','Organigramm']]},

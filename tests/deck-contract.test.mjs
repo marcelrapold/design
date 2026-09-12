@@ -13,3 +13,13 @@ test('evidence must match the metric and must have been introduced earlier',()=>
 test('malformed input cannot silently pass or crash the deck validator',()=>{for(const change of [d=>{d.sections=[];d.slides=[];},d=>{d.slides[1].sources=[42];},d=>{d.slides[2].metrics[0].value={};},d=>{d.slides[3].resolution.dueDate='2026-02-31';},d=>{d.sections.push({...d.sections[0]});},d=>{d.slides[2].alarmCount=-1;}]){const d=structuredClone(valid);change(d);assert.equal(validateDeck(d).valid,false);}});
 test('every preset resolves to implemented slide recipes and finite geometry',()=>{assert.equal(slides.length,18);assert.equal(presets.length,5);for(const brand of brands){const deck=presentationTheme(brand);assert.equal(Object.keys(deck.typography.scale).length,13);for(const preset of presets)for(const f of preset.folgen)assert.ok(slides.some(s=>s.id===f.typ));for(const s of slides)for(const n of slideScene(s.id,deck).nodes)for(const k of ['x','y','w','h'])assert.ok(Number.isFinite(n[k])&&n[k]>=0,`${s.id}/${k}`);}});
 test('brand foundation overrides propagate to CSS and exports; injection rejected',()=>{const custom=defineBrand({...structuredClone(neutral),tokens:{spacing:{4:'18px'}}});assert.equal(toCssVariables(custom)['--spacing-4'],'18px');assert.equal(tokenDocument(custom).foundation.spacing[4],'18px');assert.throws(()=>defineBrand({...structuredClone(neutral),tokens:{spacing:{4:'url(https://example.com)'}}}));for(const brand of brands){const tokens=dtcgTokens(brand);assert.equal(tokens.primary.$value.colorSpace,'srgb');assert.equal(tokens.spacing['4'].$value.unit,'px');}});
+test('rendered-preview digest ignores brand metadata that never reaches a slide', async () => {
+  const {renderedBrandKeys}=await import('../scripts/reference-cache.mjs');
+  for(const key of ['version','status','sources','presentation','genAI'])assert.ok(!renderedBrandKeys.includes(key),`${key} must not invalidate 72 committed renderings`);
+  for(const key of ['id','name','modes','typography','shape','assets'])assert.ok(renderedBrandKeys.includes(key),`${key} reaches the slide and must invalidate renderings`);
+  const project=brand=>JSON.stringify(Object.fromEntries(renderedBrandKeys.map(k=>[k,brand[k]??null])));
+  const documented={...structuredClone(brands.at(-1)),version:'9.9.9',status:'approved',sources:['brands/x/y.md'],presentation:{logoOnCover:false},genAI:{maxKeyVisualsPer12Slides:1}};
+  assert.equal(project(documented),project(brands.at(-1)),'documentation-only edits must not force a re-render');
+  const repainted={...structuredClone(brands.at(-1)),modes:{light:{...brands.at(-1).modes.light,primary:'#010203'}}};
+  assert.notEqual(project(repainted),project(brands.at(-1)),'a changed colour must force a re-render');
+});

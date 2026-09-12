@@ -8,9 +8,9 @@ import {resolveFoundation,semanticTokens,contrast} from '@rapold/framework-brand
 import {presentationTheme,slides,presets} from '../../../../packages/brands/src/presentation.mjs';
 import {useActiveBrand} from './framework-shell';
 import {compilePrompt} from '../../../../packages/brands/src/prompt-compiler.mjs';
-import {pages,guidance,guidanceFor,href} from './catalog';
+import {pages,guidance,guidanceFor,href,componentNames} from './catalog';
 import {SlidePreview} from './slide-preview';
-import {ComponentDemo,componentNames} from './component-demo';
+const ComponentDemo=dynamic(()=>import('./component-demo').then(m=>m.ComponentDemo),{loading:()=> <p>Komponenten werden geladen …</p>});
 const BrandShowcase=dynamic(()=>import('./brand-showcase'));
 const MermaidShowcase=dynamic(()=>import('./mermaid-showcase'),{loading:()=> <p>Diagrammgalerie wird geladen …</p>});
 const PatternShowcase=dynamic(()=>import('./pattern-showcase'),{loading:()=> <p>Beispiel wird geladen …</p>});

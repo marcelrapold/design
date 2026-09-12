@@ -27,16 +27,18 @@ export async function verifyDeployment({baseUrl,commit,version,fetcher=fetch}) {
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   const [baseUrl,commit]=process.argv.slice(2);
   const {version}=JSON.parse(await readFile(new URL('../package.json',import.meta.url),'utf8'));
+  const attempts=Number(process.env.VERIFY_ATTEMPTS??6),delay=Number(process.env.VERIFY_DELAY_MS??5000);
+  if(!Number.isInteger(attempts)||attempts<1||!Number.isFinite(delay)||delay<0)throw new Error('Invalid verification schedule.');
   let failure;
-  for(let attempt=1;attempt<=6;attempt++){
+  for(let attempt=1;attempt<=attempts;attempt++){
     try{
       const result=await verifyDeployment({baseUrl,commit,version});
       console.log(`Production verified: ${result.version}, commit ${result.commit}, ${result.routes} routes and engineering contract.`);
       failure=undefined;break;
     }catch(error){
       failure=error;
-      console.error(`Verification ${attempt}/6: ${error.message}`);
-      if(attempt<6)await new Promise(resolve=>setTimeout(resolve,5000));
+      console.error(`Verification ${attempt}/${attempts}: ${error.message}`);
+      if(attempt<attempts)await new Promise(resolve=>setTimeout(resolve,delay));
     }
   }
   if(failure)process.exitCode=1;
