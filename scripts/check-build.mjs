@@ -72,6 +72,23 @@ for(const brand of brands){
 for(const file of ['llms.txt','brands/neutral/llms.txt','brands/neutral/management.md','contracts/repo-to-management.md','contracts/brand-contract.md'])
  assert.doesNotMatch(await readFile(new URL(file,out),'utf8'),/goldbach|sygnum/i,`Corporate default in shared contract: ${file}`);
 console.log('Default pages and theme-specific agent contracts are isolated.');
+// Discovery surface: a public contract nobody can find is half a contract.
+const sitemap=await readFile(new URL('sitemap.xml',out),'utf8');
+const robots=await readFile(new URL('robots.txt',out),'utf8');
+assert.match(robots,/Sitemap: https:\/\/design\.rapold\.io\/sitemap\.xml/,'robots.txt must advertise the sitemap');
+assert.ok((await readFile(new URL('og.png',out))).length,'Missing social card');
+const indexed=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
+assert.ok(indexed.length>=30,`sitemap lists only ${indexed.length} routes`);
+for(const loc of indexed){
+ const route=new URL(loc).pathname;
+ const file=route==='/'?'index.html':`${route.replace(/^\//,'')}.html`;
+ assert.ok((await readFile(new URL(file,out))).length,`sitemap points at a route that was not exported: ${route}`);
+}
+const home=await readFile(new URL('index.html',out),'utf8');
+for(const tag of [/rel="icon"/,/property="og:title"/,/property="og:image"/,/name="twitter:card"/,/rel="canonical"/])assert.match(home,tag,`Missing discovery tag: ${tag}`);
+assert.match(await readFile(new URL('tokens.html',out),'utf8'),/rel="canonical" href="https:\/\/design\.rapold\.io\/tokens"/,'Each page needs its own canonical URL');
+console.log(`Discovery verified: ${indexed.length} indexed routes, robots, social card and per-page canonicals.`);
+
 
 for(const brand of brands){
  for(const source of brand.sources)assert.ok((await readFile(new URL(`brands/${brand.id}/${source.split('/').at(-1)}`,out))).length);
