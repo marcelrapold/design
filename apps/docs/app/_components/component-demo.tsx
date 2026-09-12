@@ -3,7 +3,6 @@ import {useState} from 'react';
 import {Inbox} from 'lucide-react';
 import {toast} from 'sonner';
 import * as UI from '@rapold/framework-core';
-export const componentNames=['Button','Badge','Card','Input','Label','Checkbox','Command','Dialog','Dropdown Menu','Empty State','Lightbox','Popover','Select','Separator','Sheet','Skeleton','Toaster','Tabs','Tooltip'];
 export function ComponentDemo(){
  const [value,setValue]=useState(''),[done,setDone]=useState(false);
  return <div className="demo-grid">

@@ -38,6 +38,10 @@ const {createHash}=await import('node:crypto');
 const echarts=await readFile(new URL('vendor/echarts-6.0.0.min.js',out));
 assert.equal(createHash('sha1').update(Buffer.concat([Buffer.from(`blob ${echarts.length}\0`),echarts])).digest('hex'),'22b33ffe0548465757267dc03ca8656d7cfef643','ECharts must match the Apache upstream bundle');
 for(const file of ['vendor/echarts-LICENSE.txt','vendor/echarts-NOTICE.txt','contracts/engineering.md'])assert.ok((await readFile(new URL(file,out))).length);
+const publishedBrandSchema=JSON.parse(await readFile(new URL('contracts/brand.schema.json',out),'utf8'));
+const {requiredBrandKeys,optionalBrandKeys}=await import('../packages/brands/src/index.mjs');
+assert.deepEqual(Object.keys(publishedBrandSchema.properties).sort(),[...requiredBrandKeys,...optionalBrandKeys].sort(),'Published brand schema must match the validator');
+for(const brand of brands)for(const key of Object.keys(brand))assert.ok(key in publishedBrandSchema.properties,`${brand.id}: ${key} is undocumented in the published schema`);
 console.log('Pinned ECharts bundle, attribution and engineering contract verified.');
 
 // Inspect the published output: inactive corporate content must not become part

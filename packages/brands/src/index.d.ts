@@ -12,6 +12,20 @@ export interface Brand {
   readonly assets?: {readonly logo: {readonly path:string; readonly aspectRatio:number; readonly background:string; readonly padding:number}};
   readonly tokens?: Readonly<Record<string,Record<string,string | number>>>;
   readonly palette?: Readonly<Record<string,string>>;
+  readonly presentation?: {
+    readonly editorialDarkSurfaces?: boolean;
+    readonly preferIconsForConcepts?: boolean;
+    readonly preferMermaidForSystems?: boolean;
+    readonly logoOnCover?: boolean;
+    readonly preferredDiagramShare?: string;
+    readonly preferredGenAiImages?: string;
+  };
+  readonly genAI?: {
+    readonly contract?: string;
+    readonly families?: readonly string[];
+    readonly maxKeyVisualsPer12Slides?: number;
+    readonly logoGeneratedInImage?: boolean;
+  };
   readonly sources: readonly string[];
 }
 export const colorKeys: readonly ColorKey[];

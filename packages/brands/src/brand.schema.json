@@ -1,0 +1,360 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://design.rapold.io/contracts/brand.schema.json",
+  "title": "Brand adapter",
+  "description": "Machine-readable form of the contract enforced by defineBrand in packages/brands/src/index.mjs. The implementation stays authoritative; tests/brands.test.mjs holds the two in sync.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "version",
+    "status",
+    "modes",
+    "typography",
+    "shape",
+    "sources"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "status": {
+      "enum": [
+        "baseline",
+        "draft",
+        "approved"
+      ]
+    },
+    "modes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "light"
+      ],
+      "properties": {
+        "light": {
+          "$ref": "#/$defs/mode"
+        },
+        "dark": {
+          "$ref": "#/$defs/mode"
+        }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family",
+        "bodyWeight",
+        "headingWeight"
+      ],
+      "properties": {
+        "family": {
+          "$ref": "#/$defs/fontFamily"
+        },
+        "bodyFamily": {
+          "$ref": "#/$defs/fontFamily"
+        },
+        "headingFamily": {
+          "$ref": "#/$defs/fontFamily"
+        },
+        "bodyWeight": {
+          "$ref": "#/$defs/fontWeight"
+        },
+        "headingWeight": {
+          "$ref": "#/$defs/fontWeight"
+        }
+      }
+    },
+    "shape": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "radius",
+        "shadow",
+        "buttonMinHeight"
+      ],
+      "properties": {
+        "radius": {
+          "$ref": "#/$defs/length"
+        },
+        "buttonMinHeight": {
+          "$ref": "#/$defs/length"
+        },
+        "shadow": {
+          "enum": [
+            "none",
+            "0 1px 3px #00000014"
+          ]
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "palette": {
+      "type": "object",
+      "description": "Original identity colours. Exposed as --brand-color-*; never overrides a semantic role.",
+      "minProperties": 1,
+      "maxProperties": 32,
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9-]{0,31}$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/hex"
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "description": "Foundation overrides. Group and key must already exist in foundation.json and keep the baseline type.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": [
+            "string",
+            "number"
+          ]
+        }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logo"
+      ],
+      "properties": {
+        "logo": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "aspectRatio",
+            "background",
+            "padding"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^[-A-Za-z0-9_][-A-Za-z0-9_/]*\\.(svg|png)$"
+            },
+            "aspectRatio": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 100
+            },
+            "background": {
+              "$ref": "#/$defs/hex"
+            },
+            "padding": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.4
+            }
+          }
+        }
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "description": "Deck grammar for this brand. Guidance for the executing agent; no renderer reads it.",
+      "additionalProperties": false,
+      "properties": {
+        "editorialDarkSurfaces": {
+          "type": "boolean"
+        },
+        "preferIconsForConcepts": {
+          "type": "boolean"
+        },
+        "preferMermaidForSystems": {
+          "type": "boolean"
+        },
+        "logoOnCover": {
+          "type": "boolean"
+        },
+        "preferredDiagramShare": {
+          "$ref": "#/$defs/guidance"
+        },
+        "preferredGenAiImages": {
+          "$ref": "#/$defs/guidance"
+        }
+      }
+    },
+    "genAI": {
+      "type": "object",
+      "description": "Contract for generated imagery. The real logo is never generated.",
+      "additionalProperties": false,
+      "properties": {
+        "contract": {
+          "type": "string",
+          "pattern": "^[-A-Za-z0-9_][-A-Za-z0-9_/]*\\.md$"
+        },
+        "families": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,47}$"
+          }
+        },
+        "maxKeyVisualsPer12Slides": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "logoGeneratedInImage": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hex": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$"
+    },
+    "mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "background",
+        "foreground",
+        "card",
+        "card-foreground",
+        "popover",
+        "popover-foreground",
+        "primary",
+        "primary-foreground",
+        "primary-hover",
+        "primary-hover-foreground",
+        "secondary",
+        "secondary-foreground",
+        "muted",
+        "muted-foreground",
+        "accent",
+        "accent-foreground",
+        "destructive",
+        "destructive-foreground",
+        "success",
+        "success-foreground",
+        "warning",
+        "warning-foreground",
+        "border",
+        "input",
+        "ring"
+      ],
+      "properties": {
+        "background": {
+          "$ref": "#/$defs/hex"
+        },
+        "foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "card": {
+          "$ref": "#/$defs/hex"
+        },
+        "card-foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "popover": {
+          "$ref": "#/$defs/hex"
+        },
+        "popover-foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "primary": {
+          "$ref": "#/$defs/hex"
+        },
+        "primary-foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "primary-hover": {
+          "$ref": "#/$defs/hex"
+        },
+        "primary-hover-foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "secondary": {
+          "$ref": "#/$defs/hex"
+        },
+        "secondary-foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "muted": {
+          "$ref": "#/$defs/hex"
+        },
+        "muted-foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "accent": {
+          "$ref": "#/$defs/hex"
+        },
+        "accent-foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "destructive": {
+          "$ref": "#/$defs/hex"
+        },
+        "destructive-foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "success": {
+          "$ref": "#/$defs/hex"
+        },
+        "success-foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "warning": {
+          "$ref": "#/$defs/hex"
+        },
+        "warning-foreground": {
+          "$ref": "#/$defs/hex"
+        },
+        "border": {
+          "$ref": "#/$defs/hex"
+        },
+        "input": {
+          "$ref": "#/$defs/hex"
+        },
+        "ring": {
+          "$ref": "#/$defs/hex"
+        }
+      }
+    },
+    "fontFamily": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9 ,\"'-]+$"
+    },
+    "fontWeight": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 900
+    },
+    "length": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9][0-9]?)(?:\\.[0-9]+)?(?:px|rem)$"
+    },
+    "guidance": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9 ,.\\u2013-]{0,63}$"
+    }
+  }
+}

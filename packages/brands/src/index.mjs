@@ -18,8 +18,10 @@ function optionalKeys(value, allowed, name) {
 const rule = /^[A-Za-z0-9][A-Za-z0-9 ,.\u2013-]{0,63}$/;
 const slug = /^[a-z][a-z0-9-]{0,47}$/;
 const docPath = /^[-A-Za-z0-9_/]+\.md$/;
+export const requiredBrandKeys = Object.freeze(['schemaVersion','id','name','version','status','modes','typography','shape','sources']);
+export const optionalBrandKeys = Object.freeze(['palette','tokens','assets','presentation','genAI']);
 export function defineBrand(input) {
-  keys(input, [...(input.palette ? ['palette'] : []), ...(input.tokens ? ['tokens'] : []), ...(input.assets ? ['assets'] : []), ...(input.presentation ? ['presentation'] : []), ...(input.genAI ? ['genAI'] : []), 'schemaVersion','id','name','version','status','modes','typography','shape','sources'], 'brand');
+  keys(input, [...optionalBrandKeys.filter(key => input[key]), ...requiredBrandKeys], 'brand');
   if (input.schemaVersion !== 1 || !/^[a-z][a-z0-9-]*$/.test(input.id)) throw new Error('Invalid brand identity');
   if (typeof input.name !== 'string' || !input.name.trim() || !/^\d+\.\d+\.\d+$/.test(input.version)) throw new Error('Invalid brand metadata');
   if (!['baseline','draft','approved'].includes(input.status)) throw new Error('Invalid brand status');

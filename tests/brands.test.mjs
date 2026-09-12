@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
-import { brands, neutral, goldbach, defineBrand, contrast, toCssVariables } from '../packages/brands/src/index.mjs';
+import { brands, neutral, goldbach, defineBrand, contrast, toCssVariables, colorKeys, requiredBrandKeys, optionalBrandKeys } from '../packages/brands/src/index.mjs';
+import brandSchema from '../packages/brands/src/brand.schema.json' with { type: 'json' };
 import { presentationTheme } from '../packages/brands/src/presentation.mjs';
 
 test('all supported modes meet the text and input contrast contract', () => {
@@ -39,4 +40,18 @@ test('core contains no organisation bindings, fonts or application infrastructur
 test('source-defined Goldbach pink hover requires a documented refinement', () => {
   assert.ok(contrast('#ef1957','#ffffff') < 4.5);
   assert.equal(goldbach.modes.light['primary-hover'],'#8d1926');
+});
+test('the published brand schema cannot drift from the validator it documents', () => {
+  assert.deepEqual(brandSchema.required,[...requiredBrandKeys],'schema required keys');
+  assert.deepEqual(Object.keys(brandSchema.properties).sort(),[...requiredBrandKeys,...optionalBrandKeys].sort(),'schema property list');
+  assert.deepEqual(brandSchema.$defs.mode.required,[...colorKeys],'schema colour roles');
+  assert.equal(brandSchema.additionalProperties,false,'unknown brand keys must stay rejected');
+  for (const brand of brands) {
+    for (const key of Object.keys(brand)) assert.ok(key in brandSchema.properties,`${brand.id}: ${key} missing from the schema`);
+    for (const key of requiredBrandKeys) assert.ok(key in brand,`${brand.id}: ${key} missing from the brand`);
+    for (const colors of Object.values(brand.modes)) assert.deepEqual(Object.keys(colors).sort(),[...colorKeys].sort(),`${brand.id}: colour roles`);
+  }
+  // A key the validator accepts but the schema omits is exactly the failure that
+  // shipped with the Sygnum 0.2 adapter: valid at runtime, undocumented publicly.
+  assert.throws(()=>defineBrand({...structuredClone(neutral),unknownBlock:{}}),/invalid keys/);
 });
