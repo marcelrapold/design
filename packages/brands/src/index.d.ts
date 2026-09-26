@@ -33,6 +33,7 @@ export function defineBrand(input: unknown): Brand;
 export const neutral: Brand;
 export const goldbach: Brand;
 export const sygnum: Brand;
+export const dominicanoExpress: Brand;
 export const brands: readonly Brand[];
 export function toCssVariables(brand: Brand, mode?: Mode): Record<string,string | number>;
 export function contrast(a: string,b: string): number;

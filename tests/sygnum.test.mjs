@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {brands,sygnum,neutral,goldbach,defineBrand,toCssVariables,tokenDocument,dtcgTokens,contrast} from '../packages/brands/src/index.mjs';
+import {brands,sygnum,neutral,goldbach,dominicanoExpress,defineBrand,toCssVariables,tokenDocument,dtcgTokens,contrast} from '../packages/brands/src/index.mjs';
 import {compilePrompt} from '../packages/brands/src/prompt-compiler.mjs';
 
 test('Sygnum has an isolated, explicitly draft, light-only identity',()=>{
- assert.deepEqual(brands.map(b=>b.id),['neutral','goldbach','sygnum']);
+ assert.deepEqual(brands.map(b=>b.id),['neutral','goldbach','sygnum','dominicano-express']);
  assert.equal(sygnum.status,'draft');assert.deepEqual(Object.keys(sygnum.modes),['light']);
  assert.equal(toCssVariables(sygnum,'dark')['--background'],sygnum.modes.light.background);
  for(const b of [neutral,goldbach])assert.equal(b.palette,undefined);
@@ -37,4 +37,11 @@ test('source manifest records gaps and does not invent gated-source access',asyn
  const observations=JSON.parse(await readFile(new URL('../brands/sygnum/sources/observations.json',import.meta.url),'utf8'));
  assert.equal(observations.sources[0].pages,31);assert.ok(observations.sources[0].fonts.some(f=>f.includes('NeusaNext')));
  assert.ok(observations.sources[0].fonts.some(f=>f.includes('BentonSans')));
+});
+
+test('Dominicano Express is registered as an isolated draft brand',()=>{
+ assert.equal(dominicanoExpress.status,'draft');
+ assert.deepEqual(Object.keys(dominicanoExpress.modes),['light','dark']);
+ assert.ok(contrast(dominicanoExpress.modes.light.primary,dominicanoExpress.modes.light['primary-foreground'])>=4.5);
+ assert.equal(toCssVariables(dominicanoExpress)['--brand-color-navy'],dominicanoExpress.palette.navy);
 });
