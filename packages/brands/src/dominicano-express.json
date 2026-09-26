@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "dominicano-express",
+  "name": "Dominicano Express",
+  "version": "0.1.0",
+  "status": "draft",
+  "palette": {
+    "navy": "#0B2E5F",
+    "navy-deep": "#071F42",
+    "blue": "#146FE8",
+    "blue-bright": "#2F8CFF",
+    "ice": "#F3F7FC",
+    "line": "#D8E4F2"
+  },
+  "modes": {
+    "light": {
+      "background": "#F6F9FC",
+      "foreground": "#0B2E5F",
+      "card": "#FFFFFF",
+      "card-foreground": "#0B2E5F",
+      "popover": "#FFFFFF",
+      "popover-foreground": "#0B2E5F",
+      "primary": "#146FE8",
+      "primary-foreground": "#FFFFFF",
+      "primary-hover": "#0B5CC4",
+      "primary-hover-foreground": "#FFFFFF",
+      "secondary": "#EAF2FB",
+      "secondary-foreground": "#0B2E5F",
+      "muted": "#F3F7FC",
+      "muted-foreground": "#4B6280",
+      "accent": "#E4F0FF",
+      "accent-foreground": "#0B2E5F",
+      "destructive": "#A21B32",
+      "destructive-foreground": "#FFFFFF",
+      "success": "#12633B",
+      "success-foreground": "#FFFFFF",
+      "warning": "#755000",
+      "warning-foreground": "#FFFFFF",
+      "border": "#D8E4F2",
+      "input": "#6D8099",
+      "ring": "#146FE8"
+    },
+    "dark": {
+      "background": "#071A36",
+      "foreground": "#F5F9FF",
+      "card": "#0B2E5F",
+      "card-foreground": "#F5F9FF",
+      "popover": "#0F376E",
+      "popover-foreground": "#F5F9FF",
+      "primary": "#69ADFF",
+      "primary-foreground": "#071A36",
+      "primary-hover": "#8CC0FF",
+      "primary-hover-foreground": "#071A36",
+      "secondary": "#123B70",
+      "secondary-foreground": "#F5F9FF",
+      "muted": "#12345F",
+      "muted-foreground": "#C4D5EA",
+      "accent": "#15447F",
+      "accent-foreground": "#F5F9FF",
+      "destructive": "#FFB0B8",
+      "destructive-foreground": "#4C0714",
+      "success": "#91E7B7",
+      "success-foreground": "#083820",
+      "warning": "#F7D986",
+      "warning-foreground": "#392A00",
+      "border": "#2B527F",
+      "input": "#8AA4C4",
+      "ring": "#69ADFF"
+    }
+  },
+  "typography": {
+    "family": "Inter, Arial, sans-serif",
+    "bodyWeight": 400,
+    "headingWeight": 700
+  },
+  "shape": {
+    "radius": "12px",
+    "shadow": "0 1px 3px #00000014",
+    "buttonMinHeight": "44px"
+  },
+  "presentation": {
+    "editorialDarkSurfaces": true,
+    "preferIconsForConcepts": true,
+    "preferMermaidForSystems": true,
+    "logoOnCover": false,
+    "preferredDiagramShare": "2-4 per 12 slides",
+    "preferredGenAiImages": "max 2 per 12 slides"
+  },
+  "sources": [
+    "brands/dominicano-express/README.md"
+  ]
+}
