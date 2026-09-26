@@ -3,6 +3,7 @@ export { foundation, resolveFoundation, semanticTokens, tokenDocument, dtcgToken
 import neutralData from './neutral.json' with { type: 'json' };
 import goldbachData from './goldbach.json' with { type: 'json' };
 import sygnumData from './sygnum.json' with { type: 'json' };
+import dominicanoExpressData from './dominicano-express.json' with { type: 'json' };
 
 export const colorKeys = Object.freeze(Object.keys(neutralData.modes.light));
 const hex = /^#[0-9a-f]{6}$/i;
@@ -67,7 +68,8 @@ export function defineBrand(input) {
 export const neutral = defineBrand(neutralData);
 export const goldbach = defineBrand(goldbachData);
 export const sygnum = defineBrand(sygnumData);
-export const brands = Object.freeze([neutral, goldbach, sygnum]);
+export const dominicanoExpress = defineBrand(dominicanoExpressData);
+export const brands = Object.freeze([neutral, goldbach, sygnum, dominicanoExpress]);
 
 export function toCssVariables(brand, requestedMode = 'light') {
   const mode = requestedMode === 'dark' && brand.modes.dark ? 'dark' : 'light';
